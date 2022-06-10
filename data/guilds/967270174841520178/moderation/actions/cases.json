@@ -1,0 +1,106 @@
+{
+    "cases": [
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:87fa94a1-8dcb-446c-b805-edc829bb5517",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "Attempted phishing",
+            "timestamp": 1654882997,
+            "length": 43200
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:87fa94a1-8dcb-446c-b805-edc829bb5517",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "Test",
+            "timestamp": 1654883047
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:44803412-a1e7-4aee-8002-0b4abeb39461",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "lmao imagine being muted",
+            "timestamp": 1654883227
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:c2e2a46b-60f1-4c8b-b0f9-c01e006dcdd0",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "lmao imagine",
+            "timestamp": 1654883319
+        },
+        {
+            "type": "BAN_CREATE",
+            "id": "953085444378218537:3358913b-75f3-4b8d-8733-1ca664059ee0",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1654883341,
+            "length": 0
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "9bbe72d5-dad2-4301-9c36-cc43955d28b8",
+            "member": "328984108271140864",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule undefined",
+            "timestamp": 1654883511,
+            "length": 21600
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "432ff398-cdb4-4e20-9c73-f77bf3bd8433",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule undefined",
+            "timestamp": 1654883517,
+            "length": 21600
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:6f84747d-88f5-4b72-b5cc-52897cd9b1a4",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "hhh\n",
+            "timestamp": 1654883552
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "59eaa8a8-44b4-4a4d-b5f6-1fb770dacc06",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule Phishing links",
+            "timestamp": 1654883566,
+            "length": 43200
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:a799d14e-b110-4860-b517-35ff6144a04a",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "Stop trying to send phishing links lmao",
+            "timestamp": 1654883634
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "971d3c7b-8030-4534-abcc-297268b443be",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Policy violation: Phishing links",
+            "timestamp": 1654884126,
+            "length": 86400
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:4e8d8a94-de28-44e7-8f24-dd1b4cd6aab7",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "stop phishing\ncringe",
+            "timestamp": 1654884162
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+/.eslintrc.js
+/.replit
+/.vscode
+/node_modules
+/replit.nix
+
+/guilds
+/users
+
+!/guilds/template
+!/users/template

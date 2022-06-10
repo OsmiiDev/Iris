@@ -1,0 +1,34 @@
+{
+    "328984108271140864": [
+        {
+            "id": "328984108271140864:522b4d1b-2d7b-4c48-a70f-28abd3ebcba8",
+            "reason": "Automod - Violated rule undefined",
+            "start": 1654883511,
+            "end": 1654905111,
+            "expired": false
+        }
+    ],
+    "953085444378218537": [
+        {
+            "id": "953085444378218537:6f84747d-88f5-4b72-b5cc-52897cd9b1a4",
+            "reason": "Automod - Violated rule undefined",
+            "start": 1654883517,
+            "end": 1654905117,
+            "expired": true
+        },
+        {
+            "id": "953085444378218537:a799d14e-b110-4860-b517-35ff6144a04a",
+            "reason": "Automod - Violated rule Phishing links",
+            "start": 1654883566,
+            "end": 1654926766,
+            "expired": true
+        },
+        {
+            "id": "953085444378218537:4e8d8a94-de28-44e7-8f24-dd1b4cd6aab7",
+            "reason": "Automod - Violated rule Phishing links",
+            "start": 1654884126,
+            "end": 1654970526,
+            "expired": true
+        }
+    ]
+}

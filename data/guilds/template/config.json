@@ -1,0 +1,295 @@
+{
+    "prefix": ">",
+
+    "commands": {
+        "slash": {
+            "music": {
+                "enabled": true
+            }
+        }
+    },
+
+    "modules": {
+        "moderation": {
+            "actions": {
+                "matrix": {
+                    "enabled": true,
+
+                    "matricies": {
+                        "default": {
+                            "rules": [
+                                { "on": "warn >= 5 in 7776000", "run": "mute default" },
+                                { "on": "warn % 3 in 7776000", "run": "kick" },
+                                { "on": "mute >= 5 in 7776000", "run": "ban permanent" }
+                            ],
+        
+                            "times": {
+                                "mute": [21600, 43200, 86400, 172800],
+                                "ban": [0]
+                            },
+
+                            "window": {
+                                "mute": 7776000,
+                                "warn": 7776000,
+                                "ban": 7776000
+                            }
+                        }
+                    }
+                },
+
+                "mute": {
+                    "enabled": true,
+
+                    "behavior": "matrix",
+                    "matrix": "default",
+
+                    "timeout": true,
+                    "role": "968652592504770560",
+
+                    "mute-message-public": {
+                        "embeds": [
+                            {
+                                "type": "rich",
+                                "title": "",
+                                "description": "<:Iris_TickYes:977399754969448520> ***{UserTag} was muted*** | {Reason}",
+                                "color": 4504422
+                            }
+                        ]
+                    },
+
+                    "mute-message-private": {
+                        "embeds": [
+                            {
+                                "type": "rich",
+                                "title": "",
+                                "description": "You were muted in {GuildName} {ForTime}| {Reason}",
+                                "color": 12272742
+                            }
+                        ]
+                    },
+
+                    "unmute-message-public": {
+                        "embeds": [
+                            {
+                                "type": "rich",
+                                "title": "",
+                                "description": "<:Iris_TickYes:977399754969448520> ***{UserTag} was unmuted*** | {Reason}",
+                                "color": 4504422
+                            }
+                        ]
+                    },
+
+                    "unmute-message-private": {
+                        "embeds": [
+                            {
+                                "type": "rich",
+                                "title": "",
+                                "description": "You were unmuted in {GuildName} | {Reason}",
+                                "color": 4504422
+                            }
+                        ]
+                    },
+
+                    "log-channel": "968647921602011138"
+                },
+
+                "ban": {
+                    "enabled": true,
+
+                    "behavior": "permanent",
+                    "matrix": "default",
+
+                    "purge": 0,
+
+                    "ban-message-public": {
+                        "embeds": [
+                            {
+                                "type": "rich",
+                                "title": "",
+                                "description": "<:Iris_TickYes:977399754969448520> ***{UserTag} was banned*** | {Reason}",
+                                "color": 4504422
+                            }
+                        ]
+                    },
+
+                    "ban-message-private": {
+                        "embeds": [
+                            {
+                                "type": "rich",
+                                "title": "",
+                                "description": "You were banned from {GuildName} | {Reason}",
+                                "color": 12272742
+                            }
+                        ]
+                    },
+
+                    "unmute-message-public": {
+                        "embeds": [
+                            {
+                                "type": "rich",
+                                "title": "",
+                                "description": "<:Iris_TickYes:977399754969448520> ***{UserTag} was unmuted*** | {Reason}",
+                                "color": 4504422
+                            }
+                        ]
+                    },
+
+                    "unmute-message-private": {
+                        "embeds": [
+                            {
+                                "type": "rich",
+                                "title": "",
+                                "description": "You were unmuted in {GuildName} | {Reason}",
+                                "color": 4504422
+                            }
+                        ]
+                    },
+
+                    "log-channel": "968647921602011138"
+                },
+
+                "warn": {
+                    "enabled": true,
+
+                    "matrix": "default",
+
+                    "warn-message-public": {
+                        "embeds": [
+                            {
+                                "type": "rich",
+                                "title": "",
+                                "description": "<:Iris_TickYes:977399754969448520> ***{UserTag} was warned*** | {Reason}",
+                                "color": 4504422
+                            }
+                        ]
+                    },
+
+                    "warn-message-private": {
+                        "embeds": [
+                            {
+                                "type": "rich",
+                                "title": "",
+                                "description": "You were warned in {GuildName} | {Reason}",
+                                "color": 12272742
+                            }
+                        ]
+                    },
+
+                    "log-channel": "968647921602011138"
+                },
+
+                "kick": {
+                    "enabled": true,
+
+                    "matrix": "default",
+
+                    "kick-message-public": {
+                        "embeds": [
+                            {
+                                "type": "rich",
+                                "title": "",
+                                "description": "<:Iris_TickYes:977399754969448520> ***{UserTag} was kicked*** | {Reason}",
+                                "color": 4504422
+                            }
+                        ]
+                    },
+
+                    "kick-message-private": {
+                        "embeds": [
+                            {
+                                "type": "rich",
+                                "title": "",
+                                "description": "You were kicked from {GuildName} | {Reason}",
+                                "color": 12272742
+                            }
+                        ]
+                    },
+
+                    "log-channel": "968647921602011138"
+                }
+            },
+
+            "automod": {
+                "enabled": true,
+
+                "rules": [
+                    {
+                        "name": "Phishing links",
+                        "enabled": true,
+
+                        "rule": {
+                            "type": "banned-words",
+
+                            "file": "moderation/automod/phishing-links",
+                            "match": "exact"
+                        },
+
+                        "action": "delete; mute default;",
+
+                        "exempt": {
+                            "users": [],
+                            "roles": [],
+                            "channels": []
+                        }
+                    }
+                ]
+            },
+
+            "modmail": {
+                "enabled": true,
+
+                "channel": "971227644161052682"
+            }
+        },
+
+        "entertainment": {
+            "music": {
+                "enabled": true,
+                
+                "public-log-channel": "968700193367265351",
+                "private-log-channel": "971166915793932388",
+
+                "whitelisted-voice-channels": ["981625492903964722"]
+            }
+        }
+    },
+
+    "permissions": {
+        "default": {
+            "MODERATION_ACTION_MUTE_CREATE": [false, 0],
+            "MODERATION_ACTION_MUTE_DELETE": [false, 0],
+            "MUSIC_PLAYER_USE": [true, 0],
+            "MUSIC_PLAYER_LOOP": [true, 0],
+            "MUSIC_PLAYER_PLAY": [true, 0],
+            "MUSIC_PLAYER_SKIP": [true, 0],
+            "MUSIC_PLAYER_PLAYLISTS": [true, 0]
+        },
+
+        "roles": {
+            "970906262567022632": {
+                "MODERATION_ACTION_BAN_CREATE": [false, 1],
+                "MODERATION_ACTION_WARN_CREATE": [true, 1],
+                "MODERATION_ACTION_KICK_CREATE": [true, 1],
+                "MODERATION_ACTION_MUTE_CREATE": [true, 1],
+                "MODERATION_ACTION_MUTE_DELETE": [true, 1],
+                "MODERATION_MODMAIL_TICKET_CLOSE": [true, 1]
+            },
+            "967542117436104704": {
+                "MODERATION_ACTION_BAN_CREATE": [true, 2]
+            },
+            "968697071169310782": {
+                "MODERATION_ACTION_BAN_CREATE": [true, 2]
+            },
+            "968700535848984668": {
+                "MODERATION_ACTION_BAN_CREATE": [true, 2]
+            },
+            "969065579858243675": {
+                "MODERATION_ACTION_BAN_CREATE": [true, 2]
+            }
+        },
+
+        "members": {
+
+        }
+    }
+}

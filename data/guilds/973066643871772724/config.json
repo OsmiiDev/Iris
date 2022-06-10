@@ -1,0 +1,30 @@
+{
+    "prefix": ">",
+
+    "modules": {
+        "moderation": {
+            "actions": {
+                "mute": {
+                    "enabled": true
+                }
+            }
+        }
+    },
+
+    "permissions": {
+        "default": {
+            "MODERATION_ACTION_MUTE_DELETE": [false, 0]
+        },
+
+        "roles": {
+            "954138132025061387": {
+                "MODERATION_ACTION_MUTE_CREATE": [true, 1],
+                "MODERATION_ACTION_MUTE_DELETE": [true, 1]
+            }
+        },
+
+        "members": {
+
+        }
+    }
+}

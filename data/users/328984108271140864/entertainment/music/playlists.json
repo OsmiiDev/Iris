@@ -1,0 +1,32 @@
+{
+    "playlists": [
+        {
+            "name": "Sleep",
+            "description": "A playlist for relaxing and winding down at the end of a day.",
+            "id": "bcb5fae1",
+            "creator": "Osmiium",
+            "created": "1654379160",
+            "modified": "1654379360",
+            "tracks": [
+                {
+                    "id": "https://www.youtube.com/watch?v=P-FrQnI3slU",
+                    "name": "Talking to the Moon",
+                    "author": "Vibe Music",
+                    "starred": true
+                },
+                {
+                    "id": "https://www.youtube.com/watch?v=s7-GTShjcqY",
+                    "name": "Darkside",
+                    "author": "7clouds",
+                    "starred": false
+                },
+                { 
+                    "id": "https://www.youtube.com/watch?v=-vohFdm8lxA",
+                    "name": "NEONI - MACHINE (lyric video)",
+                    "author": "Neoni",
+                    "starred": false
+                }
+            ]
+        }
+    ]
+}

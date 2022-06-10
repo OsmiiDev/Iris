@@ -1,0 +1,33 @@
+{
+  "main": "iris.js",
+  "name": "iris",
+  "version": "1.0.0",
+  "author": "osmiidev",
+  "description": "Iris is a bot that makes server management easy with a wide variety of user-friendly commands and features.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/builders": "^0.13.0",
+    "@discordjs/voice": "^0.9.0",
+    "axios": "^0.27.2",
+    "canvas": "^2.9.1",
+    "discord.js": "^13.6.0",
+    "express": "^4.18.1",
+    "ffmpeg-static": "^4.4.1",
+    "next": "^12.1.6",
+    "play-dl": "^1.9.5",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "sharp": "^0.30.6",
+    "sodium": "^3.0.2",
+    "ytdl-core": "^4.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
