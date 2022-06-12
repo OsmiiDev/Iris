@@ -1,34 +1,50 @@
 {
+    "731776103336771617": [
+        {
+            "id": "731776103336771617:c145dcd1-3c8a-4db6-be57-fb62e3b3d63c",
+            "reason": "Automod - Violated rule Phishing links",
+            "start": 1654992361,
+            "end": 1655013961,
+            "expired": true
+        },
+        {
+            "id": "731776103336771617:c0b30848-4a76-4de2-8c91-97f3228d7108",
+            "reason": "Automod - Violated rule Phishing links",
+            "start": 1654992392,
+            "end": 1655035592,
+            "expired": true
+        },
+        {
+            "id": "731776103336771617:062ba4cf-5c7c-45a5-8faa-e5fce77207e2",
+            "reason": "Automod - Violated rule Phishing links",
+            "start": 1654999741,
+            "end": 1655086141,
+            "expired": false
+        }
+    ],
     "328984108271140864": [
         {
-            "id": "328984108271140864:522b4d1b-2d7b-4c48-a70f-28abd3ebcba8",
-            "reason": "Automod - Violated rule undefined",
-            "start": 1654883511,
-            "end": 1654905111,
+            "id": "328984108271140864:d2f818c8-2f12-4198-9c97-0ac1411b8feb",
+            "reason": "Automod - Violated rule Phishing links",
+            "start": 1655053056,
+            "end": 1655074656,
+            "expired": false
+        },
+        {
+            "id": "328984108271140864:c4d5a081-cc53-46eb-b1b6-ddd2a1e35df6",
+            "reason": "Automod - Violated rule Phishing links",
+            "start": 1655053086,
+            "end": 1655096286,
             "expired": false
         }
     ],
     "953085444378218537": [
         {
-            "id": "953085444378218537:6f84747d-88f5-4b72-b5cc-52897cd9b1a4",
-            "reason": "Automod - Violated rule undefined",
-            "start": 1654883517,
-            "end": 1654905117,
-            "expired": true
-        },
-        {
-            "id": "953085444378218537:a799d14e-b110-4860-b517-35ff6144a04a",
-            "reason": "Automod - Violated rule Phishing links",
-            "start": 1654883566,
-            "end": 1654926766,
-            "expired": true
-        },
-        {
-            "id": "953085444378218537:4e8d8a94-de28-44e7-8f24-dd1b4cd6aab7",
-            "reason": "Automod - Violated rule Phishing links",
-            "start": 1654884126,
-            "end": 1654970526,
-            "expired": true
+            "id": "953085444378218537:7aa02c69-b5de-49a9-bae3-5ad9121ed2dc",
+            "reason": "Punishment threshold reached",
+            "start": 1655059789,
+            "end": 1655081389,
+            "expired": false
         }
     ]
 }

@@ -2,25 +2,8 @@ const fs = require("fs");
 const IrisModule = require("../modules/IrisModule");
 
 let modules = {
-    "core.IrisModule": "../modules/IrisModule.js",
-    "entertainment.music.MusicPlayer": "../modules/entertainment/music/MusicPlayer.js",
-    "entertainment.music.MusicPlayerCommands": "../modules/entertainment/music/MusicPlayerCommands.js",
-    "entertainment.music.MusicPlayerPlaylists": "../modules/entertainment/music/MusicPlayerPlaylists.js",
-    "entertainment.music.MusicPlayerQueue": "../modules/entertainment/music/MusicPlayerQueue.js",
-    "moderation.actions.ActionBan": "../modules/moderation/actions/ActionBan.js",
-    "moderation.actions.ActionBanModals": "../modules/moderation/actions/ActionBanModals.js",
-    "moderation.actions.ActionCase": "../modules/moderation/actions/ActionCase.js",
-    "moderation.actions.ActionKickModals": "../modules/moderation/actions/ActionKickModals.js",
-    "moderation.actions.ActionMatrix": "../modules/moderation/actions/ActionMatrix.js",
-    "moderation.actions.ActionMute": "../modules/moderation/actions/ActionMute.js",
-    "moderation.actions.ActionMuteModals": "../modules/moderation/actions/ActionMuteModals.js",
-    "moderation.actions.ActionWarnModals": "../modules/moderation/actions/ActionWarnModals.js",
-    "moderation.modmail.ModmailTicketClose": "../modules/moderation/modmail/ModmailTicketClose.js",
-    "moderation.modmail.ModmailTicketCreate": "../modules/moderation/modmail/ModmailTicketCreate.js",
-    "moderation.modmail.ModmailTicketLink": "../modules/moderation/modmail/ModmailTicketLink.js",
-    "moderation.modmail.ModmailTicketManager": "../modules/moderation/modmail/ModmailTicketManager.js",
-    "entertainment.music.MusicPlayerThumbnail": "../modules/entertainment/music/MusicPlayerThumbnail.js",
-}
+    "core.IrisModule": "../modules/IrisModule",
+};
 
 class ModuleUtils {
 

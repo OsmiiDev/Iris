@@ -5,10 +5,10 @@ const DataUtils = require("../../../utility/DataUtils");
 const ModuleUtils = require("../../../utility/ModuleUtils");
 const PermissionUtils = require("../../../utility/PermissionUtils");
 
-const ActionCase = ModuleUtils.getModule("moderation.actions.ActionCase");
-const ActionMatrix = ModuleUtils.getModule("moderation.actions.ActionMatrix");
+let ActionCase = ModuleUtils.getModule("moderation.actions.ActionCase");
+let ActionMatrix = ModuleUtils.getModule("moderation.actions.ActionMatrix");
 
-const IrisModule = ModuleUtils.getModule("core.IrisModule");
+const IrisModule = require("../../IrisModule");
 
 class ActionWarnModals extends IrisModule {
 
@@ -18,6 +18,7 @@ class ActionWarnModals extends IrisModule {
 
     constructor() {
         super("moderation.actions.ActionWarnModals");
+
 
         this.registerEvents();
     }
@@ -34,7 +35,7 @@ class ActionWarnModals extends IrisModule {
         let userId = interaction.customId.split("-")[1];
         if (!userId) { return; }
 
-        let member = await interaction.guild.members.fetch(userId).catch(() => {});
+        let member = await interaction.guild.members.fetch(userId).catch(() => { });
         if (!member instanceof GuildMember) { return interaction.reply({ embeds: [MessageUtils.generateErrorEmbed()] }); }
         if (interaction.member.roles.highest.comparePositionTo(member.roles.highest) < 0 || member.id === member.guild.ownerId) { return interaction.reply({ embeds: [MessageUtils.generateErrorEmbed("You can't warn this user.")] }); }
 
@@ -67,7 +68,7 @@ class ActionWarnModals extends IrisModule {
      * @param {String} reason Why you are warning this user
      * @returns {String} The ID of the warning
     */
-    static createWarn(member, reason) {
+    static createWarn(member, reason, matrix) {
         let warnData = DataUtils.read(member.guild, "moderation/actions/warns");
         if (!warnData[member.id]) { warnData[member.id] = []; }
 
@@ -82,7 +83,33 @@ class ActionWarnModals extends IrisModule {
 
         DataUtils.write(member.guild, "moderation/actions/warns", warnData);
 
-        ActionMatrix.handleMatrix(member.guild, DataUtils.getConfig(member.guild).modules.moderation.actions.warn.matrix, member.user, "warn");
+        ActionMatrix.handleMatrix(member.guild, matrix || DataUtils.getConfig(member.guild).modules.moderation.actions.warn.matrix, member.user, "warn");
+
+        return id;
+    }
+
+    /**
+     * @description Issues a warning, created by automod to a specified user
+     * @param {GuildMember} member The member to warn
+     * @param {String} reason Why you are warning this user
+     * @returns {String} The ID of the warning
+    */
+    static createAutomodWarn(member, reason, matrix) {
+        let autowarnData = DataUtils.read(member.guild, "moderation/actions/autowarns");
+        if (!autowarnData[member.id]) { autowarnData[member.id] = []; }
+
+        let id = `${member.id}:${crypto.randomUUID()}`;
+
+        autowarnData[member.id].push({
+            "id": id,
+            "reason": reason,
+            "start": Math.floor(new Date().getTime() / 1000),
+            "expired": false
+        });
+
+        DataUtils.write(member.guild, "moderation/actions/autowarns", autowarnData);
+
+        ActionMatrix.handleMatrix(member.guild, matrix || DataUtils.getConfig(member.guild).modules.moderation.actions.warn.matrix, member.user, "autowarn");
 
         return id;
     }

@@ -27,7 +27,7 @@ class ActionMute extends IrisModule {
      * @param {String} reason Why you are muting this user
      * @returns {String} The ID of the mute
     */
-    static async createMute(member, time, reason) {
+    static async createMute(member, time, reason, matrix) {
         let muteData = DataUtils.read(member.guild, "moderation/actions/mutes");
         if (!muteData[member.id]) { muteData[member.id] = []; }
 
@@ -45,7 +45,7 @@ class ActionMute extends IrisModule {
 
         DataUtils.write(member.guild, "moderation/actions/mutes", muteData);
 
-        ActionMatrix.handleMatrix(member.guild, DataUtils.getConfig(member.guild).modules.moderation.actions.mute.matrix, member.user, "mute");
+        ActionMatrix.handleMatrix(member.guild, matrix || DataUtils.getConfig(member.guild).modules.moderation.actions.mute.matrix, member.user, "mute");
 
         if (!permanent && DataUtils.getConfig(member.guild).modules.moderation.actions.mute.timeout) { member.timeout(time * 1000, reason).catch(() => { }); }
         if (DataUtils.getConfig(member.guild).modules.moderation.actions.mute.role) { member.roles.add(DataUtils.getConfig(member.guild).modules.moderation.actions.mute.role); }
@@ -128,7 +128,9 @@ class ActionMute extends IrisModule {
                 if (timeUntil < 0) {
                     ActionMute.deleteMute(guildId, mute.id);
                     let guild = await process.client.guilds.fetch(guildId);
-                    if (guild instanceof Guild) { ActionCase.createCase(guild, "MUTE_DELETE", member, botMember, "The mute has expired."); }
+                    let member = await guild.members.fetch(mute.id.split(":")[0]).catch(() => {});
+
+                    if (guild instanceof Guild && member instanceof GuildMember) { ActionCase.createCase(guild, "MUTE_DELETE", mute.id, member, member.guild.me, "The mute has expired."); }
                     continue;
                 }
 

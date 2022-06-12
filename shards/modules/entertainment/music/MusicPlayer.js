@@ -9,16 +9,13 @@ const ModuleUtils = require("../../../utility/ModuleUtils");
 const PermissionUtils = require("../../../utility/PermissionUtils");
 const { Canvas } = require("canvas");
 
-const MusicPlayerThumbnail = ModuleUtils.getModule("entertainment.music.MusicPlayerThumbnail");
-
-const IrisModule = ModuleUtils.getModule("core.IrisModule");
-
 let players = {};
 let queues = {};
 let settings = {};
 let idleTimers = {};
 
 const crypto = require("crypto");
+const IrisModule = require("../../IrisModule");
 
 class MusicPlayer extends IrisModule {
 

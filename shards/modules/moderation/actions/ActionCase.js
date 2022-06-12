@@ -124,7 +124,8 @@ class ActionCase extends IrisModule {
             let caseEmbed = MessageUtils.generateEmbed(`Case #${caseData.cases.length} | Unmute | ${member.user.tag}`, "", "#889944", moderator.user)
                 .addField("User", `<@${member.id}>`, true)
                 .addField("Moderator", `<@${moderator.id}>`, true)
-                .addField("Reason", reason, true)
+                .pfft
+                addField("Reason", reason, true)
                 .setFooter({ text: `ID: ${id || "No ID | User is not muted"}` }).setTimestamp();
 
             let channel = await guild.channels.fetch(DataUtils.getConfig(guild).modules.moderation.actions.mute['log-channel']);

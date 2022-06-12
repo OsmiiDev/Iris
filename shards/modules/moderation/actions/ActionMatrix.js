@@ -35,6 +35,10 @@ class ActionMatrix extends IrisModule {
             let on = ActionMatrix.parseRule(rule.on);
             let run = ActionMatrix.parseRun(rule.run);
 
+            if (action === "autowarn" && on("autowarn", guild.getActionHistory(user, "autowarns"))) {
+                run(guild, user)
+            }
+
             if (action === "warn" && on("warn", guild.getActionHistory(user, "warns"))) {
                 run(guild, user);
             }
@@ -76,15 +80,15 @@ class ActionMatrix extends IrisModule {
      * @returns {function} A function that runs the action given a guild and user
     */
     static parseRun(run) {
-        let [action, time] = run.split(" ");
+        let [action, time, matrix] = run.split(" ");
+        
         if (action === "mute") {
             return async (guild, user) => {
-                let member = await guild.members.fetch(user.id).catch(() => {});
+                let member = await guild.members.fetch(user.id).catch(() => { });
                 if (!(member instanceof GuildMember)) { return; }
 
                 if (time === "default") { time = ModuleUtils.getModule("moderation.actions.ActionMute").getDefaultTime(member); }
                 if (time === "permanent") { time = 0; }
-
 
                 ModuleUtils.getModule("moderation.actions.ActionMute").createMute(member, time === "permanent" ? 0 : time, "Punishment threshold reached");
                 ActionCase.createCase(guild, "MUTE_CREATE", `${user.id}:${crypto.randomUUID()}`, member, guild.me, "Punishment threshold reached", time);
@@ -98,10 +102,10 @@ class ActionMatrix extends IrisModule {
         }
         if (action === "kick") {
             return async (guild, user) => {
-                let member = await guild.members.fetch(user.id).catch(() => {});
+                let member = await guild.members.fetch(user.id).catch(() => { });
                 if (!(member instanceof GuildMember)) { return; }
 
-                ModuleUtils.getModule("moderation.actions.ActionKickModals").createKick(member, "Punishment threshold reached");
+                ModuleUtils.getModule("moderation.actions.ActionKick").createKick(member, "Punishment threshold reached");
                 ActionCase.createCase(guild, "KICK_CREATE", `${user.id}:${crypto.randomUUID()}`, user, guild.me, "Punishment threshold reached");
             };
         }

@@ -18,6 +18,7 @@
                     "matricies": {
                         "default": {
                             "rules": [
+                                { "on": "autowarn >= 5 in 600", "run": "mute default" },
                                 { "on": "warn >= 5 in 7776000", "run": "mute default" },
                                 { "on": "warn % 3 in 7776000", "run": "kick" },
                                 { "on": "mute >= 5 in 7776000", "run": "ban permanent" }
@@ -220,11 +221,30 @@
                         "rule": {
                             "type": "banned-words",
 
-                            "file": "moderation/automod/phishing-links",
-                            "match": "exact"
+                            "file": "public:filters/phishing-links",
+                            "match": "regex"
                         },
 
                         "action": "delete; mute default;",
+
+                        "exempt": {
+                            "users": [],
+                            "roles": [],
+                            "channels": []
+                        }
+                    },
+                    {
+                        "name": "Slurs",
+                        "enabled": true,
+
+                        "rule": {
+                            "type": "banned-words",
+
+                            "file": "custom:slurs",
+                            "match": "regex"
+                        },
+
+                        "action": "delete; warn Watch your language.;",
 
                         "exempt": {
                             "users": [],

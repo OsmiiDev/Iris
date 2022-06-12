@@ -1,15 +1,10 @@
 
-const { CommandInteraction, GuildMember, User, Interaction, MessageActionRow, MessageSelectMenu, Message, MessageButton, SelectMenuInteraction } = require("discord.js");
+const { } = require("discord.js");
 const axios = require("axios");
 const { Canvas, createCanvas, loadImage, registerFont } = require("canvas");
 const sharp = require("sharp");
 
-const DataUtils = require("../../../utility/DataUtils");
-const MessageUtils = require("../../../utility/MessageUtils");
-const ModuleUtils = require("../../../utility/ModuleUtils");
-const PermissionUtils = require("../../../utility/PermissionUtils");
-
-const IrisModule = ModuleUtils.getModule("core.IrisModule");
+const IrisModule = require("../../IrisModule");
 
 class MusicPlayerThumbnail extends IrisModule {
 
