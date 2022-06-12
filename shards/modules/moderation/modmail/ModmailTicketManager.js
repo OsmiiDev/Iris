@@ -4,7 +4,7 @@ const { User, TextChannel, Guild, ThreadChannel, GuildMember, DMChannel } = requ
 const DataUtils = require("../../../utility/DataUtils");
 const ModuleUtils = require("../../../utility/ModuleUtils");
 
-const IrisModule = ModuleUtils.getModule("core.IrisModule");
+const IrisModule = require("../../IrisModule");
 
 class ModmailTicketManager extends IrisModule {
 

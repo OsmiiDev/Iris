@@ -4,9 +4,9 @@ const DataUtils = require("../../../utility/DataUtils");
 const ModuleUtils = require("../../../utility/ModuleUtils");
 const MessageUtils = require("../../../utility/MessageUtils");
 
-const ModmailTicketManager = ModuleUtils.getModule("moderation.modmail.ModmailTicketManager");
+const ModmailTicketManager = require("./ModmailTicketManager");
 
-const IrisModule = ModuleUtils.getModule("core.IrisModule");
+const IrisModule = require("../../IrisModule");
 
 class ModmailTicketCreate extends IrisModule {
 

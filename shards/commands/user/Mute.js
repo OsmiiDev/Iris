@@ -5,7 +5,7 @@ const DataUtils = require("../../utility/DataUtils");
 const ModuleUtils = require("../../utility/ModuleUtils");
 const PermissionUtils = require("../../utility/PermissionUtils");
 
-const ActionMute = ModuleUtils.getModule("moderation.actions.ActionMute");
+const ActionMute = require("../../modules/moderation/actions/ActionMute");
 
 const UserCommand = require("../UserCommand");
 

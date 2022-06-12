@@ -3,9 +3,9 @@ const { Message, ThreadChannel, GuildManager, GuildMember, DMChannel, Webhook } 
 const MessageUtils = require("../../../utility/MessageUtils");
 const ModuleUtils = require("../../../utility/ModuleUtils");
 
-const ModmailTicketManager = ModuleUtils.getModule("moderation.modmail.ModmailTicketManager");
+const ModmailTicketManager = require("../../modmail/ModmailTicketManager");
 
-const IrisModule = ModuleUtils.getModule("core.IrisModule");
+const IrisModule = require("../../IrisModule");
 
 class ModmailTicketLink extends IrisModule {
 

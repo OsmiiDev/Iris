@@ -2,81 +2,88 @@
     "cases": [
         {
             "type": "MUTE_CREATE",
-            "id": "8f6ee0d6-0c43-4bab-8fc9-4d29480af6c4",
-            "member": "731776103336771617",
-            "moderator": "957409730958086254",
-            "reason": "Automod - Policy violation: Phishing links",
-            "timestamp": 1654992361,
-            "length": 21600
-        },
-        {
-            "type": "MUTE_CREATE",
-            "id": "1d3437bb-ee9d-43a2-b805-da062589f730",
-            "member": "731776103336771617",
-            "moderator": "957409730958086254",
-            "reason": "Automod - Policy violation: Phishing links",
-            "timestamp": 1654992392,
-            "length": 43200
-        },
-        {
-            "type": "MUTE_CREATE",
-            "id": "e645d241-451f-4365-a9f4-56f086ebdd75",
-            "member": "731776103336771617",
-            "moderator": "957409730958086254",
-            "reason": "Automod - Policy violation: Phishing links",
-            "timestamp": 1654999741,
-            "length": 86400
-        },
-        {
-            "type": "MUTE_CREATE",
-            "id": "d7b04f89-c9f4-457d-9d5c-107eeaee4dfa",
-            "member": "328984108271140864",
-            "moderator": "957409730958086254",
-            "reason": "Automod - Policy violation: Phishing links",
-            "timestamp": 1655053056,
-            "length": 21600
-        },
-        {
-            "type": "MUTE_CREATE",
-            "id": "385047bf-9112-484b-be06-a2453e629b2c",
-            "member": "328984108271140864",
-            "moderator": "957409730958086254",
-            "reason": "Automod - Policy violation: Phishing links",
-            "timestamp": 1655053086,
-            "length": 43200
-        },
-        {
-            "type": "WARN_CREATE",
-            "id": "953085444378218537:72abed77-da86-4914-a842-92f6bc4d29f8",
-            "member": "953085444378218537",
-            "moderator": "328984108271140864",
-            "reason": "code why",
-            "timestamp": 1655059390
-        },
-        {
-            "type": "WARN_CREATE",
-            "id": "953085444378218537:9d53935b-2193-4410-b92b-e6664b0cf41d",
-            "member": "953085444378218537",
-            "moderator": "328984108271140864",
-            "reason": "code why x2",
-            "timestamp": 1655059397
-        },
-        {
-            "type": "WARN_CREATE",
-            "id": "953085444378218537:daad9d1b-3752-4ae2-b7b3-36158b125e88",
-            "member": "953085444378218537",
-            "moderator": "328984108271140864",
-            "reason": "code why x3",
-            "timestamp": 1655059402
-        },
-        {
-            "type": "MUTE_CREATE",
-            "id": "953085444378218537:9f1f934f-26f5-41f4-88fa-890a0d196845",
+            "id": "953085444378218537:9d39c78c-349e-48e9-bee8-c2db507d1399",
             "member": "953085444378218537",
             "moderator": "957409730958086254",
             "reason": "Punishment threshold reached",
-            "timestamp": 1655059789,
+            "timestamp": 1655061027,
             "length": 21600
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:ddc52fa5-e591-482b-88b8-eaad787763c6",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "a",
+            "timestamp": 1655061266
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:28ea35e6-363a-4d97-9aeb-e7d508cd1682",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655061306,
+            "length": 43200
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:4c088bec-24a0-447f-ad42-c943feb407ca",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "a",
+            "timestamp": 1655061326
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:11e2c21b-e589-41ab-bfd6-cc27ab4bbb27",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655061335,
+            "length": 86400
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:2e254a54-7b1f-43c0-bede-3fb889cf3fe5",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "asdf",
+            "timestamp": 1655061347
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:939e942f-d8f5-4b3e-a345-1f1952c1c92b",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655061352,
+            "length": 172800
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:dc7784af-2388-4c69-90f4-e7e2f9f125cd",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "f",
+            "timestamp": 1655061364
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:16e11aba-5e6c-44ae-8c3f-cb6c0b61f57a",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655061367,
+            "length": 172800
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:d5ea8e59-bf84-4b9a-bb4b-d413c9a449f8",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "a",
+            "timestamp": 1655068233
         }
     ]
 }

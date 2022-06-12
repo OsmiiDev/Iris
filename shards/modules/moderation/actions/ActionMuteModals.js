@@ -5,10 +5,10 @@ const MessageUtils = require("../../../utility/MessageUtils");
 const ModuleUtils = require("../../../utility/ModuleUtils");
 const PermissionUtils = require("../../../utility/PermissionUtils");
 
-const ActionCase = ModuleUtils.getModule("moderation.actions.ActionCase");
-const ActionMute = ModuleUtils.getModule("moderation.actions.ActionMute");
+const ActionCase = require("./ActionCase");
+const ActionMute = require("./ActionMute");
 
-const IrisModule = ModuleUtils.getModule("core.IrisModule");;
+const IrisModule = require("../../IrisModule");
 
 class ActionMuteModals extends IrisModule {
 

@@ -6,7 +6,7 @@ const MessageUtils = require("../../../utility/MessageUtils");
 const ModuleUtils = require("../../../utility/ModuleUtils");
 const PermissionUtils = require("../../../utility/PermissionUtils");
 
-const IrisModule = ModuleUtils.getModule("core.IrisModule");
+const IrisModule = require("../../IrisModule");
 
 class MusicPlayPreference extends IrisModule {
 

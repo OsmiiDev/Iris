@@ -5,8 +5,8 @@ const DataUtils = require("../../../utility/DataUtils");
 const ModuleUtils = require("../../../utility/ModuleUtils");
 const PermissionUtils = require("../../../utility/PermissionUtils");
 
-let ActionCase = ModuleUtils.getModule("moderation.actions.ActionCase");
-let ActionMatrix = ModuleUtils.getModule("moderation.actions.ActionMatrix");
+let ActionCase = require("./ActionCase");
+let ActionMatrix = require("./ActionMatrix");
 
 const IrisModule = require("../../IrisModule");
 

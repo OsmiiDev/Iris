@@ -4,9 +4,9 @@ const crypto = require("crypto");
 const DataUtils = require("../../../utility/DataUtils");
 const ModuleUtils = require("../../../utility/ModuleUtils");
 
-const ActionCase = ModuleUtils.getModule("moderation.actions.ActionCase");
+const ActionCase = require("./ActionCase");
 
-const IrisModule = ModuleUtils.getModule("core.IrisModule");
+const IrisModule = require("../../IrisModule");
 
 class ActionMatrix extends IrisModule {
 

@@ -1,57 +1,65 @@
 {
     "953085444378218537": [
         {
-            "id": "953085444378218537:e36108ca-2526-4c80-99bd-c24634eaa7bc",
+            "id": "953085444378218537:cc433e3d-9d45-47db-b395-521071a7bdb3",
             "reason": "Automod - Violated rule Slurs",
-            "start": 1655058697,
+            "start": 1655061020,
             "expired": false
         },
         {
-            "id": "953085444378218537:acd11c73-9314-42d3-b68a-a48ca4813138",
+            "id": "953085444378218537:108dfbc3-17c8-4144-8d8b-e63934a4b57b",
             "reason": "Automod - Violated rule Slurs",
-            "start": 1655058701,
+            "start": 1655061021,
             "expired": false
         },
         {
-            "id": "953085444378218537:57192f0d-966d-4a5c-99c9-72b5e90c381c",
+            "id": "953085444378218537:8b70ff25-2e04-4377-9bc2-577ede738b95",
             "reason": "Automod - Violated rule Slurs",
-            "start": 1655058702,
+            "start": 1655061022,
             "expired": false
         },
         {
-            "id": "953085444378218537:565baa1e-09d4-487f-b3ae-286a69872b46",
+            "id": "953085444378218537:71d9c75b-fa34-4ca8-9006-03ae21940fdd",
             "reason": "Automod - Violated rule Slurs",
-            "start": 1655058703,
+            "start": 1655061025,
             "expired": false
         },
         {
-            "id": "953085444378218537:653adf51-b8d9-4b0e-a329-a1159c3b2853",
+            "id": "953085444378218537:8e361f76-54f6-4136-a453-0eb93a1b2c4d",
             "reason": "Automod - Violated rule Slurs",
-            "start": 1655058704,
+            "start": 1655061027,
             "expired": false
         },
         {
-            "id": "953085444378218537:49195da8-7e45-4e3a-81dc-ff97049320a9",
+            "id": "953085444378218537:fe615749-0d13-42f5-b2ed-2567cdef03db",
             "reason": "Automod - Violated rule Slurs",
-            "start": 1655058707,
+            "start": 1655061306,
             "expired": false
         },
         {
-            "id": "953085444378218537:86320238-f3cf-49ec-ad6a-b4f2df190357",
+            "id": "953085444378218537:93de1565-4dce-491c-93b0-12112ca9c9d9",
             "reason": "Automod - Violated rule Slurs",
-            "start": 1655059511,
+            "start": 1655061335,
             "expired": false
         },
         {
-            "id": "953085444378218537:5e43587d-6955-44f0-8ece-ec84059fd72d",
+            "id": "953085444378218537:d7ed71ae-dd14-4681-bd69-aaf992c0e5b1",
             "reason": "Automod - Violated rule Slurs",
-            "start": 1655059574,
+            "start": 1655061352,
             "expired": false
         },
         {
-            "id": "953085444378218537:dbcb1f2c-7b38-4738-b019-e0a4e3896f2b",
+            "id": "953085444378218537:1c3a9e86-ce7a-451c-9e2a-5045eabc712d",
             "reason": "Automod - Violated rule Slurs",
-            "start": 1655059789,
+            "start": 1655061367,
+            "expired": false
+        }
+    ],
+    "328984108271140864": [
+        {
+            "id": "328984108271140864:3bb0064e-8ead-4a54-945c-1d1674e989ab",
+            "reason": "Automod - Violated rule Slurs",
+            "start": 1655067771,
             "expired": false
         }
     ]

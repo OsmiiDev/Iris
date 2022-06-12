@@ -22,15 +22,6 @@ const ModuleUtils = require("./utility/ModuleUtils");
             eval(message.content.split(" ").slice(1).join(" "));
         }
     })
-
-    let modules = ModuleUtils.getModule();
-
-    require('fs').writeFileSync("./shards/module.js", "module.exports = {");
-    Object.entries(modules).forEach(([fileName, path]) => {
-        require('fs').appendFileSync("./shards/module.js", `\n\t"${fileName}": "${path}",`);
-    });
-    require('fs').appendFileSync("./shards/module.js", "\n}");
-
 })();
 
 process.on("unhandledRejection", (error) => { console.error("Unhandled Promise Rejection"); console.error(error); })

@@ -5,7 +5,7 @@ const DataUtils = require("../../utility/DataUtils");
 const ModuleUtils = require("../../utility/ModuleUtils");
 const PermissionUtils = require("../../utility/PermissionUtils");
 
-const ActionBan = ModuleUtils.getModule("moderation.actions.ActionBan");
+const ActionBan = require("../../modules/moderation/actions/ActionBan");
 
 const UserCommand = require("../UserCommand");
 

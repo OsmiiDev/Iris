@@ -5,10 +5,10 @@ const DataUtils = require("../../../utility/DataUtils");
 const ModuleUtils = require("../../../utility/ModuleUtils");
 const PermissionUtils = require("../../../utility/PermissionUtils");
 
-const ActionCase = ModuleUtils.getModule("moderation.actions.ActionCase");
-const ActionMatrix = ModuleUtils.getModule("moderation.actions.ActionMatrix");
+const ActionCase = require("./ActionCase");
+const ActionMatrix = require("./ActionMatrix");
 
-const IrisModule = ModuleUtils.getModule("core.IrisModule");
+const IrisModule = require("../../IrisModule");
 
 class ActionKickModals extends IrisModule {
 

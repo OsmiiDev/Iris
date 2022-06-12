@@ -7,7 +7,7 @@ const PermissionUtils = require("../../utility/PermissionUtils");
 
 const MessageCommand = require("../MessageCommand");
 
-const ActionBan = ModuleUtils.getModule("moderation.actions.ActionBan");
+const ActionBan = require("../../modules/moderation/actions/ActionBan");
 
 class Ban extends MessageCommand {
 

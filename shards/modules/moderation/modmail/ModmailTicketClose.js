@@ -4,9 +4,9 @@ const MessageUtils = require("../../../utility/MessageUtils");
 const ModuleUtils = require("../../../utility/ModuleUtils");
 const PermissionUtils = require("../../../utility/PermissionUtils");
 
-const ModmailTicketManager = ModuleUtils.getModule("moderation.modmail.ModmailTicketManager");
+const ModmailTicketManager = require("./ModmailTicketManager");
 
-const IrisModule = ModuleUtils.getModule("core.IrisModule");
+const IrisModule = require("../../IrisModule");
 
 class ModmailTicketClose extends IrisModule {
 

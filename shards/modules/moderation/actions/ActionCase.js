@@ -4,7 +4,7 @@ const DataUtils = require("../../../utility/DataUtils");
 const MessageUtils = require("../../../utility/MessageUtils");
 const ModuleUtils = require("../../../utility/ModuleUtils");
 
-const IrisModule = ModuleUtils.getModule("core.IrisModule");
+const IrisModule = require("../../IrisModule");
 
 class ActionCase extends IrisModule {
 
@@ -124,8 +124,7 @@ class ActionCase extends IrisModule {
             let caseEmbed = MessageUtils.generateEmbed(`Case #${caseData.cases.length} | Unmute | ${member.user.tag}`, "", "#889944", moderator.user)
                 .addField("User", `<@${member.id}>`, true)
                 .addField("Moderator", `<@${moderator.id}>`, true)
-                .pfft
-                addField("Reason", reason, true)
+                .addField("Reason", reason, true)
                 .setFooter({ text: `ID: ${id || "No ID | User is not muted"}` }).setTimestamp();
 
             let channel = await guild.channels.fetch(DataUtils.getConfig(guild).modules.moderation.actions.mute['log-channel']);

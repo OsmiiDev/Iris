@@ -8,9 +8,9 @@ const MessageUtils = require("../../../utility/MessageUtils");
 const ModuleUtils = require("../../../utility/ModuleUtils");
 const PermissionUtils = require("../../../utility/PermissionUtils");
 
-const MusicPlayer = ModuleUtils.getModule("entertainment.music.MusicPlayer");
+const MusicPlayer = require("../../../commands/music/MusicPlayer");
 
-const IrisModule = ModuleUtils.getModule("core.IrisModule");
+const IrisModule = require("../../../modules/IrisModule");
 
 class MusicPlayerCommands extends IrisModule {
 

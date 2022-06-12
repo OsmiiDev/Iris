@@ -1,50 +1,39 @@
 {
-    "731776103336771617": [
-        {
-            "id": "731776103336771617:c145dcd1-3c8a-4db6-be57-fb62e3b3d63c",
-            "reason": "Automod - Violated rule Phishing links",
-            "start": 1654992361,
-            "end": 1655013961,
-            "expired": true
-        },
-        {
-            "id": "731776103336771617:c0b30848-4a76-4de2-8c91-97f3228d7108",
-            "reason": "Automod - Violated rule Phishing links",
-            "start": 1654992392,
-            "end": 1655035592,
-            "expired": true
-        },
-        {
-            "id": "731776103336771617:062ba4cf-5c7c-45a5-8faa-e5fce77207e2",
-            "reason": "Automod - Violated rule Phishing links",
-            "start": 1654999741,
-            "end": 1655086141,
-            "expired": false
-        }
-    ],
-    "328984108271140864": [
-        {
-            "id": "328984108271140864:d2f818c8-2f12-4198-9c97-0ac1411b8feb",
-            "reason": "Automod - Violated rule Phishing links",
-            "start": 1655053056,
-            "end": 1655074656,
-            "expired": false
-        },
-        {
-            "id": "328984108271140864:c4d5a081-cc53-46eb-b1b6-ddd2a1e35df6",
-            "reason": "Automod - Violated rule Phishing links",
-            "start": 1655053086,
-            "end": 1655096286,
-            "expired": false
-        }
-    ],
     "953085444378218537": [
         {
-            "id": "953085444378218537:7aa02c69-b5de-49a9-bae3-5ad9121ed2dc",
+            "id": "953085444378218537:ddc52fa5-e591-482b-88b8-eaad787763c6",
             "reason": "Punishment threshold reached",
-            "start": 1655059789,
-            "end": 1655081389,
-            "expired": false
+            "start": 1655061027,
+            "end": 1655082627,
+            "expired": true
+        },
+        {
+            "id": "953085444378218537:4c088bec-24a0-447f-ad42-c943feb407ca",
+            "reason": "Punishment threshold reached",
+            "start": 1655061306,
+            "end": 1655104506,
+            "expired": true
+        },
+        {
+            "id": "953085444378218537:2e254a54-7b1f-43c0-bede-3fb889cf3fe5",
+            "reason": "Punishment threshold reached",
+            "start": 1655061335,
+            "end": 1655147735,
+            "expired": true
+        },
+        {
+            "id": "953085444378218537:dc7784af-2388-4c69-90f4-e7e2f9f125cd",
+            "reason": "Punishment threshold reached",
+            "start": 1655061352,
+            "end": 1655234152,
+            "expired": true
+        },
+        {
+            "id": "953085444378218537:d5ea8e59-bf84-4b9a-bb4b-d413c9a449f8",
+            "reason": "Punishment threshold reached",
+            "start": 1655061367,
+            "end": 1655234167,
+            "expired": true
         }
     ]
 }

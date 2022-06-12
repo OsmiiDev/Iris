@@ -4,8 +4,8 @@
 /node_modules
 /replit.nix
 
-/guilds
-/users
+/guilds/*
+/users/*
 
 !/guilds/template
 !/users/template

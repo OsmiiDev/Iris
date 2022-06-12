@@ -2,10 +2,9 @@ const { ContextMenuCommandBuilder } = require("@discordjs/builders");
 const { Interaction, Modal, MessageActionRow, TextInputComponent, MessageContextMenuInteraction, Message } = require("discord.js");
 
 const DataUtils = require("../../utility/DataUtils");
-const ModuleUtils = require("../../utility/ModuleUtils");
 const PermissionUtils = require("../../utility/PermissionUtils");
 
-const ActionMute = ModuleUtils.getModule("moderation.actions.ActionMute");
+const ActionMute = require("../../modules/moderation/actions/ActionMute");
 
 const MessageCommand = require("../MessageCommand");
 
