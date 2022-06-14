@@ -1,39 +1,11 @@
 {
-    "953085444378218537": [
+    "731776103336771617": [
         {
-            "id": "953085444378218537:ddc52fa5-e591-482b-88b8-eaad787763c6",
-            "reason": "Punishment threshold reached",
-            "start": 1655061027,
-            "end": 1655082627,
-            "expired": true
-        },
-        {
-            "id": "953085444378218537:4c088bec-24a0-447f-ad42-c943feb407ca",
-            "reason": "Punishment threshold reached",
-            "start": 1655061306,
-            "end": 1655104506,
-            "expired": true
-        },
-        {
-            "id": "953085444378218537:2e254a54-7b1f-43c0-bede-3fb889cf3fe5",
-            "reason": "Punishment threshold reached",
-            "start": 1655061335,
-            "end": 1655147735,
-            "expired": true
-        },
-        {
-            "id": "953085444378218537:dc7784af-2388-4c69-90f4-e7e2f9f125cd",
-            "reason": "Punishment threshold reached",
-            "start": 1655061352,
-            "end": 1655234152,
-            "expired": true
-        },
-        {
-            "id": "953085444378218537:d5ea8e59-bf84-4b9a-bb4b-d413c9a449f8",
-            "reason": "Punishment threshold reached",
-            "start": 1655061367,
-            "end": 1655234167,
-            "expired": true
+            "id": "731776103336771617:ae1b20d0-2a81-4c13-98c5-10439fc1cef4",
+            "reason": "Automod - Violated rule Phishing links",
+            "start": 1655160384,
+            "end": 1655181984,
+            "expired": false
         }
     ]
 }

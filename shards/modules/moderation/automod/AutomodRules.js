@@ -1,4 +1,5 @@
-const { Message } = require("discord.js");
+const { Message, GuildMember } = require("discord.js");
+const crypto = require("crypto");
 
 const DataUtils = require("../../../utility/DataUtils");
 const ModuleUtils = require("../../../utility/ModuleUtils");
@@ -8,7 +9,6 @@ const ActionBan = require("../actions/ActionBan");
 const ActionCase = require("../actions/ActionCase");
 const ActionMute = require("../actions/ActionMute");
 const ActionWarnModals = require("../actions/ActionWarnModals");
-const AutomodRules = require("./AutomodRules");
 
 const IrisModule = require("../../IrisModule");
 
@@ -29,7 +29,8 @@ class AutomodRules extends IrisModule {
      * @param {Message} message The message to handle
     */
     async messageCreate(message) {
-        if (!message.inGuild() || !message.member || !message.channel) { return; }
+        if (!message.inGuild() || !(message.member instanceof GuildMember) || !message.channel) { return; }
+        if (message.author.bot || message.author.system) { return; }
 
         let guild = message.guild;
         let automod = DataUtils.getConfig(guild).modules.moderation.automod;
@@ -38,9 +39,13 @@ class AutomodRules extends IrisModule {
 
         automod.rules.forEach(async (rule) => {
             if (!rule.enabled) { return; }
+            if (rule.exempt.channels.includes(message.channel.id)) { return; }
+            if (rule.exempt.users.includes(message.author.id)) { return; }
+            if (rule.exempt.roles.some(role => message.member.roles.cache.has(role))) { return; }
 
-            if (rule.rule.type === "banned-words") { AutomodBannedWords.process(message, rule); }
-
+            if (rule.rule.type === "banned-words") { ModuleUtils.getModule("moderation.automod.AutomodBannedWords").process(message, rule); }
+            if (rule.rule.type === "banned-links") { ModuleUtils.getModule("moderation.automod.AutomodBannedLinks").process(message, rule); }
+            if (rule.rule.type === "rate-limit") { ModuleUtils.getModule("moderation.automod.AutomodRateLimits").process(message, rule); }
         })
     }
 

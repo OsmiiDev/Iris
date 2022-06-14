@@ -219,10 +219,9 @@
                         "enabled": true,
 
                         "rule": {
-                            "type": "banned-words",
+                            "type": "banned-links",
 
-                            "file": "public:filters/phishing-links",
-                            "match": "exact"
+                            "file": "public:filters/phishing-links"
                         },
 
                         "action": "delete; mute default; warn <@{User}> Don't send phishing links.;",
@@ -253,17 +252,16 @@
                         }
                     },
                     {
-                        "name": "Links",
+                        "name": "Spam",
                         "enabled": true,
 
                         "rule": {
-                            "type": "banned-words",
-
-                            "file": "public:filters/links",
-                            "match": "exact"
+                            "type": "rate-limit",
+                            "number": "8",
+                            "window": "5000"
                         },
 
-                        "action": "delete; warn <@{User}> Don't send links.;",
+                        "action": "delete; warn <@{User}> Stop spamming.;",
 
                         "exempt": {
                             "users": [],

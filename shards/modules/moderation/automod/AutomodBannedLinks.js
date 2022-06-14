@@ -8,12 +8,12 @@ const AutomodRules = require("./AutomodRules");
 
 const IrisModule = require("../../IrisModule");
 
-class AutomodBannedWords extends IrisModule {
+class AutomodBannedLinks extends IrisModule {
 
     LISTENERS = [];
 
     constructor() {
-        super("moderation.automod.AutomodBannedWords");
+        super("moderation.automod.AutomodBannedLinks");
 
         this.registerEvents();
     }
@@ -34,32 +34,35 @@ class AutomodBannedWords extends IrisModule {
 
         if (!data) { return; }
 
-        let words = data.words;
+        let urls = data.links;
         let messageContent = message.content.toLowerCase();
         if (messageContent.length === 0) { return; }
+        for (let url of urls) {
+            let subdomains = false;
+            if(url.startsWith("*.")){
+                url = url.substring(2);
+                subdomains = true;
+            }
 
-        for (let word of words) {
-            if (rule.rule.match === "exact") {
-                let regex = new RegExp(`\\b${word}\\b`, "gi");
-                if (messageContent.match(regex)) {
-                    console.log("Automod: Banned word detected: " + word);
-                    let action = rule.action;
-                    let actionFunction = AutomodRules.getAction(action);
-                    actionFunction(message, rule.name);
-                    return;
-                }
+            let paths = false;
+            if(url.endsWith("/*")){
+                url = url.substring(0, url.length - 2);
+                paths = true;
             }
-            else if (rule.rule.match === "regex") {
-                if (messageContent.match(new RegExp(word))) {
-                    let action = rule.action;
-                    let actionFunction = AutomodRules.getAction(action);
-                    actionFunction(message, rule.name);
-                    return;
-                }
+
+            url = url.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+
+            let regex = new RegExp(`(https?:\\/\\/|\\s|^)(www\\.)?${subdomains ? "([^\\s\\/\\.]*\\.)*": ""}(${url})(\\/${paths ? "([\\S]*\\/*)*" : ""}|\\s|$)`, "gi");
+
+            if (messageContent.match(regex)) {
+                let action = rule.action;
+                let actionFunction = AutomodRules.getAction(action);
+                actionFunction(message, rule.name);
+                return;
             }
+
         }
     }
-
 }
 
-module.exports = AutomodBannedWords;
+module.exports = AutomodBannedLinks;

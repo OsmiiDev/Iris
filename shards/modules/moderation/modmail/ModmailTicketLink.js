@@ -3,7 +3,7 @@ const { Message, ThreadChannel, GuildManager, GuildMember, DMChannel, Webhook } 
 const MessageUtils = require("../../../utility/MessageUtils");
 const ModuleUtils = require("../../../utility/ModuleUtils");
 
-const ModmailTicketManager = require("../../modmail/ModmailTicketManager");
+const ModmailTicketManager = require("./ModmailTicketManager");
 
 const IrisModule = require("../../IrisModule");
 

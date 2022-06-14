@@ -8,7 +8,7 @@ const MessageUtils = require("../../../utility/MessageUtils");
 const ModuleUtils = require("../../../utility/ModuleUtils");
 const PermissionUtils = require("../../../utility/PermissionUtils");
 
-const MusicPlayer = require("../../../commands/music/MusicPlayer");
+const MusicPlayer = require("./MusicPlayer");
 
 const IrisModule = require("../../../modules/IrisModule");
 

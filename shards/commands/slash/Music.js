@@ -1,11 +1,10 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { CommandInteraction } = require("discord.js");
 
-const ModuleUtils = require("../../utility/ModuleUtils");
 const PermissionUtils = require("../../utility/PermissionUtils");
 
-const MusicPlayerCommands = require("../../commands/music/MusicPlayerCommands");
-const MusicPlayerPlaylists = require("../../commands/music/MusicPlayerPlaylists");
+const MusicPlayerCommands = require("../../modules/entertainment/music/MusicPlayerCommands");
+const MusicPlayerPlaylists = require("../../modules/entertainment/music/MusicPlayerPlaylists");
 
 const SlashCommand = require("../SlashCommand");
 
