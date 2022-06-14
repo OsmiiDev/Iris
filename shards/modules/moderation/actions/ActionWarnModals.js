@@ -66,6 +66,7 @@ class ActionWarnModals extends IrisModule {
      * @description Issues a warning to a specified user
      * @param {GuildMember} member The member to warn
      * @param {String} reason Why you are warning this user
+     * @param {String} matrix The matrix to use
      * @returns {String} The ID of the warning
     */
     static createWarn(member, reason, matrix) {
@@ -78,7 +79,8 @@ class ActionWarnModals extends IrisModule {
             "id": id,
             "reason": reason,
             "start": Math.floor(new Date().getTime() / 1000),
-            "expired": false
+            "expired": false,
+            "matrix": matrix || DataUtils.getConfig(member.guild).modules.moderation.actions.warn.matrix
         });
 
         DataUtils.write(member.guild, "moderation/actions/warns", warnData);
@@ -92,6 +94,7 @@ class ActionWarnModals extends IrisModule {
      * @description Issues a warning, created by automod to a specified user
      * @param {GuildMember} member The member to warn
      * @param {String} reason Why you are warning this user
+     * @param {String} matrix The matrix to use
      * @returns {String} The ID of the warning
     */
     static createAutomodWarn(member, reason, matrix) {
@@ -104,7 +107,8 @@ class ActionWarnModals extends IrisModule {
             "id": id,
             "reason": reason,
             "start": Math.floor(new Date().getTime() / 1000),
-            "expired": false
+            "expired": false,
+            "matrix": matrix || DataUtils.getConfig(member.guild).modules.moderation.actions.warn.matrix
         });
 
         DataUtils.write(member.guild, "moderation/actions/autowarns", autowarnData);

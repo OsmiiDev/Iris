@@ -57,7 +57,7 @@ class AutomodBannedLinks extends IrisModule {
             if (messageContent.match(regex)) {
                 let action = rule.action;
                 let actionFunction = AutomodRules.getAction(action);
-                actionFunction(message, rule.name);
+                actionFunction(message, rule);
                 return;
             }
 

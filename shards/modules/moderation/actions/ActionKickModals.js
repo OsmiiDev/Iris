@@ -67,9 +67,10 @@ class ActionKickModals extends IrisModule {
      * @description Kicks a user from a server
      * @param {GuildMember} member The member to kick
      * @param {String} reason Why you are kicking this user
+     * @param {String} matrix The punihsment matrix to use
      * @returns {String} The ID of the kick
     */
-    static createKick(member, reason) {
+    static createKick(member, reason, matrix) {
         let kickData = DataUtils.read(member.guild, "moderation/actions/kicks");
         if (!kickData[member.id]) { kickData[member.id] = []; }
 
@@ -79,7 +80,8 @@ class ActionKickModals extends IrisModule {
             "id": id,
             "reason": reason,
             "start": Math.floor(new Date().getTime() / 1000),
-            "expired": false
+            "expired": false,
+            "matrix": matrix || DataUtils.getConfig(member.guild).modules.moderation.actions.kick.matrix
         });
 
 
@@ -87,7 +89,7 @@ class ActionKickModals extends IrisModule {
 
         member.kick(reason);
 
-        ActionMatrix.handleMatrix(member.guild, DataUtils.getConfig(member.guild).modules.moderation.actions.kick.matrix, member.user, "kick");
+        ActionMatrix.handleMatrix(member.guild, matrix || DataUtils.getConfig(member.guild).modules.moderation.actions.kick.matrix, member.user, "kick");
 
         return id;
     }

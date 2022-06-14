@@ -1,1 +1,133 @@
-{}
+{
+    "cases": [
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:64ecd980-e8c9-40e9-96ca-13eea1d10faa",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655172038,
+            "length": 172800
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:96476630-a344-435b-9bc3-7dbd177abeab",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655172039,
+            "length": 172800
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "No reason provided.",
+            "timestamp": 1655172549
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:2654ad47-27b0-4706-be3b-0317d55ea548",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655172629,
+            "length": 21600
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:dd8eedbc-25a0-4c33-a9a6-c8a28fc6f155",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "asd",
+            "timestamp": 1655172746
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:2f233f89-9e1e-4160-86c1-5887325b13a3",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655172751,
+            "length": 43200
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:8223b785-60ca-4c5e-bbcf-a04de5128819",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "No reason provided.",
+            "timestamp": 1655172841
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:f2aca9f6-eb9f-4b61-b61c-8b8eac13adc5",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655172847,
+            "length": 86400
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:8a69e042-b458-40a6-a500-17787bbeda19",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "No reason provided.",
+            "timestamp": 1655172855
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:c5189fb3-988a-45f0-ab4c-4d04488835b3",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655172884,
+            "length": 21600
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:5244dac2-6384-450b-81f8-b353aa559940",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "5",
+            "timestamp": 1655172969
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:cdde2b67-69eb-45eb-bcff-71eec0eb6991",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655172975,
+            "length": 43200
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:6f3c98cd-cbef-40a2-a792-245aa5bddf20",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "a",
+            "timestamp": 1655173072
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:ebab1b41-ccb0-4f67-b94c-c6067dbe174c",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655173078,
+            "length": 20
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:a84325d5-7a59-4aed-96a5-5acba673dee9",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655173148,
+            "length": 25
+        }
+    ]
+}

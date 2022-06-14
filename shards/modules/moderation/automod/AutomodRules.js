@@ -67,26 +67,26 @@ class AutomodRules extends IrisModule {
                 if (action.startsWith("ban")) {
                     let time = action.split(" ")[1];
                     if (time === "permanent") {
-                        ActionBan.createBan(message.guild, message.author.id, 0, `Automod - Violated rule ${rule}`);
-                        ActionCase.createCase(message.guild, "BAN_CREATE", crypto.randomUUID(), message.author, message.guild.me, `Automod - Violated rule ${rule}`, 0);
+                        ActionBan.createBan(message.guild, message.author.id, 0, `Automod - Violated rule ${rule.name}`);
+                        ActionCase.createCase(message.guild, "BAN_CREATE", crypto.randomUUID(), message.author, message.guild.me, `Automod - Violated rule ${rule.name}`, 0);
                     }
                     else if (time === "default") {
                         let time = ActionBan.getDefaultTime(message.guild, message.author.id);
-                        ActionBan.createBan(message.guild, message.author.id, time, `Automod - Violated rule ${rule}`);
-                        ActionCase.createCase(message.guild, "BAN_CREATE", crypto.randomUUID(), message.author, message.guild.me, `Automod - Policy violation: ${rule}`, time);
+                        ActionBan.createBan(message.guild, message.author.id, time, `Automod - Violated rule ${rule.name}`);
+                        ActionCase.createCase(message.guild, "BAN_CREATE", crypto.randomUUID(), message.author, message.guild.me, `Automod - Policy violation: ${rule.name}`, time);
                     }
                 }
 
                 if (action.startsWith("mute")) {
                     let time = action.split(" ")[1];
                     if (time === "permanent") {
-                        ActionMute.createMute(message.member, 0, `Automod - Violated rule ${rule}`);
-                        ActionCase.createCase(message.guild, "MUTE_CREATE", crypto.randomUUID(), message.member, message.guild.me, `Automod - Policy violation: ${rule}`, 0);
+                        ActionMute.createMute(message.member, 0, `Automod - Violated rule ${rule.name}`);
+                        ActionCase.createCase(message.guild, "MUTE_CREATE", crypto.randomUUID(), message.member, message.guild.me, `Automod - Policy violation: ${rule.name}`, 0);
                     }
                     else if (time === "default") {
                         time = ActionMute.getDefaultTime(message.member, message.member);
-                        ActionMute.createMute(message.member, time, `Automod - Violated rule ${rule}`);
-                        ActionCase.createCase(message.guild, "MUTE_CREATE", crypto.randomUUID(), message.member, message.guild.me, `Automod - Policy violation: ${rule}`, time);
+                        ActionMute.createMute(message.member, time, `Automod - Violated rule ${rule.name}`);
+                        ActionCase.createCase(message.guild, "MUTE_CREATE", crypto.randomUUID(), message.member, message.guild.me, `Automod - Policy violation: ${rule.name}`, time);
                     }
                 }
 
@@ -99,7 +99,8 @@ class AutomodRules extends IrisModule {
                     let warningMessage = await message.channel.send({ embeds: [embed] });
                     setTimeout(() => { warningMessage.delete(); }, 5000);
 
-                    ActionWarnModals.createAutomodWarn(message.member, `Automod - Violated rule ${rule}`);
+                    console.log(rule.matrix);
+                    ActionWarnModals.createAutomodWarn(message.member, `Automod - Violated rule ${rule.name}`, rule.matrix);
                 }
             })
         };

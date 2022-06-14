@@ -17,6 +17,8 @@
 
                     "matricies": {
                         "default": {
+                            "global": false,
+
                             "rules": [
                                 { "on": "autowarn >= 5 in 600", "run": "mute default" },
                                 { "on": "warn >= 5 in 7776000", "run": "mute default" },
@@ -26,6 +28,25 @@
         
                             "times": {
                                 "mute": [21600, 43200, 86400, 172800],
+                                "ban": [0]
+                            },
+
+                            "window": {
+                                "mute": 7776000,
+                                "warn": 7776000,
+                                "ban": 7776000
+                            }
+                        },
+                        "invites": {
+                            "global": false,
+
+                            "rules": [
+                                { "on": "autowarn >= 2 in 600", "run": "mute default invites" },
+                                { "on": "mute >= 10 in 7776000", "run": "ban permanent invites" }
+                            ],
+        
+                            "times": {
+                                "mute": [10, 15, 20, 25, 30],
                                 "ban": [0]
                             },
 
@@ -225,6 +246,7 @@
                         },
 
                         "action": "delete; mute default; warn <@{User}> Don't send phishing links.;",
+                        "matrix": "default",
 
                         "exempt": {
                             "users": [],
@@ -244,7 +266,8 @@
                         },
 
                         "action": "delete; warn <@{User}> Watch your language.;",
-
+                        "matrix": "default",
+                        
                         "exempt": {
                             "users": [],
                             "roles": [],
@@ -257,11 +280,32 @@
 
                         "rule": {
                             "type": "rate-limit",
+                            
                             "number": "8",
                             "window": "5000"
                         },
 
                         "action": "delete; warn <@{User}> Stop spamming.;",
+                        "matrix": "default",
+
+                        "exempt": {
+                            "users": [],
+                            "roles": [],
+                            "channels": []
+                        }
+                    },
+                    {
+                        "name": "Invite Links",
+                        "enabled": true,
+
+                        "rule": {
+                            "type": "banned-links",
+
+                            "file": "public:filters/invites"
+                        },
+
+                        "action": "delete; warn <@{User}> Don't send invite links.;",
+                        "matrix": "invites",
 
                         "exempt": {
                             "users": [],

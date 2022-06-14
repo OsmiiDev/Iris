@@ -1,18 +1,39 @@
 {
     "953085444378218537": [
         {
-            "id": "953085444378218537:b77a63b0-e38b-473e-b2a7-e27c2d17dff4",
-            "reason": "Automod - Violated rule Spam",
-            "start": 1655154234,
-            "expired": false
-        }
-    ],
-    "731776103336771617": [
+            "id": "953085444378218537:ba0c1a41-8f5d-4a01-b9da-1ed157e67a39",
+            "reason": "Automod - Violated rule Invite Links",
+            "start": 1655172879,
+            "expired": false,
+            "matrix": "invites"
+        },
         {
-            "id": "731776103336771617:f539ae4f-a79f-43c0-bdb2-6029b2ac8b53",
-            "reason": "Automod - Violated rule Phishing links",
-            "start": 1655160384,
-            "expired": false
+            "id": "953085444378218537:b9a1787c-64c1-4f94-ad0b-742e3832266c",
+            "reason": "Automod - Violated rule Invite Links",
+            "start": 1655172884,
+            "expired": false,
+            "matrix": "invites"
+        },
+        {
+            "id": "953085444378218537:2531d0f3-d68a-4163-b825-88537a211cbd",
+            "reason": "Automod - Violated rule Invite Links",
+            "start": 1655172975,
+            "expired": false,
+            "matrix": "invites"
+        },
+        {
+            "id": "953085444378218537:24806a01-266a-4c48-bbd3-1f9e81c7134f",
+            "reason": "Automod - Violated rule Invite Links",
+            "start": 1655173078,
+            "expired": false,
+            "matrix": "invites"
+        },
+        {
+            "id": "953085444378218537:8622f710-2137-4a20-9c9c-d8dcc18f3b43",
+            "reason": "Automod - Violated rule Invite Links",
+            "start": 1655173148,
+            "expired": false,
+            "matrix": "invites"
         }
     ]
 }

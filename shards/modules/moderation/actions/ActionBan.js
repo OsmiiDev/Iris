@@ -157,13 +157,14 @@ class ActionBan extends IrisModule {
      * @description Gets the default ban time of the user, given punishment matricies
      * @param {Guild} guild The guild to get the ban time from
      * @param {String} memberId The ID of the user to get the ban time of
+     * @param {String} matrix The punishment matrix to get the ban time from
      * @returns {Object} The ban history of the user
     */
-    static getDefaultTime(guild, memberId) {
+    static getDefaultTime(guild, memberId, matrix) {
         if (DataUtils.getConfig(guild).modules.moderation.actions.ban.behavior !== "matrix") { return 0; }
 
         let matrixSettings = DataUtils.getConfig(guild).modules.moderation.actions.matrix.matricies;
-        matrixSettings = matrixSettings[DataUtils.getConfig(guild).modules.moderation.actions.ban.matrix];
+        matrixSettings = matrixSettings[matrix || DataUtils.getConfig(guild).modules.moderation.actions.ban.matrix];
         if (!matrixSettings) { return 0; }
 
         let banWindow = matrixSettings.window.ban;

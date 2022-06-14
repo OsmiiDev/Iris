@@ -45,7 +45,7 @@ class AutomodBannedWords extends IrisModule {
                     console.log("Automod: Banned word detected: " + word);
                     let action = rule.action;
                     let actionFunction = AutomodRules.getAction(action);
-                    actionFunction(message, rule.name);
+                    actionFunction(message, rule);
                     return;
                 }
             }
@@ -53,7 +53,7 @@ class AutomodBannedWords extends IrisModule {
                 if (messageContent.match(new RegExp(word))) {
                     let action = rule.action;
                     let actionFunction = AutomodRules.getAction(action);
-                    actionFunction(message, rule.name);
+                    actionFunction(message, rule);
                     return;
                 }
             }

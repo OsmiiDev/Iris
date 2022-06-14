@@ -1,11 +1,36 @@
 {
-    "731776103336771617": [
+    "953085444378218537": [
         {
-            "id": "731776103336771617:ae1b20d0-2a81-4c13-98c5-10439fc1cef4",
-            "reason": "Automod - Violated rule Phishing links",
-            "start": 1655160384,
-            "end": 1655181984,
-            "expired": false
+            "id": "953085444378218537:5244dac2-6384-450b-81f8-b353aa559940",
+            "reason": "Punishment threshold reached",
+            "start": 1655172884,
+            "end": 1655194484,
+            "expired": true,
+            "matrix": "invites"
+        },
+        {
+            "id": "953085444378218537:6f3c98cd-cbef-40a2-a792-245aa5bddf20",
+            "reason": "Punishment threshold reached",
+            "start": 1655172975,
+            "end": 1655216175,
+            "expired": true,
+            "matrix": "invites"
+        },
+        {
+            "id": "953085444378218537:a75f37e0-3ee1-42ab-bdb7-55705a4f7b6a",
+            "reason": "Punishment threshold reached",
+            "start": 1655173078,
+            "end": 1655173098,
+            "expired": true,
+            "matrix": "invites"
+        },
+        {
+            "id": "953085444378218537:bc58b9a8-0172-4061-89db-d03de3c36b11",
+            "reason": "Punishment threshold reached",
+            "start": 1655173148,
+            "end": 1655173173,
+            "expired": true,
+            "matrix": "invites"
         }
     ]
 }

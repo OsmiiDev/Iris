@@ -32,7 +32,7 @@ class AutomodRateLimits extends IrisModule {
         if (messages[message.guild.id][message.author.id].length >= rule.rule.number) {
             let action = rule.action;
             let actionFunction = AutomodRules.getAction(action);
-            actionFunction(message, rule.name);
+            actionFunction(message, rule);
             if (action.split(";").includes("delete")) {
                 messages[message.guild.id][message.author.id].forEach(msg => {
                     message.guild.channels.cache.get(msg.channel).messages.fetch(msg.id).catch(() => { }).then(msg => {

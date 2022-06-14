@@ -25,6 +25,7 @@ class ActionMute extends IrisModule {
      * @param {GuildMember} member The member to mute
      * @param {Number} time How long to mute the user for, in seconds
      * @param {String} reason Why you are muting this user
+     * @param {String} matrix The punishment matrix to use
      * @returns {String} The ID of the mute
     */
     static async createMute(member, time, reason, matrix) {
@@ -40,7 +41,8 @@ class ActionMute extends IrisModule {
             "reason": reason,
             "start": Math.floor(new Date().getTime() / 1000),
             "end": permanent ? "permanent" : Math.floor(new Date().getTime() / 1000) + time,
-            "expired": false
+            "expired": false,
+            "matrix": matrix || DataUtils.getConfig(member.guild).modules.moderation.actions.mute.matrix
         });
 
         DataUtils.write(member.guild, "moderation/actions/mutes", muteData);
@@ -155,13 +157,14 @@ class ActionMute extends IrisModule {
     /**
      * @description Gets the default mute time of the user, given punishment matricies
      * @param {GuildMember} member The user
+     * @param {String} matrix The punishment matrix
      * @returns {Object} The mute history of the user
     */
-    static getDefaultTime(member) {
+    static getDefaultTime(member, matrix) {
         if (DataUtils.getConfig(member.guild).modules.moderation.actions.mute.behavior !== "matrix") { return 0; }
 
         let matrixSettings = DataUtils.getConfig(member.guild).modules.moderation.actions.matrix.matricies;
-        matrixSettings = matrixSettings[DataUtils.getConfig(member.guild).modules.moderation.actions.mute.matrix];
+        matrixSettings = matrixSettings[matrix || DataUtils.getConfig(member.guild).modules.moderation.actions.mute.matrix];
         if (!matrixSettings) { return 0; }
 
         let muteWindow = matrixSettings.window.mute;
