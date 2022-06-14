@@ -39,6 +39,11 @@ class Ban extends UserCommand {
         if (user.bot || user.system) { return interaction.reply({ embeds: [this.getError("I can't ban bots.")] }); }
 
         let member = await interaction.guild.members.fetch(user.id).catch(() => { });
+
+        if (message.member instanceof GuildMember && interaction.member.roles.highest.comparePositionTo(member.roles.highest) < 0 || member.id === member.guild.ownerId) {
+            return interaction.reply({ embeds: [MessageUtils.generateErrorEmbed("You can't ban this user.")], ephemeral: true });
+        }
+
         if (member instanceof GuildMember && !member.bannable) {
             return interaction.reply({ embeds: [this.getError("I do not have permission to ban this user.")] });
         }

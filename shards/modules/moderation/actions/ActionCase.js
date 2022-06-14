@@ -167,6 +167,30 @@ class ActionCase extends IrisModule {
 
             DataUtils.write(guild, "moderation/actions/cases", caseData);
         }
+        if (action === "AUTOWARN_CREATE") {
+            let [id, member, moderator, reason] = data;
+            let caseEmbed = MessageUtils.generateEmbed(`Case #${caseData.cases.length} | Automod Warn | ${member.user.tag}`, "", "#BB4466", moderator.user)
+                .addField("User", `<@${member.id}>`, true)
+                .addField("Moderator", `<@${moderator.id}>`, true)
+                .addField("Reason", reason, true)
+                .setFooter({ text: `ID: ${id || "No ID"}` }).setTimestamp();
+
+            let channel = await guild.channels.fetch(DataUtils.getConfig(guild).modules.moderation.actions.warn['log-channel']);
+            if (!(channel instanceof TextChannel)) { return; }
+
+            channel.send({ embeds: [caseEmbed] });
+
+            caseData.cases.push({
+                "type": "AUTOWARN_CREATE",
+                "id": id,
+                "member": member.id,
+                "moderator": moderator.id,
+                "reason": reason,
+                "timestamp": Math.floor(new Date().getTime() / 1000)
+            });
+
+            DataUtils.write(guild, "moderation/actions/cases", caseData);
+        }
         if (action === "KICK_CREATE") {
             let [id, user, moderator, reason] = data;
             let caseEmbed = MessageUtils.generateEmbed(`Case #${caseData.cases.length} | Kick | ${user.tag}`, "", "#BB4466", moderator.user)

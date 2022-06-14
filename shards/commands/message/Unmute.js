@@ -35,6 +35,11 @@ class Unmute extends MessageCommand {
 
         let member = message.member;
         if (!member) { return interaction.reply({ embeds: [this.getError()] }); }
+
+        if (interaction.member.roles.highest.comparePositionTo(member.roles.highest) < 0 || member.id === member.guild.ownerId) {
+            return interaction.reply({ embeds: [MessageUtils.generateErrorEmbed("You can't unmute this user.")], ephemeral: true });
+        }
+
         if (!member.moderatable) {
             return interaction.reply({ embeds: [this.getError("I do not have permission to unmute this user.")] });
         }

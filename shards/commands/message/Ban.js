@@ -41,6 +41,10 @@ class Ban extends MessageCommand {
         if (!(user instanceof User)) { return interaction.reply({ embeds: [this.getError()] }); }
         if (user.bot || user.system) { return interaction.reply({ embeds: [this.getError("I can't ban bots.")] }); }
 
+        if (message.member instanceof GuildMember && interaction.member.roles.highest.comparePositionTo(member.roles.highest) < 0 || member.id === member.guild.ownerId) {
+            return interaction.reply({ embeds: [MessageUtils.generateErrorEmbed("You can't ban this user.")], ephemeral: true });
+        }
+
         if (message.member instanceof GuildMember && !message.member.bannable) {
             return interaction.reply({ embeds: [this.getError("I do not have permission to ban this user.")] });
         }

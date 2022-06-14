@@ -36,7 +36,7 @@ class Warn extends MessageCommand {
         if (member.user.bot || member.user.system) { return interaction.reply({ embeds: [this.getError("I can't warn bots.")] }); }
 
         if (interaction.member.roles.highest.comparePositionTo(member.roles.highest) < 0 || member.id === member.guild.ownerId) {
-            return interaction.reply({ embeds: [MessageUtils.generateErrorEmbed("You can't warn this user.")] });
+            return interaction.reply({ embeds: [MessageUtils.generateErrorEmbed("You can't warn this user.")], ephemeral: true });
         }
 
         if (!member.manageable) {

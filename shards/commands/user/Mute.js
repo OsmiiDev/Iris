@@ -38,6 +38,10 @@ class Mute extends UserCommand {
         if (!member) { return interaction.reply({ embeds: [this.getError()] }); }
         if (member.user.bot || member.user.system) { return interaction.reply({ embeds: [this.getError("I can't mute bots.")] }); }
 
+        if (interaction.member.roles.highest.comparePositionTo(member.roles.highest) < 0 || member.id === member.guild.ownerId) {
+            return interaction.reply({ embeds: [MessageUtils.generateErrorEmbed("You can't mute this user.")], ephemeral: true });
+        }
+
         if (!member.moderatable) {
             return interaction.reply({ embeds: [this.getError("I do not have permission to mute this user.")] });
         }

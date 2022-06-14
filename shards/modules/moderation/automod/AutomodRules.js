@@ -85,8 +85,8 @@ class AutomodRules extends IrisModule {
                     }
                     else if (time === "default") {
                         time = ActionMute.getDefaultTime(message.member, message.member);
-                        ActionMute.createMute(message.member, time, `Automod - Violated rule ${rule.name}`);
-                        ActionCase.createCase(message.guild, "MUTE_CREATE", crypto.randomUUID(), message.member, message.guild.me, `Automod - Policy violation: ${rule.name}`, time);
+                        ActionMute.createMute(message.member, time, `Automod - Violated rule: ${rule.name}`);
+                        ActionCase.createCase(message.guild, "MUTE_CREATE", crypto.randomUUID(), message.member, message.guild.me, `Automod - Violated rule: ${rule.name}`, time);
                     }
                 }
 
@@ -100,7 +100,8 @@ class AutomodRules extends IrisModule {
                     setTimeout(() => { warningMessage.delete(); }, 5000);
 
                     console.log(rule.matrix);
-                    ActionWarnModals.createAutomodWarn(message.member, `Automod - Violated rule ${rule.name}`, rule.matrix);
+                    ActionWarnModals.createAutomodWarn(message.member, `Automod - Violated rule: ${rule.name}`, rule.matrix);
+                    ActionCase.createCase("AUTOWARN_CREATE", crypto.randomUUID(), message.author, message.guild.me, `Automod - Violated rule: ${rule.name}`, 0);
                 }
             })
         };

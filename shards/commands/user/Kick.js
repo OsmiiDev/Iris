@@ -34,6 +34,10 @@ class Kick extends MessageCommand {
         if (!(member instanceof GuildMember)) { return interaction.reply({ embeds: [this.getError()] }); }
         if (member.user.bot || member.user.system) { return interaction.reply({ embeds: [this.getError("I can't kick bots.")] }); }
 
+        if (interaction.member.roles.highest.comparePositionTo(member.roles.highest) < 0 || member.id === member.guild.ownerId) {
+            return interaction.reply({ embeds: [MessageUtils.generateErrorEmbed("You can't kick this user.")], ephemeral: true });
+        }
+
         if (!member.kickable) {
             return interaction.reply({ embeds: [MessageUtils.generateErrorEmbed("I can't kick this user.")] });
         }
