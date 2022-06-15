@@ -31,6 +31,46 @@
             "end": 1655173173,
             "expired": true,
             "matrix": "invites"
+        },
+        {
+            "id": "953085444378218537:908943f5-d090-4df7-9423-59f22d9226b9",
+            "reason": "Punishment threshold reached",
+            "start": 1655239558,
+            "end": 1655412358,
+            "expired": true,
+            "matrix": "default"
+        },
+        {
+            "id": "953085444378218537:6dd46cd9-8b56-4421-88d2-eb23347b5293",
+            "reason": "Punishment threshold reached",
+            "start": 1655239632,
+            "end": 1655412432,
+            "expired": true,
+            "matrix": "default"
+        },
+        {
+            "id": "953085444378218537:6005c011-da68-4af2-a162-c138a3501876",
+            "reason": "Punishment threshold reached",
+            "start": 1655241794,
+            "end": 1655241824,
+            "expired": true,
+            "matrix": "invites"
+        },
+        {
+            "id": "953085444378218537:9b897d6f-2d11-467f-974a-4897d3b9bf67",
+            "reason": "Punishment threshold reached",
+            "start": 1655242273,
+            "end": 1655242303,
+            "expired": true,
+            "matrix": "invites"
+        },
+        {
+            "id": "953085444378218537:36103d4e-2877-4996-9660-90388d0da40a",
+            "reason": "Punishment threshold reached",
+            "start": 1655242762,
+            "end": 1655242792,
+            "expired": true,
+            "matrix": "invites"
         }
     ]
 }

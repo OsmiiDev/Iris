@@ -1,5 +1,7 @@
+/**
+ * @description Base module class
+*/
 class IrisModule {
-
     LISTENERS = [];
 
     static SETTINGS = {};
@@ -7,8 +9,10 @@ class IrisModule {
     /**
      * @param {string?} name The name of the module. If undefined, exits.
     */
-    constructor(name){
-        if(name == undefined){ this._name = "core.IrisModule"; return; }
+    constructor(name) {
+        if (name == undefined) {
+            this._name = "core.IrisModule"; return;
+        }
 
         this._name = name;
     }
@@ -16,15 +20,14 @@ class IrisModule {
     /**
      * @description Registers all event listeners
     */
-    registerEvents(){
-        for(let listener of this.LISTENERS){
-            let eventName = listener.event;
-            let eventFunction = listener.function;
+    registerEvents() {
+        for (const listener of this.LISTENERS) {
+            const eventName = listener.event;
+            const eventFunction = listener.function;
 
             process.client.on(eventName, eventFunction);
         }
     }
-    
 }
 
 module.exports = IrisModule;

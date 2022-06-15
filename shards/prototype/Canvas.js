@@ -1,6 +1,6 @@
-const { CanvasRenderingContext2D } = require("canvas");
+const {CanvasRenderingContext2D} = require("canvas");
 
-CanvasRenderingContext2D.prototype.roundedRect = function (x, y, w, h, r) {
+CanvasRenderingContext2D.prototype.roundedRect = function(x, y, w, h, r) {
     if (w < 2 * r) r = w / 2;
     if (h < 2 * r) r = h / 2;
     this.beginPath();
@@ -11,4 +11,4 @@ CanvasRenderingContext2D.prototype.roundedRect = function (x, y, w, h, r) {
     this.arcTo(x, y, x + w, y, r);
     this.closePath();
     return this;
-}
+};

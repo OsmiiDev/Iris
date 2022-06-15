@@ -1,5 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders");
-const { CommandInteraction } = require("discord.js");
+const {SlashCommandBuilder} = require("@discordjs/builders");
 
 const PermissionUtils = require("../../utility/PermissionUtils");
 
@@ -8,59 +7,70 @@ const MusicPlayerPlaylists = require("../../modules/entertainment/music/MusicPla
 
 const SlashCommand = require("../SlashCommand");
 
+/**
+ * @description Music commands
+ */
 class Music extends SlashCommand {
-
+    /**
+     * @description Constructor
+    */
     constructor() {
         super("Music");
     }
 
     /**
      * @description Gets the command information
-     * @returns The command object
+     * @return {Object} The command object
     */
     static getBuilder() {
         return new SlashCommandBuilder()
             .setName("music")
             .setDescription("Commands for the music player")
-            .addSubcommand(subcommand =>
+            .addSubcommand((subcommand) =>
                 subcommand
                     .setName("play")
                     .setDescription("Adds a track to the queue")
-                    .addStringOption(option => { return option.setName("song").setDescription("The search term of the song to play, or a link to the song").setRequired(true); })
-                    .addStringOption(option => {
+                    .addStringOption((option) => {
+                        return option.setName("song").setDescription("The search term of the song to play, or a link to the song").setRequired(true);
+                    })
+                    .addStringOption((option) => {
                         return option.setName("queue").setDescription("Where to place the video in the queue").setChoices(
-                            { "name": "Now", "value": "Now" },
-                            { "name": "First", "value": "First" },
-                            { "name": "Last", "value": "Last" },
+                            {"name": "Now", "value": "Now"},
+                            {"name": "First", "value": "First"},
+                            {"name": "Last", "value": "Last"}
                         ).setRequired(false);
                     })
             )
 
-            .addSubcommand(subcommand =>
+            .addSubcommand((subcommand) =>
                 subcommand
                     .setName("queue")
                     .setDescription("View the music queue")
-                    .addIntegerOption(option => { return option.setName("page").setDescription("Page number for the queue").setRequired(false); })
+                    .addIntegerOption((option) => {
+                        return option.setName("page").setDescription("Page number for the queue").setRequired(false);
+                    })
             )
 
-            .addSubcommand(subcommand =>
+            .addSubcommand((subcommand) =>
                 subcommand
                     .setName("skip")
                     .setDescription("Skips the current track and moves on to the next one")
             )
 
-            .addSubcommand(subcommand =>
+            .addSubcommand((subcommand) =>
                 subcommand
                     .setName("loop")
                     .setDescription("Toggles whether to loop the current queue")
             )
 
-            .addSubcommand(subcommand =>
+            .addSubcommand((subcommand) =>
                 subcommand
                     .setName("playlists")
                     .setDescription("Gets your playlists")
-                    .addStringOption(option => { return option.setName("playlist").setDescription("The playlist to view").setRequired(false); })
-            )
+                    .addStringOption((option) => {
+                        return option.setName("playlist").setDescription("The playlist to view").setRequired(false);
+                    })
+            );
     }
 
     /**
@@ -68,27 +78,41 @@ class Music extends SlashCommand {
      * @param {CommandInteraction} interaction The command interaction object
     */
     static async run(interaction) {
-        if (!interaction.guild || !interaction.channel || !interaction.member) { return; }
-        if (!PermissionUtils.hasPermission(interaction.member, "MUSIC_PLAYER_USE")) { return; }
-        if (!PermissionUtils.botPermission(interaction.guild, PermissionUtils.PermissionGroups.MUSIC_PLAYER)) { return; }
-        if (!interaction.options.getSubcommand()) { return; }
+        if (!interaction.guild || !interaction.channel || !interaction.member) {
+            return;
+        }
+        if (!PermissionUtils.hasPermission(interaction.member, "MUSIC_PLAYER_USE")) {
+            return;
+        }
+        if (!PermissionUtils.botPermission(interaction.guild, PermissionUtils.PermissionGroups.MUSIC_PLAYER)) {
+            return;
+        }
+        if (!interaction.options.getSubcommand()) {
+            return;
+        }
 
         if (interaction.options.getSubcommand() === "play") {
-            if (!PermissionUtils.hasPermission(interaction.member, "MUSIC_PLAYER_PLAY")) { return; }
+            if (!PermissionUtils.hasPermission(interaction.member, "MUSIC_PLAYER_PLAY")) {
+                return;
+            }
             MusicPlayerCommands.play(interaction, interaction.options.getString("song"), interaction.options.getString("queue"));
         }
 
         if (interaction.options.getSubcommand() === "skip") {
-            if (!PermissionUtils.hasPermission(interaction.member, "MUSIC_PLAYER_SKIP")) { return; }
+            if (!PermissionUtils.hasPermission(interaction.member, "MUSIC_PLAYER_SKIP")) {
+                return;
+            }
             MusicPlayerCommands.skip(interaction);
         }
 
-        if (interaction.options.getSubcommand() === "leave") { 
-            
+        if (interaction.options.getSubcommand() === "leave") {
+            // leave the voice channel and clear queue
         }
 
         if (interaction.options.getSubcommand() === "loop") {
-            if (!PermissionUtils.hasPermission(interaction.member, "MUSIC_PLAYER_LOOP")) { return; }
+            if (!PermissionUtils.hasPermission(interaction.member, "MUSIC_PLAYER_LOOP")) {
+                return;
+            }
             MusicPlayerCommands.loop(interaction);
         }
 
@@ -97,11 +121,12 @@ class Music extends SlashCommand {
         }
 
         if (interaction.options.getSubcommand() === "queue") {
-            if (!PermissionUtils.hasPermission(interaction.member, "MUSIC_PLAYER_PLAY")) { return; }
+            if (!PermissionUtils.hasPermission(interaction.member, "MUSIC_PLAYER_PLAY")) {
+                return;
+            }
             MusicPlayerCommands.viewQueue(interaction);
         }
     }
-
 }
 
 module.exports = Music;

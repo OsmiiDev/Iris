@@ -34,6 +34,113 @@
             "start": 1655173148,
             "expired": false,
             "matrix": "invites"
+        },
+        {
+            "id": "953085444378218537:268b46fe-e424-4489-8e83-ecea13a911e7",
+            "reason": "Automod - Violated rule: Phishing links",
+            "start": 1655239428,
+            "expired": false,
+            "matrix": "default"
+        },
+        {
+            "id": "953085444378218537:31586cb0-8ee7-4045-92ce-ad9ee3981511",
+            "reason": "Automod - Violated rule: Phishing links",
+            "start": 1655239430,
+            "expired": false,
+            "matrix": "default"
+        },
+        {
+            "id": "953085444378218537:f9c5369b-265e-4600-ba3f-8a8912b1539c",
+            "reason": "Automod - Violated rule: Phishing links",
+            "start": 1655239432,
+            "expired": false,
+            "matrix": "default"
+        },
+        {
+            "id": "953085444378218537:c019f4c6-cb8e-408a-b28c-caa3654c6e3c",
+            "reason": "Automod - Violated rule: Phishing links",
+            "start": 1655239433,
+            "expired": false,
+            "matrix": "default"
+        },
+        {
+            "id": "953085444378218537:93dbc7c3-2019-43e3-9daf-29289bf6085e",
+            "reason": "Automod - Violated rule: Phishing links",
+            "start": 1655239434,
+            "expired": false,
+            "matrix": "default"
+        },
+        {
+            "id": "953085444378218537:54caa5eb-6f9b-4fb7-b8b8-be9a7fa938ae",
+            "reason": "Automod - Violated rule: Phishing links",
+            "start": 1655239436,
+            "expired": false,
+            "matrix": "default"
+        },
+        {
+            "id": "953085444378218537:0d996051-9f15-415b-90fb-3500eab015c7",
+            "reason": "Automod - Violated rule: Phishing links",
+            "start": 1655239437,
+            "expired": false,
+            "matrix": "default"
+        },
+        {
+            "id": "953085444378218537:66fdef27-e2ae-4554-94b3-69ae021fea28",
+            "reason": "Automod - Violated rule: Phishing links",
+            "start": 1655239438,
+            "expired": false,
+            "matrix": "default"
+        },
+        {
+            "id": "953085444378218537:fb147370-c907-4c0b-8c5b-a8db2459dd32",
+            "reason": "Automod - Violated rule: Phishing links",
+            "start": 1655239439,
+            "expired": false,
+            "matrix": "default"
+        },
+        {
+            "id": "953085444378218537:2a3246ff-e7ef-40bd-b23e-b6e9f509692c",
+            "reason": "Automod - Violated rule: Phishing links",
+            "start": 1655239558,
+            "expired": false,
+            "matrix": "default"
+        },
+        {
+            "id": "953085444378218537:f2ad4d6d-d5bf-40e7-b34a-67496d93544b",
+            "reason": "Automod - Violated rule: Phishing links",
+            "start": 1655239632,
+            "expired": false,
+            "matrix": "default"
+        },
+        {
+            "id": "953085444378218537:3df808b9-973f-4cac-ba12-883dc57ea167",
+            "reason": "Automod - Violated rule: Invite Links",
+            "start": 1655241794,
+            "expired": false,
+            "matrix": "invites"
+        },
+        {
+            "id": "953085444378218537:4ca9afd5-1b8a-4b30-9acb-d8e90125a43b",
+            "reason": "Automod - Violated rule: Invite Links",
+            "start": 1655242273,
+            "expired": false,
+            "matrix": "invites"
+        },
+        {
+            "id": "953085444378218537:cad2fb58-3a23-467c-b98e-2a306ed59df6",
+            "reason": "Automod - Violated rule: Invite Links",
+            "start": 1655242762,
+            "expired": false,
+            "matrix": "invites"
+        }
+    ],
+    "328984108271140864": [
+        {
+            "id": "328984108271140864:e499fc49-195d-43fd-adc4-029f4bf89a81",
+            "reason": "Automod - Violated rule: Invite Links",
+            "start": 1655242179,
+            "expired": false,
+            "matrix": "invites"
         }
     ]
 }

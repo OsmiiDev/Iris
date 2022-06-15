@@ -1,17 +1,19 @@
-const { Message } = require("discord.js");
 const fs = require("fs");
 
 const DataUtils = require("../../../utility/DataUtils");
-const ModuleUtils = require("../../../utility/ModuleUtils");
-
 const AutomodRules = require("./AutomodRules");
 
 const IrisModule = require("../../IrisModule");
 
+/**
+ * @description Handles link blacklists
+*/
 class AutomodBannedLinks extends IrisModule {
-
     LISTENERS = [];
 
+    /**
+     * @description Constructor
+    */
     constructor() {
         super("moderation.automod.AutomodBannedLinks");
 
@@ -27,40 +29,43 @@ class AutomodBannedLinks extends IrisModule {
         let data;
         if (rule.rule.file.startsWith("custom:")) {
             data = DataUtils.read(message.guild, `moderation/automod/${rule.rule.file.split(":")[1]}`);
-        }
-        else {
+        } else {
             data = JSON.parse(fs.readFileSync(`./assets/automod/${rule.rule.file.split(":")[1].endsWith(".json") ? rule.rule.file.split(":")[1] : `${rule.rule.file.split(":")[1]}.json`}`));
         }
 
-        if (!data) { return; }
+        if (!data) {
+            return;
+        }
 
-        let urls = data.links;
-        let messageContent = message.content.toLowerCase();
-        if (messageContent.length === 0) { return; }
+        const urls = data.links;
+        const messageContent = message.content.toLowerCase();
+        if (messageContent.length === 0) {
+            return;
+        }
         for (let url of urls) {
             let subdomains = false;
-            if(url.startsWith("*.")){
+            if (url.startsWith("*.")) {
                 url = url.substring(2);
                 subdomains = true;
             }
 
             let paths = false;
-            if(url.endsWith("/*")){
+            if (url.endsWith("/*")) {
                 url = url.substring(0, url.length - 2);
                 paths = true;
             }
 
+            // eslint-disable-next-line no-useless-escape
             url = url.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
 
-            let regex = new RegExp(`(https?:\\/\\/|\\s|^)(www\\.)?${subdomains ? "([^\\s\\/\\.]*\\.)*": ""}(${url})(\\/${paths ? "([\\S]*\\/*)*" : ""}|\\s|$)`, "gi");
+            const regex = new RegExp(`(https?:\\/\\/|\\s|^)(www\\.)?${subdomains ? "([^\\s\\/\\.]*\\.)*" : ""}(${url})(\\/${paths ? "([\\S]*\\/*)*" : ""}|\\s|$)`, "gi");
 
             if (messageContent.match(regex)) {
-                let action = rule.action;
-                let actionFunction = AutomodRules.getAction(action);
+                const action = rule.action;
+                const actionFunction = AutomodRules.getAction(action);
                 actionFunction(message, rule);
                 return;
             }
-
         }
     }
 }

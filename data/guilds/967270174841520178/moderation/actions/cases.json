@@ -128,6 +128,107 @@
             "reason": "Punishment threshold reached",
             "timestamp": 1655173148,
             "length": 25
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:90fbd2d5-ef7d-48d8-873b-54a6cd8052f6",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655239558,
+            "length": 172800
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:908943f5-d090-4df7-9423-59f22d9226b9",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "No reason provided.",
+            "timestamp": 1655239595
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "49959c07-c2f6-4ab2-b776-17916883875f",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Phishing links",
+            "timestamp": 1655239632
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:3d0f7d81-c274-486f-88bb-5d12eb7fa76b",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655239632,
+            "length": 172800
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:6dd46cd9-8b56-4421-88d2-eb23347b5293",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "what about em",
+            "timestamp": 1655239657
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "5e0b9753-c9e7-4355-a68e-174e12d61392",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Invite Links",
+            "timestamp": 1655241794
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:7f038e0f-4b81-4ad6-b827-150eac1dac5f",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655241794,
+            "length": 30
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "0123bb76-07a5-4c51-ad67-9fcde2048f7f",
+            "member": "328984108271140864",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Invite Links",
+            "timestamp": 1655242179
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "9bc5e00c-dc81-4e08-a197-367fb67c4e1e",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Invite Links",
+            "timestamp": 1655242273
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:80f78336-98ca-4fd3-bdbc-50e9fabff582",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655242273,
+            "length": 30
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "4986e8ce-94be-4b5c-91f0-39ad3a98dbd8",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Invite Links",
+            "timestamp": 1655242762
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:996a901b-f1f0-48f0-a662-24b45a2a8d39",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655242762,
+            "length": 30
         }
     ]
 }

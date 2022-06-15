@@ -1,19 +1,25 @@
-const { ContextMenuCommandBuilder } = require("@discordjs/builders");
-const { Interaction, Modal, MessageActionRow, TextInputComponent, UserContextMenuInteraction } = require("discord.js");
+const {ContextMenuCommandBuilder} = require("@discordjs/builders");
+const {Modal, MessageActionRow, TextInputComponent} = require("discord.js");
+const MessageUtils = require("../../utility/MessageUtils");
 
 const PermissionUtils = require("../../utility/PermissionUtils");
 
 const UserCommand = require("../UserCommand");
 
+/**
+ * @description Unmute user command
+*/
 class Unmute extends UserCommand {
-
+    /**
+     * @description Constructor
+    */
     constructor() {
         super("Unmute");
     }
 
     /**
      * @description Gets the command information
-     * @returns The command object
+     * @return {Object} The command object
     */
     static getBuilder() {
         return new ContextMenuCommandBuilder()
@@ -26,23 +32,33 @@ class Unmute extends UserCommand {
      * @param {UserContextMenuInteraction} interaction The command interaction object
     */
     static async run(interaction) {
-        if (!interaction.guild || !interaction.channel || !interaction.member || !interaction.targetId) { return; }
-        if (!PermissionUtils.hasPermission(interaction.member, "MODERATION_ACTION_MUTE_DELETE")) { return; }
-        if (!PermissionUtils.botPermission(interaction.guild, PermissionUtils.PermissionGroups.MODERATION_BASIC)) { return; }
+        if (!interaction.guild || !interaction.channel || !interaction.member || !interaction.targetId) {
+            return;
+        }
+        if (!PermissionUtils.hasPermission(interaction.member, "MODERATION_ACTION_MUTE_DELETE")) {
+            return;
+        }
+        if (!PermissionUtils.botPermission(interaction.guild, PermissionUtils.PermissionGroups.MODERATION_BASIC)) {
+            return;
+        }
 
-        let member = await interaction.guild.members.fetch(interaction.targetId).catch(() => { });
-        if (!member) { return interaction.reply({ embeds: [this.getError()] }); }
-        if (member.user.bot || member.user.system) { return interaction.reply({ embeds: [this.getError("I can't mute bots.")] }); }
+        const member = await interaction.guild.members.fetch(interaction.targetId).catch(() => { });
+        if (!member) {
+            return interaction.reply({embeds: [this.getError()]});
+        }
+        if (member.user.bot || member.user.system) {
+            return interaction.reply({embeds: [this.getError("I can't mute bots.")]});
+        }
 
         if (interaction.member.roles.highest.comparePositionTo(member.roles.highest) < 0 || member.id === member.guild.ownerId) {
-            return interaction.reply({ embeds: [MessageUtils.generateErrorEmbed("You can't unmute this user.")], ephemeral: true });
+            return interaction.reply({embeds: [MessageUtils.generateErrorEmbed("You can't unmute this user.")], ephemeral: true});
         }
 
         if (!member.manageable || !member.moderatable) {
-            return interaction.reply({ embeds: [this.getError("I do not have permission to mute this user.")] });
+            return interaction.reply({embeds: [this.getError("I do not have permission to mute this user.")]});
         }
 
-        let unmuteModalReason = new MessageActionRow().addComponents(
+        const unmuteModalReason = new MessageActionRow().addComponents(
             new TextInputComponent().setCustomId("0a8b0bef")
                 .setLabel("Reason")
                 .setStyle("PARAGRAPH")
@@ -50,11 +66,10 @@ class Unmute extends UserCommand {
                 .setRequired(false)
         );
 
-        let unmuteModal = new Modal().setCustomId(`731bfb357a6f-${member.id}`).setTitle("Unmute user").addComponents(unmuteModalReason);
+        const unmuteModal = new Modal().setCustomId(`731bfb357a6f-${member.id}`).setTitle("Unmute user").addComponents(unmuteModalReason);
 
         interaction.showModal(unmuteModal).catch(() => { });
     }
-
 }
 
 module.exports = Unmute;

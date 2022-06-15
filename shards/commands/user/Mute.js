@@ -1,23 +1,28 @@
-const { ContextMenuCommandBuilder } = require("@discordjs/builders");
-const { Interaction, Modal, MessageActionRow, TextInputComponent, MessageContextMenuInteraction } = require("discord.js");
+const {ContextMenuCommandBuilder} = require("@discordjs/builders");
+const {Modal, MessageActionRow, TextInputComponent} = require("discord.js");
 
 const DataUtils = require("../../utility/DataUtils");
-const ModuleUtils = require("../../utility/ModuleUtils");
 const PermissionUtils = require("../../utility/PermissionUtils");
 
 const ActionMute = require("../../modules/moderation/actions/ActionMute");
 
 const UserCommand = require("../UserCommand");
+const MessageUtils = require("../../utility/MessageUtils");
 
+/**
+ * @description Mute user command
+*/
 class Mute extends UserCommand {
-
+    /**
+     * @description Constructor
+    */
     constructor() {
         super("Mute");
     }
 
     /**
      * @description Gets the command information
-     * @returns The command object
+     * @return {Object} The command object
     */
     static getBuilder() {
         return new ContextMenuCommandBuilder()
@@ -30,25 +35,35 @@ class Mute extends UserCommand {
      * @param {UserContextMenuInteraction} interaction The command interaction object
     */
     static async run(interaction) {
-        if (!interaction.guild || !interaction.channel || !interaction.member || !interaction.targetId) { return; }
-        if (!PermissionUtils.hasPermission(interaction.member, "MODERATION_ACTION_MUTE_CREATE")) { return; }
-        if (!PermissionUtils.botPermission(interaction.guild, PermissionUtils.PermissionGroups.MODERATION_BASIC)) { return; }
+        if (!interaction.guild || !interaction.channel || !interaction.member || !interaction.targetId) {
+            return;
+        }
+        if (!PermissionUtils.hasPermission(interaction.member, "MODERATION_ACTION_MUTE_CREATE")) {
+            return;
+        }
+        if (!PermissionUtils.botPermission(interaction.guild, PermissionUtils.PermissionGroups.MODERATION_BASIC)) {
+            return;
+        }
 
-        let member = await interaction.guild.members.fetch(interaction.targetId).catch(() => { });
-        if (!member) { return interaction.reply({ embeds: [this.getError()] }); }
-        if (member.user.bot || member.user.system) { return interaction.reply({ embeds: [this.getError("I can't mute bots.")] }); }
+        const member = await interaction.guild.members.fetch(interaction.targetId).catch(() => { });
+        if (!member) {
+            return interaction.reply({embeds: [this.getError()]});
+        }
+        if (member.user.bot || member.user.system) {
+            return interaction.reply({embeds: [this.getError("I can't mute bots.")]});
+        }
 
         if (interaction.member.roles.highest.comparePositionTo(member.roles.highest) < 0 || member.id === member.guild.ownerId) {
-            return interaction.reply({ embeds: [MessageUtils.generateErrorEmbed("You can't mute this user.")], ephemeral: true });
+            return interaction.reply({embeds: [MessageUtils.generateErrorEmbed("You can't mute this user.")], ephemeral: true});
         }
 
         if (!member.moderatable) {
-            return interaction.reply({ embeds: [this.getError("I do not have permission to mute this user.")] });
+            return interaction.reply({embeds: [this.getError("I do not have permission to mute this user.")]});
         }
 
-        let behavior = DataUtils.getConfig(member.guild).modules.moderation.actions.mute.behavior;
+        const behavior = DataUtils.getConfig(member.guild).modules.moderation.actions.mute.behavior;
 
-        let muteModalTime = new MessageActionRow().addComponents(
+        const muteModalTime = new MessageActionRow().addComponents(
             new TextInputComponent().setCustomId("ec6bc3ab")
                 .setLabel("Time")
                 .setStyle("SHORT")
@@ -56,7 +71,7 @@ class Mute extends UserCommand {
                 .setRequired(false)
         );
 
-        let muteModalReason = new MessageActionRow().addComponents(
+        const muteModalReason = new MessageActionRow().addComponents(
             new TextInputComponent().setCustomId("da80d6f2")
                 .setLabel("Reason")
                 .setStyle("PARAGRAPH")
@@ -64,11 +79,10 @@ class Mute extends UserCommand {
                 .setRequired(false)
         );
 
-        let muteModal = new Modal().setCustomId(`1a1f42af587b-${member.id}`).setTitle("Mute user").addComponents(muteModalTime, muteModalReason);
+        const muteModal = new Modal().setCustomId(`1a1f42af587b-${member.id}`).setTitle("Mute user").addComponents(muteModalTime, muteModalReason);
 
         interaction.showModal(muteModal).catch(() => { });
     }
-
 }
 
 module.exports = Mute;

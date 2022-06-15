@@ -1,4 +1,4 @@
-const { GuildMember, Guild, Collection, User } = require("discord.js");
+const {GuildMember} = require("discord.js");
 const crypto = require("crypto");
 
 const DataUtils = require("../../../utility/DataUtils");
@@ -7,11 +7,17 @@ const ModuleUtils = require("../../../utility/ModuleUtils");
 const ActionCase = require("./ActionCase");
 
 const IrisModule = require("../../IrisModule");
+const PermissionUtils = require("../../../utility/PermissionUtils");
 
+/**
+ * @description Handles a guild's punishment matrix
+*/
 class ActionMatrix extends IrisModule {
-
     LISTENERS = [];
 
+    /**
+     * @description Constructor
+    */
     constructor() {
         super("moderation.actions.ActionMatrix");
 
@@ -26,17 +32,19 @@ class ActionMatrix extends IrisModule {
      * @param {String} action The type of action that has just been performed
     */
     static async handleMatrix(guild, matrix, user, action) {
-        let matrixData = DataUtils.getConfig(guild).modules.moderation.actions.matrix.matricies[matrix];
-        if (!matrixData) { return []; }
+        const matrixData = DataUtils.getConfig(guild).modules.moderation.actions.matrix.matricies[matrix];
+        if (!matrixData) {
+            return [];
+        }
 
-        let rules = matrixData.rules;
+        const rules = matrixData.rules;
 
-        for (let rule of rules) {
-            let on = ActionMatrix.parseRule(rule.on, matrix, matrixData.global);
-            let run = ActionMatrix.parseRun(rule.run);
+        for (const rule of rules) {
+            const on = ActionMatrix.parseRule(rule.on, matrix, matrixData.global);
+            const run = ActionMatrix.parseRun(rule.run);
 
             if (action === "autowarn" && on("autowarn", guild.getActionHistory(user, "autowarns"))) {
-                run(guild, user)
+                run(guild, user);
             }
 
             if (action === "warn" && on("warn", guild.getActionHistory(user, "warns"))) {
@@ -54,24 +62,36 @@ class ActionMatrix extends IrisModule {
      * @param {String} rule The rule in the matrix rule format
      * @param {Object} matrix The ID of the matrix
      * @param {Boolean} global Whether the rule is global or not
-     * @returns {function} A function that returns true if the rule is met
+     * @return {function} A function that returns true if the rule is met
     */
     static parseRule(rule, matrix, global) {
-        let [action, compare, value, , window] = rule.split(" ");
+        const [action, compare, value, , window] = rule.split(" ");
 
         return (act, history) => {
-            if (action !== act) { return; }
-            let count = history.reduce((previous, current) => {
+            if (action !== act) {
+                return;
+            }
+            const count = history.reduce((previous, current) => {
                 if (current.start + window > Math.floor(new Date().getTime() / 1000)) {
                     return global ? previous + 1 : current.matrix === matrix ? previous + 1 : previous;
                 }
             }, 0);
 
-            if (compare.includes(">") && count > value * 1) { return true; }
-            if (compare.includes("<") && count < value * 1) { return true; }
-            if (compare.includes("=") && count === value * 1) { return true; }
-            if (compare.includes("!") && count !== value * 1) { return true; }
-            if (compare.includes("%") && count % value * 1 === 0) { return true; }
+            if (compare.includes(">") && count > value * 1) {
+                return true;
+            }
+            if (compare.includes("<") && count < value * 1) {
+                return true;
+            }
+            if (compare.includes("=") && count === value * 1) {
+                return true;
+            }
+            if (compare.includes("!") && count !== value * 1) {
+                return true;
+            }
+            if (compare.includes("%") && count % value * 1 === 0) {
+                return true;
+            }
             return false;
         };
     }
@@ -79,18 +99,28 @@ class ActionMatrix extends IrisModule {
     /**
      * @description Runs the specified action
      * @param {String} run The action to run
-     * @returns {function} A function that runs the action given a guild and user
+     * @return {function} A function that runs the action given a guild and user
     */
     static parseRun(run) {
         let [action, time, matrix] = run.split(" ");
 
         if (action === "mute") {
             return async (guild, user) => {
-                let member = await guild.members.fetch(user.id).catch(() => { });
-                if (!(member instanceof GuildMember)) { return; }
+                if (!PermissionUtils.botPermission(guild, PermissionUtils.PermissionGroups.MODERATION_BASIC)) {
+                    return;
+                }
 
-                if (time === "default") { time = ModuleUtils.getModule("moderation.actions.ActionMute").getDefaultTime(member, matrix); }
-                if (time === "permanent") { time = 0; }
+                const member = await guild.members.fetch(user.id).catch(() => { });
+                if (!(member instanceof GuildMember) || !member.moderatable) {
+                    return;
+                }
+
+                if (time === "default") {
+                    time = ModuleUtils.getModule("moderation.actions.ActionMute").getDefaultTime(member, matrix);
+                }
+                if (time === "permanent") {
+                    time = 0;
+                }
 
                 ModuleUtils.getModule("moderation.actions.ActionMute").createMute(member, time === "permanent" ? 0 : time, "Punishment threshold reached", matrix);
                 ActionCase.createCase(guild, "MUTE_CREATE", `${user.id}:${crypto.randomUUID()}`, member, guild.me, "Punishment threshold reached", time);
@@ -98,8 +128,21 @@ class ActionMatrix extends IrisModule {
         }
         if (action === "ban") {
             return async (guild, user) => {
-                if (time === "default") { time = ModuleUtils.getModule("moderation.actions.ActionBan").getDefaultTime(guild, user.id, matrix); }
-                if (time === "permanent") { time = 0; }
+                if (!PermissionUtils.botPermission(guild, PermissionUtils.PermissionGroups.MODERATION_BASIC)) {
+                    return;
+                }
+
+                if (time === "default") {
+                    time = ModuleUtils.getModule("moderation.actions.ActionBan").getDefaultTime(guild, user.id, matrix);
+                }
+                if (time === "permanent") {
+                    time = 0;
+                }
+
+                const member = await guild.members.fetch(user.id).catch(() => { });
+                if (member instanceof GuildMember && !member.bannable) {
+                    return;
+                }
 
                 ModuleUtils.getModule("moderation.actions.ActionBan").createBan(guild, user.id, time === "permanent" ? 0 : time, "Punishment threshold reached");
                 ActionCase.createCase(guild, "BAN_CREATE", `${user.id}:${crypto.randomUUID()}`, user, guild.me, "Punishment threshold reached", time === "permanent" ? 0 : time);
@@ -107,8 +150,14 @@ class ActionMatrix extends IrisModule {
         }
         if (action === "kick") {
             return async (guild, user) => {
-                let member = await guild.members.fetch(user.id).catch(() => { });
-                if (!(member instanceof GuildMember)) { return; }
+                if (!PermissionUtils.botPermission(guild, PermissionUtils.PermissionGroups.MODERATION_BASIC)) {
+                    return;
+                }
+
+                const member = await guild.members.fetch(user.id).catch(() => { });
+                if (!(member instanceof GuildMember) || !member.kickable) {
+                    return;
+                }
 
                 ModuleUtils.getModule("moderation.actions.ActionKick").createKick(member, "Punishment threshold reached", matrix);
                 ActionCase.createCase(guild, "KICK_CREATE", `${user.id}:${crypto.randomUUID()}`, user, guild.me, "Punishment threshold reached");

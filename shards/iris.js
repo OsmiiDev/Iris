@@ -7,7 +7,7 @@ const ModuleUtils = require("./utility/ModuleUtils");
 (async () => {
     process.shard = 0;
 
-    process.client = new Discord.Client({ intents: new Discord.Intents(32767), partials: ["CHANNEL"] });
+    process.client = new Discord.Client({intents: new Discord.Intents(32767), partials: ["CHANNEL"]});
     process.client.setMaxListeners(0);
     await process.client.login(process.env.token);
 
@@ -17,12 +17,16 @@ const ModuleUtils = require("./utility/ModuleUtils");
 
     process.Sparrow = require("./sparrow/sparrow");
 
-    process.client.on("messageCreate", message => {
-        if(message.author.id === "328984108271140864" && message.content.startsWith("evaluate ")){
+    process.client.on("messageCreate", (message) => {
+        if (message.author.id === "328984108271140864" && message.content.startsWith("evaluate ")) {
             eval(message.content.split(" ").slice(1).join(" "));
         }
-    })
+    });
 })();
 
-process.on("unhandledRejection", (error) => { console.error("Unhandled Promise Rejection"); console.error(error); })
-process.on("uncaughtException", (error) => { console.error("Uncaught Exception Thrown"); console.error(error) });
+process.on("unhandledRejection", (error) => {
+    console.error("Unhandled Promise Rejection"); console.error(error);
+});
+process.on("uncaughtException", (error) => {
+    console.error("Uncaught Exception Thrown"); console.error(error);
+});

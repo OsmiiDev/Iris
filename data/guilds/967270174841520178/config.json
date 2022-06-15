@@ -1,5 +1,6 @@
 {
     "prefix": ">",
+    "delete": true,
 
     "commands": {
         "slash": {
@@ -356,16 +357,20 @@
                 "MODERATION_MODMAIL_TICKET_CLOSE": [true, 1]
             },
             "967542117436104704": {
-                "MODERATION_ACTION_BAN_CREATE": [true, 2]
+                "MODERATION_ACTION_BAN_CREATE": [true, 2],
+                "WEBHOOK_SEND": [true, 2]
             },
             "968697071169310782": {
-                "MODERATION_ACTION_BAN_CREATE": [true, 2]
+                "MODERATION_ACTION_BAN_CREATE": [true, 2],
+                "WEBHOOK_SEND": [true, 2]
             },
             "968700535848984668": {
-                "MODERATION_ACTION_BAN_CREATE": [true, 2]
+                "MODERATION_ACTION_BAN_CREATE": [true, 2],
+                "WEBHOOK_SEND": [true, 2]
             },
             "969065579858243675": {
-                "MODERATION_ACTION_BAN_CREATE": [true, 2]
+                "MODERATION_ACTION_BAN_CREATE": [true, 2],
+                "WEBHOOK_SEND": [true, 2]
             }
         },
 

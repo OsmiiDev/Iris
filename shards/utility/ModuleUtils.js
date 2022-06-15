@@ -1,24 +1,23 @@
 const fs = require("fs");
-const IrisModule = require("../modules/IrisModule");
-
-let modules = {
-    "core.IrisModule": "../modules/IrisModule",
+const modules = {
+    "core.IrisModule": "../modules/IrisModule"
 };
 
+/**
+ * @description Module utilities
+*/
 class ModuleUtils {
-
     /**
      * @description Registers all prototype modifications
      * @param {String} path The directory
     */
     static registerPrototypes(path = "./prototype") {
-        let files = fs.readdirSync(path);
-        for (let fileName of files) {
+        const files = fs.readdirSync(path);
+        for (const fileName of files) {
             if (fileName.endsWith(".js") || fileName.endsWith(".ts")) {
                 require(`${path}/${fileName}`);
-            }
-            else {
-                this.registerPrototypes(`${path}/${fileName}`)
+            } else {
+                this.registerPrototypes(`${path}/${fileName}`);
             }
         }
     }
@@ -26,7 +25,7 @@ class ModuleUtils {
     /**
      * @description Gets a module with a name
      * @param {String} name The name of the module
-     * @returns {IrisModule} The module class
+     * @return {IrisModule} The module class
     */
     static getModule(name) {
         return name ? modules[name] ? require(modules[name]) : require(`../modules/${name.replace(/\./g, "/")}`) : modules;
@@ -37,18 +36,17 @@ class ModuleUtils {
      * @param {String} path The directory
     */
     static registerModules(path = "./modules") {
-        let files = fs.readdirSync(path);
-        for (let fileName of files) {
+        const files = fs.readdirSync(path);
+        for (const fileName of files) {
             if (fileName.endsWith(".js") || fileName.endsWith(".ts")) {
-                let moduleFile = require(`${path}/${fileName}`);
-                let moduleClass = new moduleFile();
+                const ModuleFile = require(`${path}/${fileName}`);
+                const moduleClass = new ModuleFile();
 
-                modules[moduleClass._name] = `${require('path').relative(__dirname, path).replace(/\\/g, "/")}/${fileName}`;
-                //get relative path from absolute path
+                modules[moduleClass._name] = `${require("path").relative(__dirname, path).replace(/\\/g, "/")}/${fileName}`;
+                // get relative path from absolute path
 
                 console.log(`[Shard-${process.shard} REGISTER] Registered module ${moduleClass._name}`);
-            }
-            else {
+            } else {
                 this.registerModules(`${path}/${fileName}`);
             }
         }
@@ -59,15 +57,15 @@ class ModuleUtils {
      * @param {String} path The directory
     */
     static async registerCommands(path = "./commands") {
-        let commands = [];
+        const commands = [];
 
         commands.push(...ModuleUtils.registerSlashCommands(`${path}/slash`));
         commands.push(...ModuleUtils.registerMessageCommands(`${path}/message`));
         commands.push(...ModuleUtils.registerUserCommands(`${path}/user`));
-        let guilds = await process.client.guilds.fetch();
+        const guilds = await process.client.guilds.fetch();
 
-        for (let guildId of guilds.keys()) {
-            let guild = await process.client.guilds.fetch(guildId);
+        for (const guildId of guilds.keys()) {
+            const guild = await process.client.guilds.fetch(guildId);
             await guild.commands.set(commands);
         }
 
@@ -77,20 +75,23 @@ class ModuleUtils {
     /**
      * @description Registers all slash commands
      * @param {String} path The directory
+     * @return {Array} The commands
     */
     static registerSlashCommands(path = "./commands/slash") {
-        let commands = [];
+        const commands = [];
 
-        let messageCommands = fs.readdirSync(path);
-        for (let messageCommand of messageCommands) {
-            let commandFile = require(`${path}/${messageCommand}`);
+        const messageCommands = fs.readdirSync(path);
+        for (const messageCommand of messageCommands) {
+            const commandFile = require(`${path}/${messageCommand}`);
 
             console.log(`[Shard-${process.shard} REGISTER] Registered slash command ${commandFile.getName()}`);
 
             commands.push(commandFile.getBuilder().toJSON());
 
             process.client.on("interactionCreate", (interaction) => {
-                if (!interaction.isCommand() || interaction.commandName !== commandFile.getName().toLowerCase()) { return; }
+                if (!interaction.isCommand() || interaction.commandName !== commandFile.getName().toLowerCase()) {
+                    return;
+                }
 
                 commandFile.run(interaction);
             });
@@ -102,20 +103,23 @@ class ModuleUtils {
     /**
      * @description Registers all message context menu commands
      * @param {String} path The directory
+     * @return {Array} The commands
     */
     static registerMessageCommands(path = "./commands/message") {
-        let commands = [];
+        const commands = [];
 
-        let messageCommands = fs.readdirSync(path);
-        for (let messageCommand of messageCommands) {
-            let commandFile = require(`${path}/${messageCommand}`);
+        const messageCommands = fs.readdirSync(path);
+        for (const messageCommand of messageCommands) {
+            const commandFile = require(`${path}/${messageCommand}`);
 
             console.log(`[Shard-${process.shard} REGISTER] Registered message command ${commandFile.getName()}`);
 
             commands.push(commandFile.getBuilder());
 
             process.client.on("interactionCreate", (interaction) => {
-                if (!interaction.isMessageContextMenu() || interaction.commandName !== commandFile.getName()) { return; }
+                if (!interaction.isMessageContextMenu() || interaction.commandName !== commandFile.getName()) {
+                    return;
+                }
 
                 commandFile.run(interaction);
             });
@@ -127,20 +131,23 @@ class ModuleUtils {
     /**
      * @description Registers all message context menu commands
      * @param {String} path The directory
+     * @return {Array} The commands
     */
     static registerUserCommands(path = "./commands/user") {
-        let commands = [];
+        const commands = [];
 
-        let userCommands = fs.readdirSync(path);
-        for (let userCommand of userCommands) {
-            let commandFile = require(`${path}/${userCommand}`);
+        const userCommands = fs.readdirSync(path);
+        for (const userCommand of userCommands) {
+            const commandFile = require(`${path}/${userCommand}`);
 
             console.log(`[Shard-${process.shard} REGISTER] Registered user command ${commandFile.getName()}`);
 
             commands.push(commandFile.getBuilder());
 
             process.client.on("interactionCreate", (interaction) => {
-                if (!interaction.isUserContextMenu() || interaction.commandName !== commandFile.getName()) { return; }
+                if (!interaction.isUserContextMenu() || interaction.commandName !== commandFile.getName()) {
+                    return;
+                }
 
                 commandFile.run(interaction);
             });
@@ -148,8 +155,6 @@ class ModuleUtils {
 
         return commands;
     }
-
-
 }
 
 module.exports = ModuleUtils;
