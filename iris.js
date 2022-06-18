@@ -1,5 +1,4 @@
-// eslint-disable-next-line
-process.env.token = "OTU3NDA5NzMwOTU4MDg2MjU0.GwdAKi.LE64O76EYOD3A1LE4wKK9y9gvLDtJuZypJjcNY";
+require("dotenv").config();
 
 const {ShardingManager} = require("discord.js");
 

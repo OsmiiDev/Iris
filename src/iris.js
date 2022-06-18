@@ -14,12 +14,6 @@ const ModuleUtils = require("./utility/ModuleUtils");
     ModuleUtils.registerCommands(__dirname + "/commands");
 
     process.Sparrow = require("./sparrow/sparrow");
-
-    process.client.on("messageCreate", (message) => {
-        if (message.author.id === "328984108271140864" && message.content.startsWith("evaluate ")) {
-            eval(message.content.split(" ").slice(1).join(" "));
-        }
-    });
 })();
 
 process.on("unhandledRejection", (error) => {
