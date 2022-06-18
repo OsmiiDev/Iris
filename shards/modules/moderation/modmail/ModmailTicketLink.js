@@ -20,6 +20,7 @@ class ModmailTicketLink extends IrisModule {
     */
     constructor() {
         super("moderation.modmail.ModmailTicketLink");
+
         this.registerEvents();
     }
 
@@ -28,31 +29,19 @@ class ModmailTicketLink extends IrisModule {
      * @param {Message} message The sent message
     */
     async threadToDM(message) {
-        if (message.author.bot || (message.content && message.content.startsWith(">"))) {
-            return;
-        }
-        if (!(message.channel instanceof ThreadChannel)) {
-            return;
-        }
+        if (message.author.bot || (message.content && message.content.startsWith(">"))) return;
+        if (!(message.channel instanceof ThreadChannel)) return;
 
         const ticket = ModmailTicketManager.getTicket(message.channel);
-        if (!ticket) {
-            return;
-        }
+        if (!ticket) return;
 
         const member = await message.guild.members.fetch(ticket.user).catch(() => {});
-        if (!(member instanceof GuildMember)) {
-            return;
-        }
+        if (!(member instanceof GuildMember)) return;
 
         const body = {};
 
-        if (message.content) {
-            body.content = message.content;
-        }
-        if (message.attachments) {
-            body.files = Array.from(message.attachments.values());
-        }
+        if (message.content) body.content = message.content;
+        if (message.attachments) body.files = Array.from(message.attachments.values());
 
         member.user.send(body).catch(() => { });
     }
@@ -62,37 +51,23 @@ class ModmailTicketLink extends IrisModule {
      * @param {Message} message The sent message
     */
     async DMToThread(message) {
-        if (message.author.bot || message.channel.type !== "DM") {
-            return;
-        }
+        if (message.author.bot || message.channel.type !== "DM") return;
 
         const ticket = ModmailTicketManager.getTicket(message.channel);
-        if (!ticket) {
-            return;
-        }
+        if (!ticket) return;
 
         const thread = await process.client.channels.fetch(ticket.threadChannel);
-        if (!(thread instanceof ThreadChannel)) {
-            return;
-        }
+        if (!(thread instanceof ThreadChannel)) return;
 
-        if (!thread.guild.me.permissions.has("ADMINISTRATOR")) {
-            return;
-        }
+        if (!thread.guild.me.permissions.has("ADMINISTRATOR")) return;
 
         const member = await thread.guild.members.fetch(ticket.user).catch(() => {});
-        if (!(member instanceof GuildMember)) {
-            return;
-        }
+        if (!(member instanceof GuildMember)) return;
 
         const body = {};
 
-        if (message.content) {
-            body.content = message.content;
-        }
-        if (message.attachments) {
-            body.files = Array.from(message.attachments.values());
-        }
+        if (message.content) body.content = message.content;
+        if (message.attachments) body.files = Array.from(message.attachments.values());
 
         const webhooks = await thread.parent.fetchWebhooks();
         let webhook = webhooks.first();
@@ -105,7 +80,7 @@ class ModmailTicketLink extends IrisModule {
             threadId: ticket.threadChannel,
             username: `${MessageUtils.replaceClyde(member.user.username)}#${member.user.discriminator}`,
             avatarURL: member.user.displayAvatarURL()
-        }).catch((error) => { });
+        }).catch(() => { });
     }
 }
 

@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 
 const {ShardingManager} = require("discord.js");
 

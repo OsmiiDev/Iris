@@ -53,7 +53,6 @@ class MessageUtils {
      * @return {Boolean} Whether the message is the specified command
      */
     static isCommand(message, name) {
-        console.log(`${DataUtils.getConfig(message.guild).prefix}${name}`);
         return message.content.split(" ")[0].toLowerCase().startsWith(`${DataUtils.getConfig(message.guild).prefix}${name}`);
     }
 }

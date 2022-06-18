@@ -1,7 +1,6 @@
 {
     "prefix": ">",
     "delete": true,
-
     "commands": {
         "slash": {
             "music": {
@@ -9,48 +8,83 @@
             }
         }
     },
-
     "modules": {
+        "entertainment": {
+            "music": {
+                "enabled": true,
+                "public-log-channel": "968700193367265351",
+                "private-log-channel": "971166915793932388",
+                "whitelisted-voice-channels": [
+                    "981625492903964722"
+                ]
+            }
+        },
         "moderation": {
             "actions": {
                 "matrix": {
                     "enabled": true,
-
                     "matricies": {
                         "default": {
                             "global": false,
-
                             "rules": [
-                                { "on": "autowarn >= 5 in 600", "run": "mute default" },
-                                { "on": "warn >= 5 in 7776000", "run": "mute default" },
-                                { "on": "warn % 3 in 7776000", "run": "kick" },
-                                { "on": "mute >= 5 in 7776000", "run": "ban permanent" }
+                                {
+                                    "on": "autowarn >= 5 in 600",
+                                    "run": "mute default"
+                                },
+                                {
+                                    "on": "warn >= 5 in 7776000",
+                                    "run": "mute default"
+                                },
+                                {
+                                    "on": "warn % 3 in 7776000",
+                                    "run": "kick"
+                                },
+                                {
+                                    "on": "mute >= 5 in 7776000",
+                                    "run": "ban permanent"
+                                }
                             ],
-        
                             "times": {
-                                "mute": [21600, 43200, 86400, 172800],
-                                "ban": [0]
+                                "mute": [
+                                    21600,
+                                    43200,
+                                    86400,
+                                    172800
+                                ],
+                                "ban": [
+                                    0
+                                ]
                             },
-
                             "window": {
                                 "mute": 7776000,
                                 "warn": 7776000,
                                 "ban": 7776000
                             }
                         },
-                        "invites": {
+                        "automod": {
                             "global": false,
-
                             "rules": [
-                                { "on": "autowarn >= 2 in 600", "run": "mute default invites" },
-                                { "on": "mute >= 10 in 7776000", "run": "ban permanent invites" }
+                                {
+                                    "on": "autowarn >= 2 in 600",
+                                    "run": "mute default automod"
+                                },
+                                {
+                                    "on": "mute >= 10 in 7776000",
+                                    "run": "kick automod"
+                                }
                             ],
-        
                             "times": {
-                                "mute": [10, 15, 20, 25, 30],
-                                "ban": [0]
+                                "mute": [
+                                    10,
+                                    15,
+                                    20,
+                                    25,
+                                    30
+                                ],
+                                "ban": [
+                                    0
+                                ]
                             },
-
                             "window": {
                                 "mute": 7776000,
                                 "warn": 7776000,
@@ -59,16 +93,12 @@
                         }
                     }
                 },
-
                 "mute": {
                     "enabled": true,
-
                     "behavior": "matrix",
                     "matrix": "default",
-
                     "timeout": true,
                     "role": "968652592504770560",
-
                     "mute-message-public": {
                         "embeds": [
                             {
@@ -79,7 +109,6 @@
                             }
                         ]
                     },
-
                     "mute-message-private": {
                         "embeds": [
                             {
@@ -90,7 +119,6 @@
                             }
                         ]
                     },
-
                     "unmute-message-public": {
                         "embeds": [
                             {
@@ -101,7 +129,6 @@
                             }
                         ]
                     },
-
                     "unmute-message-private": {
                         "embeds": [
                             {
@@ -112,18 +139,13 @@
                             }
                         ]
                     },
-
                     "log-channel": "968647921602011138"
                 },
-
                 "ban": {
                     "enabled": true,
-
                     "behavior": "permanent",
                     "matrix": "default",
-
                     "purge": 0,
-
                     "ban-message-public": {
                         "embeds": [
                             {
@@ -134,7 +156,6 @@
                             }
                         ]
                     },
-
                     "ban-message-private": {
                         "embeds": [
                             {
@@ -145,7 +166,6 @@
                             }
                         ]
                     },
-
                     "unmute-message-public": {
                         "embeds": [
                             {
@@ -156,7 +176,6 @@
                             }
                         ]
                     },
-
                     "unmute-message-private": {
                         "embeds": [
                             {
@@ -167,15 +186,11 @@
                             }
                         ]
                     },
-
                     "log-channel": "968647921602011138"
                 },
-
                 "warn": {
                     "enabled": true,
-
                     "matrix": "default",
-
                     "warn-message-public": {
                         "embeds": [
                             {
@@ -186,7 +201,6 @@
                             }
                         ]
                     },
-
                     "warn-message-private": {
                         "embeds": [
                             {
@@ -197,15 +211,11 @@
                             }
                         ]
                     },
-
                     "log-channel": "968647921602011138"
                 },
-
                 "kick": {
                     "enabled": true,
-
                     "matrix": "default",
-
                     "kick-message-public": {
                         "embeds": [
                             {
@@ -216,7 +226,6 @@
                             }
                         ]
                     },
-
                     "kick-message-private": {
                         "embeds": [
                             {
@@ -227,155 +236,295 @@
                             }
                         ]
                     },
-
                     "log-channel": "968647921602011138"
                 }
             },
-
             "automod": {
                 "enabled": true,
-
+                "channel": "971167643082043482",
                 "rules": [
                     {
                         "name": "Phishing links",
                         "enabled": true,
-
                         "rule": {
                             "type": "banned-links",
-
                             "file": "public:filters/phishing-links"
                         },
-
-                        "action": "delete; mute default; warn <@{User}> Don't send phishing links.;",
-                        "matrix": "default",
-
+                        "action": "delete; mute default; warn <@{User}> Don't send phishing links.;log;",
+                        "matrix": "automod",
                         "exempt": {
                             "users": [],
-                            "roles": ["970906262567022632"],
+                            "roles": [
+                                "970906262567022632"
+                            ],
                             "channels": []
                         }
                     },
                     {
                         "name": "Slurs",
                         "enabled": true,
-
                         "rule": {
                             "type": "banned-words",
-
                             "file": "custom:slurs",
-                            "match": "regex"
+                            "match": "strict"
                         },
-
-                        "action": "delete; warn <@{User}> Watch your language.;",
-                        "matrix": "default",
-                        
+                        "action": "delete; warn <@{User}> Watch your language.;log;",
+                        "matrix": "automod",
                         "exempt": {
                             "users": [],
-                            "roles": ["970906262567022632"],
+                            "roles": [
+                                "970906262567022632"
+                            ],
                             "channels": []
                         }
                     },
                     {
                         "name": "Spam",
                         "enabled": true,
-
                         "rule": {
                             "type": "rate-limit",
-                            
                             "number": "8",
                             "window": "5000"
                         },
-
-                        "action": "delete; warn <@{User}> Stop spamming.;",
-                        "matrix": "default",
-
+                        "action": "delete; warn <@{User}> Stop spamming.;log;",
+                        "matrix": "automod",
                         "exempt": {
                             "users": [],
-                            "roles": ["970906262567022632"],
+                            "roles": [
+                                "970906262567022632"
+                            ],
                             "channels": []
                         }
                     },
                     {
                         "name": "Invite Links",
                         "enabled": true,
-
                         "rule": {
                             "type": "banned-links",
-
                             "file": "public:filters/invites"
                         },
-
-                        "action": "delete; warn <@{User}> Don't send invite links.;",
-                        "matrix": "invites",
-
+                        "action": "delete; warn <@{User}> Don't send invite links.;log;",
+                        "matrix": "automod",
+                        "exempt": {
+                            "users": [],
+                            "roles": [],
+                            "channels": []
+                        }
+                    },
+                    {
+                        "name": "Zalgo",
+                        "enabled": true,
+                        "rule": {
+                            "type": "zalgo",
+                            "threshold": "3",
+                            "count": "3",
+                            "operator:": "OR"
+                        },
+                        "action": "delete; log;",
+                        "matrix": "automod",
+                        "exempt": {
+                            "users": [],
+                            "roles": [],
+                            "channels": []
+                        }
+                    },
+                    {
+                        "name": "Spam",
+                        "enabled": true,
+                        "rule": {
+                            "type": "spam",
+                            "filter": "{emojis > 5}"
+                        },
+                        "action": "delete; log;",
+                        "matrix": "automod",
                         "exempt": {
                             "users": [],
                             "roles": [],
                             "channels": []
                         }
                     }
+
                 ]
             },
-
             "modmail": {
                 "enabled": true,
-
                 "channel": "971227644161052682"
             }
         },
-
-        "entertainment": {
-            "music": {
+        "security": {
+            "verification": {
                 "enabled": true,
-                
-                "public-log-channel": "968700193367265351",
-                "private-log-channel": "971166915793932388",
-
-                "whitelisted-voice-channels": ["981625492903964722"]
+                "channel": "971227460265996320",
+                "roles": ["969093070404591648", "967545821648273498"],
+                "adult-role": "973462181104472084",
+                "welcome-message": "Welcome <@{User}>!",
+                "welcome-channel": "967270174841520181",
+                "anti-alt": false,
+                "questions": [
+                    {
+                        "question": "How did you find this server?",
+                        "placeholder": "If you were referred by a friend, include their tag here.",
+                        "type": "long"
+                    },
+                    {
+                        "question": "Are you a furry?",
+                        "placeholder": "If so, please give a short description of your fursona.",
+                        "type": "long"
+                    },
+                    {
+                        "question": "Why do you wish to join this server?",
+                        "placeholder": "More detailed responses will be processed faster.",
+                        "type": "long"
+                    },
+                    {
+                        "question": "Tell us a bit about yourself.",
+                        "placeholder": "Two to three sentences will do, it doesn't have to be overly detailed",
+                        "type": "short"
+                    },
+                    {
+                        "question": "How old are you?",
+                        "placeholder": "Please provide an age in years.",
+                        "type": "short"
+                    },
+                    {
+                        "question": "Have you read and agreed to the rules?",
+                        "placeholder": "If you haven't already, please read them.",
+                        "type": "short"
+                    }
+                ],
+                "response": {
+                    "title": "All done!",
+                    "description": "Your responses were sent to staff for review. If your DMs are open, you will be automatically notified once your account is verified. If you don't receive a message within half an hour, feel free to open a modmail ticket."
+                },
+                "filters": {
+                    "reject": {
+                        "0": {
+                            "answer": "{Password} != beans"
+                        }
+                    }
+                }
             }
         }
     },
-
     "permissions": {
         "default": {
-            "MODERATION_ACTION_MUTE_CREATE": [false, 0],
-            "MODERATION_ACTION_MUTE_DELETE": [false, 0],
-            "MUSIC_PLAYER_USE": [true, 0],
-            "MUSIC_PLAYER_LOOP": [true, 0],
-            "MUSIC_PLAYER_PLAY": [true, 0],
-            "MUSIC_PLAYER_SKIP": [true, 0],
-            "MUSIC_PLAYER_PLAYLISTS": [true, 0]
+            "MODERATION_ACTION_MUTE_CREATE": [
+                false,
+                0
+            ],
+            "MODERATION_ACTION_MUTE_DELETE": [
+                false,
+                0
+            ],
+            "MUSIC_PLAYER_USE": [
+                true,
+                0
+            ],
+            "MUSIC_PLAYER_LOOP": [
+                true,
+                0
+            ],
+            "MUSIC_PLAYER_PLAY": [
+                true,
+                0
+            ],
+            "MUSIC_PLAYER_SKIP": [
+                true,
+                0
+            ],
+            "MUSIC_PLAYER_PLAYLISTS": [
+                true,
+                0
+            ]
         },
-
         "roles": {
             "970906262567022632": {
-                "MODERATION_ACTION_BAN_CREATE": [false, 1],
-                "MODERATION_ACTION_WARN_CREATE": [true, 1],
-                "MODERATION_ACTION_KICK_CREATE": [true, 1],
-                "MODERATION_ACTION_MUTE_CREATE": [true, 1],
-                "MODERATION_ACTION_MUTE_DELETE": [true, 1],
-                "MODERATION_MODMAIL_TICKET_CLOSE": [true, 1]
+                "MODERATION_ACTION_BAN_CREATE": [
+                    false,
+                    1
+                ],
+                "MODERATION_ACTION_WARN_CREATE": [
+                    true,
+                    1
+                ],
+                "MODERATION_ACTION_KICK_CREATE": [
+                    true,
+                    1
+                ],
+                "MODERATION_ACTION_MUTE_CREATE": [
+                    true,
+                    1
+                ],
+                "MODERATION_ACTION_MUTE_DELETE": [
+                    true,
+                    1
+                ],
+                "MODERATION_MODMAIL_TICKET_CLOSE": [
+                    true,
+                    1
+                ],
+                "VERIFICATION_PROCESS": [
+                    true,
+                    1
+                ]
             },
             "967542117436104704": {
-                "MODERATION_ACTION_BAN_CREATE": [true, 2],
-                "WEBHOOK_SEND": [true, 2]
+                "MODERATION_ACTION_BAN_CREATE": [
+                    true,
+                    2
+                ],
+                "WEBHOOK_SEND": [
+                    true,
+                    2
+                ],
+                "WEBHOOK_LIST": [
+                    true,
+                    2
+                ]
             },
             "968697071169310782": {
-                "MODERATION_ACTION_BAN_CREATE": [true, 2],
-                "WEBHOOK_SEND": [true, 2]
+                "MODERATION_ACTION_BAN_CREATE": [
+                    true,
+                    2
+                ],
+                "WEBHOOK_SEND": [
+                    true,
+                    2
+                ],
+                "WEBHOOK_LIST": [
+                    true,
+                    2
+                ]
             },
             "968700535848984668": {
-                "MODERATION_ACTION_BAN_CREATE": [true, 2],
-                "WEBHOOK_SEND": [true, 2]
+                "MODERATION_ACTION_BAN_CREATE": [
+                    true,
+                    2
+                ],
+                "WEBHOOK_SEND": [
+                    true,
+                    2
+                ],
+                "WEBHOOK_LIST": [
+                    true,
+                    2
+                ]
             },
             "969065579858243675": {
-                "MODERATION_ACTION_BAN_CREATE": [true, 2],
-                "WEBHOOK_SEND": [true, 2]
+                "MODERATION_ACTION_BAN_CREATE": [
+                    true,
+                    2
+                ],
+                "WEBHOOK_SEND": [
+                    true,
+                    2
+                ],
+                "WEBHOOK_LIST": [
+                    true,
+                    2
+                ]
             }
         },
-
-        "members": {
-
-        }
+        "members": {}
     }
 }

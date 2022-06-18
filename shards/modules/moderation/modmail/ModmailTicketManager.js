@@ -16,6 +16,7 @@ class ModmailTicketManager extends IrisModule {
     */
     constructor() {
         super("moderation.modmail.ModmailTicketManager");
+
         this.registerEvents();
     }
 
@@ -30,7 +31,8 @@ class ModmailTicketManager extends IrisModule {
             const thread = await channel.threads.create({
                 name: threadOptions.name || `${user.username}'s ticket`,
                 reason: threadOptions.reason || "Creating new ticket",
-                autoArchiveDuration: 1440, type: "GUILD_PUBLIC_THREAD"
+                autoArchiveDuration: 1440, type: "GUILD_PUBLIC_THREAD",
+                startMessage: threadOptions.startMessage || undefined
             });
 
             const data = {
@@ -63,18 +65,12 @@ class ModmailTicketManager extends IrisModule {
         const openTicketData = ModmailTicketManager.getOpenData(member.guild);
         const closedTicketData = ModmailTicketManager.getClosedData(member.guild);
 
-        if (!openTicketData[member.id]) {
-            return [false, false];
-        }
+        if (!openTicketData[member.id]) return [false, false];
 
-        if (!closedTicketData[member.id]) {
-            closedTicketData[member.id] = [];
-        }
+        if (!closedTicketData[member.id]) closedTicketData[member.id] = [];
 
         const data = openTicketData[member.id];
-        if (!data) {
-            return [false, false];
-        }
+        if (!data) return [false, false];
 
         closedTicketData[member.id].push(openTicketData[member.id]);
         DataUtils.write(member.guild, "moderation/modmail/closed", closedTicketData);
@@ -107,6 +103,18 @@ class ModmailTicketManager extends IrisModule {
         }
     }
 
+    /**
+     * @description Gets the ticket by a thread
+     * @param {Guild} guild The guild to get the tickets from
+     * @param {String} threadId The ID of the thread
+     * @return {Object} The ticket data
+    */
+    static getTicketThread(guild, threadId) {
+        const openTicketData = ModmailTicketManager.getOpenData(guild);
+        return Object.values(openTicketData).find((value) => {
+            return value.threadChannel === threadId;
+        });
+    }
     /**
      * @description Gets the open ticket data from a guild
      * @param {Guild} guild The guild to get the data for

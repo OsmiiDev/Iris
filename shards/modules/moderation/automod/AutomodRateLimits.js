@@ -44,7 +44,9 @@ class AutomodRateLimits extends IrisModule {
             if (action.split(";").includes("delete")) {
                 messages[message.guild.id][message.author.id].forEach((msg) => {
                     message.guild.channels.cache.get(msg.channel).messages.fetch(msg.id).catch(() => { }).then((msg) => {
-                        msg.delete().catch(() => { });
+                        if (msg && msg.deleteable) {
+                            msg.delete().catch(() => { });
+                        }
                     });
                 });
                 messages[message.guild.id][message.author.id] = [];

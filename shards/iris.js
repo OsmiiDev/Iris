@@ -5,8 +5,6 @@ const ModuleUtils = require("./utility/ModuleUtils");
 // Modules
 
 (async () => {
-    process.shard = 0;
-
     process.client = new Discord.Client({intents: new Discord.Intents(32767), partials: ["CHANNEL"]});
     process.client.setMaxListeners(0);
     await process.client.login(process.env.token);

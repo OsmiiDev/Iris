@@ -61,6 +61,15 @@ class AutomodBannedWords extends IrisModule {
                     actionFunction(message, rule);
                     return;
                 }
+            } else if (rule.rule.match === "strict") {
+                const replacedMessageContent = messageContent.replace(/[. !il\u0400-\u04FF]/g, "");
+                const replacedWord = word.replace(/[. !il\u0400-\u04FF]/g, "");
+                if (replacedMessageContent.includes(replacedWord)) {
+                    const action = rule.action;
+                    const actionFunction = AutomodRules.getAction(action);
+                    actionFunction(message, rule);
+                    return;
+                }
             }
         }
     }

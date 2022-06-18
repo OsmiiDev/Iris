@@ -23,6 +23,7 @@ class ModmailTicketClose extends IrisModule {
     */
     constructor() {
         super("moderation.modmail.ModmailTicketClose");
+
         this.registerEvents();
     }
 
@@ -31,23 +32,17 @@ class ModmailTicketClose extends IrisModule {
      * @param {ButtonInteraction} interaction The button interaction
     */
     async closeTicketModerator(interaction) {
-        if (!interaction.isButton() || !interaction.inGuild() || !interaction.channel || interaction.customId !== "8e8512aa") {
-            return;
-        }
-        if (!PermissionUtils.hasPermission(interaction.member, "MODERATION_MODMAIL_TICKET_CLOSE")) {
-            return;
-        }
+        if (!interaction.isButton() || !interaction.inGuild() || !interaction.customId.startsWith("8e8512aa")) return;
+        if (!PermissionUtils.hasPermission(interaction.member, "MODERATION_MODMAIL_TICKET_CLOSE")) return;
 
-        if (!interaction.guild.me.permissions.has("ADMINISTRATOR")) {
-            return;
-        }
+        console.log(interaction.customId + "||" + interaction.customId.startsWith("8e8512aa"));
+        if (!interaction.guild.me.permissions.has("ADMINISTRATOR")) return;
 
-        const ticket = await ModmailTicketManager.getTicket(interaction.channel);
-        if (!ticket) {
-            return;
-        }
+        const ticket = await ModmailTicketManager.getTicketThread(interaction.guild, interaction.customId.split("-")[1]);
+        if (!ticket) return;
 
-        const closeModal = new Modal().setCustomId("87ab4ab166d9").setTitle("Closing ticket").addComponents(new MessageActionRow().addComponents(
+        console.log(interaction.customId + "||" + interaction.customId.startsWith("8e8512aa"));
+        const closeModal = new Modal().setCustomId(`87ab4ab166d9-${interaction.customId.split("-")[1]}`).setTitle("Closing ticket").addComponents(new MessageActionRow().addComponents(
             new TextInputComponent()
                 .setCustomId("a050c5f2")
                 .setLabel("Reason")
@@ -56,23 +51,19 @@ class ModmailTicketClose extends IrisModule {
                 .setRequired(true)
         ));
 
-        interaction.showModal(closeModal);
+        interaction.showModal(closeModal).catch(() => {});
     }
 
     /**
      * @description Handles modal submission for ticket close
      * @param {ModalSubmitInteraction} interaction
-     */
+    */
     async closeTicketModal(interaction) {
-        if (!interaction.isModalSubmit() || !interaction.guild || !interaction.channel || interaction.customId !== "87ab4ab166d9") {
-            return;
-        }
+        if (!interaction.isModalSubmit() || !interaction.guild || !interaction.channel || !interaction.customId.startsWith("87ab4ab166d9")) return;
 
-        if (!interaction.guild.me.permissions.has("ADMINISTRATOR")) {
-            return;
-        }
+        if (!interaction.guild.me.permissions.has("ADMINISTRATOR")) return;
 
-        const ticket = await ModmailTicketManager.getTicket(interaction.channel);
+        const ticket = await ModmailTicketManager.getTicketThread(interaction.guild, interaction.customId.split("-")[1]);
         if (!ticket && interaction.channel instanceof TextChannel) {
             return interaction.reply({embeds: [MessageUtils.generateErrorEmbed("You can't close this ticket from here. Open the thread and try again.")]});
         } else if (!ticket) {
@@ -80,19 +71,7 @@ class ModmailTicketClose extends IrisModule {
         }
 
         const reason = interaction.fields.getTextInputValue("a050c5f2");
-        if (!reason) {
-            return;
-        }
-
-        await interaction.reply({
-            embeds: [
-                MessageUtils.generateEmbed("Ticket closed",
-                    "This ticket was closed by a staff member. Messages will no longer be sent or received between this channel and the user.", "#4466DD", interaction.user)
-                    .addField("Moderator", `<@${interaction.member.id}>`, true)
-                    .addField("Reason", reason, true)
-                    .setFooter({text: "Iris Modmail"}).setTimestamp()
-            ]
-        });
+        if (!reason) return;
 
         const member = await interaction.guild.members.fetch(ticket.user).catch(() => {});
         if (member instanceof GuildMember) {
@@ -107,10 +86,17 @@ class ModmailTicketClose extends IrisModule {
         }
 
         const [, thread] = await ModmailTicketManager.closeTicket(member);
-        if (!thread) {
-            return;
-        }
+        if (!thread) return;
 
+        await thread.send({
+            embeds: [
+                MessageUtils.generateEmbed("Ticket closed",
+                    "This ticket was closed by a staff member. Messages will no longer be sent or received between this channel and the user.", "#4466DD", interaction.user)
+                    .addField("Moderator", `<@${interaction.member.id}>`, true)
+                    .addField("Reason", reason, true)
+                    .setFooter({text: "Iris Modmail"}).setTimestamp()
+            ]
+        });
         await thread.setName(`[Closed] ${thread.name}`);
         await thread.setArchived(true, reason);
     }
@@ -120,30 +106,20 @@ class ModmailTicketClose extends IrisModule {
      * @param {ButtonInteraction} interaction
      */
     async closeTicketUser(interaction) {
-        if (!interaction.isButton() || !interaction.channel || !interaction.customId.startsWith("73926dee-")) {
-            return;
-        }
+        if (!interaction.isButton() || !interaction.channel || !interaction.customId.startsWith("73926dee-")) return;
 
         const guild = await process.client.guilds.fetch(interaction.customId.split("-")[1]);
 
-        if (!interaction.guild.me.permissions.has("ADMINISTRATOR")) {
-            return;
-        }
+        if (!interaction.guild.me.permissions.has("ADMINISTRATOR")) return;
 
         const ticket = await ModmailTicketManager.getTicket(interaction.channel);
-        if (!ticket) {
-            return;
-        }
+        if (!ticket) return;
 
         const member = await guild.members.fetch(ticket.user).catch(() => {});
-        if (!(member instanceof GuildMember)) {
-            return;
-        }
+        if (!(member instanceof GuildMember)) return;
 
         const [data, thread] = await ModmailTicketManager.closeTicket(member);
-        if (!data && !thread) {
-            return;
-        }
+        if (!data && !thread) return;
 
         const closeTicketButtonUser = new MessageActionRow().addComponents(
             new MessageButton()
@@ -189,18 +165,12 @@ class ModmailTicketClose extends IrisModule {
     */
     async closeTicketLeave(member) {
         const ticket = await ModmailTicketManager.getOpenData(member.guild)[member.id];
-        if (!ticket) {
-            return;
-        }
+        if (!ticket) return;
 
         const [data, thread] = await ModmailTicketManager.closeTicket(member);
-        if (!data) {
-            return;
-        }
+        if (!data) return;
 
-        if (!member.guild.me.permissions.has("ADMINISTRATOR")) {
-            return;
-        }
+        if (!member.guild.me.permissions.has("ADMINISTRATOR")) return;
 
         if (thread instanceof ThreadChannel) {
             thread.send({

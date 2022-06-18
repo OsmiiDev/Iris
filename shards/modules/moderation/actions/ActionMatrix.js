@@ -159,7 +159,7 @@ class ActionMatrix extends IrisModule {
                     return;
                 }
 
-                ModuleUtils.getModule("moderation.actions.ActionKick").createKick(member, "Punishment threshold reached", matrix);
+                ModuleUtils.getModule("moderation.actions.ActionKickModals").createKick(member, "Punishment threshold reached", matrix);
                 ActionCase.createCase(guild, "KICK_CREATE", `${user.id}:${crypto.randomUUID()}`, user, guild.me, "Punishment threshold reached");
             };
         }

@@ -1,4 +1,4 @@
-const {Guild, GuildMember} = require("discord.js");
+const {Guild, GuildMember, Message} = require("discord.js");
 const crypto = require("crypto");
 
 const DataUtils = require("../../../utility/DataUtils");
@@ -37,33 +37,19 @@ class AutomodRules extends IrisModule {
      * @param {Message} message The new message
     */
     async messageUpdate(oldMessage, message) {
-        if (!message.inGuild() || !(message.member instanceof GuildMember) || !message.channel) {
-            return;
-        }
-        if (message.author.bot || message.author.system) {
-            return;
-        }
+        if (!message.inGuild() || !(message.member instanceof GuildMember) || !message.channel) return;
+        if (message.author.bot || message.author.system) return;
 
         const guild = message.guild;
         const automod = DataUtils.getConfig(guild).modules.moderation.automod;
 
-        if (!automod.enabled) {
-            return;
-        }
+        if (!automod.enabled) return;
 
         automod.rules.forEach(async (rule) => {
-            if (!rule.enabled) {
-                return;
-            }
-            if (rule.exempt.channels.includes(message.channel.id)) {
-                return;
-            }
-            if (rule.exempt.users.includes(message.author.id)) {
-                return;
-            }
-            if (rule.exempt.roles.some((role) => message.member.roles.cache.has(role))) {
-                return;
-            }
+            if (!rule.enabled) return;
+            if (rule.exempt.channels.includes(message.channel.id)) return;
+            if (rule.exempt.users.includes(message.author.id)) return;
+            if (rule.exempt.roles.some((role) => message.member.roles.cache.has(role))) return;
 
             if (rule.rule.type === "banned-words") {
                 ModuleUtils.getModule("moderation.automod.AutomodBannedWords").process(message, rule);
@@ -73,6 +59,12 @@ class AutomodRules extends IrisModule {
             }
             if (rule.rule.type === "rate-limit") {
                 ModuleUtils.getModule("moderation.automod.AutomodRateLimits").process(message, rule);
+            }
+            if (rule.rule.type === "spam") {
+                ModuleUtils.getModule("moderation.automod.AutomodSpam").process(message, rule);
+            }
+            if (rule.rule.type === "zalgo") {
+                ModuleUtils.getModule("moderation.automod.AutomodZalgo").process(message, rule);
             }
         });
     }
@@ -82,12 +74,8 @@ class AutomodRules extends IrisModule {
      * @param {Message} message The message to handle
     */
     async messageCreate(message) {
-        if (!message.inGuild() || !(message.member instanceof GuildMember) || !message.channel) {
-            return;
-        }
-        if (message.author.bot || message.author.system) {
-            return;
-        }
+        if (!message.inGuild() || !(message.member instanceof GuildMember) || !message.channel) return;
+        if (message.author.bot || message.author.system) return;
 
         const guild = message.guild;
         const automod = DataUtils.getConfig(guild).modules.moderation.automod;
@@ -97,18 +85,10 @@ class AutomodRules extends IrisModule {
         }
 
         automod.rules.forEach(async (rule) => {
-            if (!rule.enabled) {
-                return;
-            }
-            if (rule.exempt.channels.includes(message.channel.id)) {
-                return;
-            }
-            if (rule.exempt.users.includes(message.author.id)) {
-                return;
-            }
-            if (rule.exempt.roles.some((role) => message.member.roles.cache.has(role))) {
-                return;
-            }
+            if (!rule.enabled) return;
+            if (rule.exempt.channels.includes(message.channel.id)) return;
+            if (rule.exempt.users.includes(message.author.id)) return;
+            if (rule.exempt.roles.some((role) => message.member.roles.cache.has(role))) return;
 
             if (rule.rule.type === "banned-words") {
                 ModuleUtils.getModule("moderation.automod.AutomodBannedWords").process(message, rule);
@@ -118,6 +98,12 @@ class AutomodRules extends IrisModule {
             }
             if (rule.rule.type === "rate-limit") {
                 ModuleUtils.getModule("moderation.automod.AutomodRateLimits").process(message, rule);
+            }
+            if (rule.rule.type === "spam") {
+                ModuleUtils.getModule("moderation.automod.AutomodSpam").process(message, rule);
+            }
+            if (rule.rule.type === "zalgo") {
+                ModuleUtils.getModule("moderation.automod.AutomodZalgo").process(message, rule);
             }
         });
     }
@@ -131,6 +117,7 @@ class AutomodRules extends IrisModule {
         const actions = action.split(";");
 
         return (message, rule) => {
+            if (!(message instanceof Message)) return;
             actions.forEach(async (action) => {
                 action = action.trim();
                 if (action.startsWith("delete")) {
@@ -182,6 +169,24 @@ class AutomodRules extends IrisModule {
 
                     ActionWarnModals.createAutomodWarn(message.member, `Automod - Violated rule: ${rule.name}`, rule.matrix);
                     ActionCase.createCase(message.guild, "AUTOWARN_CREATE", crypto.randomUUID(), message.member, message.guild.me, `Automod - Violated rule: ${rule.name}`, 0);
+                }
+
+                if (action.startsWith("log")) {
+                    let channel = action.split(" ")[1] || DataUtils.getConfig(message.guild).modules.moderation.automod.channel;
+                    if (!PermissionUtils.botPermission(message.guild, PermissionUtils.PermissionGroups.MODERATION_BASIC)) return;
+
+                    channel = await message.guild.channels.fetch(channel).catch(() => {});
+                    if (!channel) return;
+
+                    const embed = MessageUtils.generateEmbed("<:Iris_Shield_Alert:987528401550196776> Message flagged by Automod",
+                        `**Sent by** <@${message.author.id}>
+                        **In** <#${message.channelId}> [Jump to message](${message.url})
+
+                        ${message.content}`, "#2F3136")
+                        .setFooter({text: `User ID • ${message.author.id} | Violated rule • ${rule.name} | Iris Automod`})
+                        .setTimestamp();
+
+                    channel.send({embeds: [embed]});
                 }
             });
         };

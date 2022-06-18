@@ -195,6 +195,7 @@ class ActionMute extends IrisModule {
         let matrixSettings = DataUtils.getConfig(member.guild).modules.moderation.actions.matrix.matricies;
         matrixSettings = matrixSettings[matrix || DataUtils.getConfig(member.guild).modules.moderation.actions.mute.matrix];
         if (!matrixSettings) {
+            console.log("asdf");
             return 0;
         }
 

@@ -1,1 +1,11 @@
-{}
+{
+    "953085444378218537": [
+        {
+            "id": "953085444378218537:b8d8d162-ef20-48ca-b578-78afd473798b",
+            "reason": "Punishment threshold reached",
+            "start": 1655493528,
+            "end": "permanent",
+            "expired": false
+        }
+    ]
+}

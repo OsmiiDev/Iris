@@ -23,17 +23,16 @@ class ModmailTicketCreate extends IrisModule {
     */
     constructor() {
         super("moderation.modmail.ModmailTicketCreate");
+
         this.registerEvents();
     }
 
     /**
      * @description sends message
      * @param {Message} message
-     */
+    */
     async send(message) {
-        if (!message.content.startsWith("EMBED 6a0e2176c84c") || !message.guild || !message.member || !message.member.permissions.has("ADMINISTRATOR")) {
-            return;
-        }
+        if (!message.content.startsWith("EMBED 6a0e2176c84c") || !message.guild || !message.member || !message.member.permissions.has("ADMINISTRATOR")) return;
 
         const buttonRow = new MessageActionRow().addComponents(
             new MessageButton()
@@ -58,16 +57,10 @@ class ModmailTicketCreate extends IrisModule {
      * @param {ButtonInteraction} interaction The button interaction
     */
     async createTicket(interaction) {
-        if (!interaction.inGuild() || !interaction.member || !interaction.isButton()) {
-            return;
-        }
-        if (interaction.customId !== "6a0e2176c84c") {
-            return;
-        }
+        if (!interaction.inGuild() || !interaction.member || !interaction.isButton()) return;
+        if (interaction.customId !== "6a0e2176c84c") return;
 
-        if (!interaction.guild.me.permissions.has("ADMINISTRATOR")) {
-            return;
-        }
+        if (!interaction.guild.me.permissions.has("ADMINISTRATOR")) return;
 
         if (DataUtils.readUser(interaction.member.id, "modmail").open) {
             interaction.reply({embeds: [MessageUtils.generateErrorEmbed("You already have an open ticket!")], ephemeral: true});
@@ -93,16 +86,10 @@ class ModmailTicketCreate extends IrisModule {
      * @param {ButtonInteraction} interaction The button interaction
     */
     async createTicketConfirm(interaction) {
-        if (!interaction.inGuild() || !interaction.member || !interaction.isButton()) {
-            return;
-        }
-        if (interaction.customId !== "feeec982") {
-            return;
-        }
+        if (!interaction.inGuild() || !interaction.member || !interaction.isButton()) return;
+        if (interaction.customId !== "feeec982") return;
 
-        if (!interaction.guild.me.permissions.has("ADMINISTRATOR")) {
-            return;
-        }
+        if (!interaction.guild.me.permissions.has("ADMINISTRATOR")) return;
 
         if (DataUtils.readUser(interaction.member.id, "modmail").open) {
             interaction.reply({embeds: [MessageUtils.generateErrorEmbed("You already have an open ticket!")], ephemeral: true});
@@ -119,7 +106,7 @@ class ModmailTicketCreate extends IrisModule {
 
             const closeTicketButtonStaff = new MessageActionRow().addComponents(
                 new MessageButton()
-                    .setCustomId("8e8512aa")
+                    .setCustomId(`8e8512aa-${thread.id}`)
                     .setLabel("Close ticket")
                     .setEmoji("<:Iris_DocumentDelete:973086584444432404>")
                     .setStyle("PRIMARY")
@@ -156,12 +143,8 @@ class ModmailTicketCreate extends IrisModule {
      * @param {ButtonInteraction} interaction The button interaction
     */
     async createTicketCancel(interaction) {
-        if (!interaction.inGuild() || !interaction.member || !interaction.isButton()) {
-            return;
-        }
-        if (interaction.customId !== "0e87e23f") {
-            return;
-        }
+        if (!interaction.inGuild() || !interaction.member || !interaction.isButton()) return;
+        if (interaction.customId !== "0e87e23f") return;
 
         interaction.reply({
             embeds: [

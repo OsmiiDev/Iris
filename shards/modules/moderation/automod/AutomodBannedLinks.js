@@ -27,6 +27,17 @@ class AutomodBannedLinks extends IrisModule {
     */
     static async process(message, rule) {
         let data;
+        if (rule.rule.any) {
+            // eslint-disable-next-line no-useless-escape
+            if (/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/.test(message.content)) {
+                const action = rule.action;
+                const actionFunction = AutomodRules.getAction(action);
+                actionFunction(message, rule);
+                return;
+            }
+            return;
+        }
+
         if (rule.rule.file.startsWith("custom:")) {
             data = DataUtils.read(message.guild, `moderation/automod/${rule.rule.file.split(":")[1]}`);
         } else {
@@ -60,7 +71,7 @@ class AutomodBannedLinks extends IrisModule {
 
             const regex = new RegExp(`(https?:\\/\\/|\\s|^)(www\\.)?${subdomains ? "([^\\s\\/\\.]*\\.)*" : ""}(${url})(\\/${paths ? "([\\S]*\\/*)*" : ""}|\\s|$)`, "gi");
 
-            if (messageContent.match(regex)) {
+            if (regex.test(messageContent)) {
                 const action = rule.action;
                 const actionFunction = AutomodRules.getAction(action);
                 actionFunction(message, rule);

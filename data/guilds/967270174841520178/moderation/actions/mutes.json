@@ -71,6 +71,110 @@
             "end": 1655242792,
             "expired": true,
             "matrix": "invites"
+        },
+        {
+            "id": "953085444378218537:f2934d34-cbd5-4f68-a31b-6c6058511efe",
+            "reason": "Punishment threshold reached",
+            "start": 1655325396,
+            "end": 1655325426,
+            "expired": true,
+            "matrix": "invites"
+        },
+        {
+            "id": "953085444378218537:8e572e9b-2bd2-483f-9191-51da954f3e8b",
+            "reason": "Punishment threshold reached",
+            "start": 1655492880,
+            "end": 1655665680,
+            "expired": true,
+            "matrix": "default"
+        },
+        {
+            "id": "953085444378218537:b9a9e3d7-bb1b-4b92-963b-8feb282e0447",
+            "reason": "Punishment threshold reached",
+            "start": 1655492983,
+            "end": 1655665783,
+            "expired": true,
+            "matrix": "default"
+        },
+        {
+            "id": "953085444378218537:4d8a7b07-b711-40be-864a-747dcb21d68b",
+            "reason": "Punishment threshold reached",
+            "start": 1655493235,
+            "end": 1655493265,
+            "expired": true,
+            "matrix": "invites"
+        },
+        {
+            "id": "953085444378218537:cbdc4cf9-e356-484e-b4e7-6794648c21d9",
+            "reason": "Punishment threshold reached",
+            "start": 1655493528,
+            "end": 1655493558,
+            "expired": true,
+            "matrix": "invites"
+        },
+        {
+            "id": "953085444378218537:216d2658-5e48-4421-87d3-1698723c5466",
+            "reason": "Punishment threshold reached",
+            "start": 1655494199,
+            "end": 1655494229,
+            "expired": true,
+            "matrix": "invites"
+        },
+        {
+            "id": "953085444378218537:a81e7b8d-b872-4e1a-8bde-591bfbdf1135",
+            "reason": "Punishment threshold reached",
+            "start": 1655500528,
+            "end": 1655500558,
+            "expired": true,
+            "matrix": "automod"
+        },
+        {
+            "id": "953085444378218537:994d639d-1767-435c-85e9-018badd91373",
+            "reason": "Punishment threshold reached",
+            "start": 1655500876,
+            "end": 1655500906,
+            "expired": true,
+            "matrix": "automod"
+        },
+        {
+            "id": "953085444378218537:bed5ada4-9713-4d37-924b-8f540ae3e0fc",
+            "reason": "Punishment threshold reached",
+            "start": 1655516385,
+            "end": 1655516415,
+            "expired": true,
+            "matrix": "automod"
+        },
+        {
+            "id": "953085444378218537:5d99c481-0eba-4435-b2e5-526b8e7ed013",
+            "reason": "Punishment threshold reached",
+            "start": 1655516574,
+            "end": 1655516604,
+            "expired": true,
+            "matrix": "automod"
+        },
+        {
+            "id": "953085444378218537:6a7cd77f-d089-4454-a974-ab921dd890ee",
+            "reason": "Punishment threshold reached",
+            "start": 1655516680,
+            "end": 1655516710,
+            "expired": true,
+            "matrix": "automod"
+        },
+        {
+            "id": "953085444378218537:63c0c2da-e9dc-44ee-a08b-887df341f784",
+            "reason": "Punishment threshold reached",
+            "start": 1655516735,
+            "end": 1655516765,
+            "expired": true,
+            "matrix": "automod"
+        },
+        {
+            "id": "953085444378218537:2442c0da-7fb6-4fce-b81f-e6ab0c7d4d95",
+            "reason": "Punishment threshold reached",
+            "start": 1655516768,
+            "end": 1655516798,
+            "expired": true,
+            "matrix": "automod"
         }
     ]
 }
