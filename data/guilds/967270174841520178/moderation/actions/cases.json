@@ -595,6 +595,277 @@
             "moderator": "957409730958086254",
             "reason": "The mute has expired.",
             "timestamp": 1655516807
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "5c05b1e5-4a13-49e1-8aff-61fc96f9406c",
+            "member": "328984108271140864",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655576026
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "a9b94e9b-44b4-4766-af9c-8840c9e57e85",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655576191
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:3ce93b4a-99b0-46a7-a9c1-e4864479e0c4",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655576191,
+            "length": 30
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "4ca546be-cd13-4e37-8c2b-bc0b3b800fd8",
+            "member": "328984108271140864",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655576291
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "389e0212-3adc-49cd-a59e-2a7737ca8468",
+            "member": "328984108271140864",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655576293
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "992efe0f-651f-419e-8632-e2b1e8cfdf20",
+            "member": "328984108271140864",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655576293
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "57b0616b-86fd-4809-aada-aa6d74afaefe",
+            "member": "731776103336771617",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655576298
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "",
+            "member": "953085444378218537",
+            "moderator": "328984108271140864",
+            "reason": "asdf",
+            "timestamp": 1655576568
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "ad614fb2-198c-42ca-a340-1d53c6825c1f",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655576663
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "953085444378218537:5728236a-7955-45ee-b0e4-7aea2e4122c6",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655576663,
+            "length": 30
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "953085444378218537:86497ae1-407a-4ba3-b611-b171cac3cd74",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "The mute has expired.",
+            "timestamp": 1655576699
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "fbd2c08b-7396-4bc0-a452-447c72a48b3a",
+            "member": "328984108271140864",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655576774
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "b2cc72b2-b6b2-4e52-8b94-8928d8e38468",
+            "member": "841108116049625119",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655576909
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "c5e26ec0-e94d-48d3-93a3-e7045545a140",
+            "member": "841108116049625119",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655576918
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "841108116049625119:902d3548-e7af-4a70-b76a-52244fa100d5",
+            "member": "841108116049625119",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655576918,
+            "length": 10
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "b4a3de70-170a-4a4e-b6a5-a5c44ee4a522",
+            "member": "841108116049625119",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655576934
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "841108116049625119:db571c9c-499e-4db0-a8af-119e62c2687a",
+            "member": "841108116049625119",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655576934,
+            "length": 15
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "5d87d367-3ed3-483d-a481-e608d02bc3b7",
+            "member": "429088876275957761",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655577056
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "04e766ed-5acb-414e-9306-78fd4937f1fc",
+            "member": "429088876275957761",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655577059
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "429088876275957761:b10137e1-5843-4533-b6aa-4b8193014711",
+            "member": "429088876275957761",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655577059,
+            "length": 10
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "745d3fd0-ee6f-444d-8bf4-2cd81eb3a3f7",
+            "member": "429088876275957761",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655577095
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "429088876275957761:24854fb8-dcf3-4eed-890a-56b7152147e9",
+            "member": "429088876275957761",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655577095,
+            "length": 15
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "a2fa556c-17e4-4d28-8f82-5c6aad408731",
+            "member": "328984108271140864",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655577097
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "f1197d86-3c6c-48a7-90ec-e6df2c57127b",
+            "member": "328984108271140864",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655577284
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "429088876275957761:540b8f55-d26f-42b8-bf1c-bcfa279c9eb7",
+            "member": "429088876275957761",
+            "moderator": "957409730958086254",
+            "reason": "The mute has expired.",
+            "timestamp": 1655577524
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "18e4bdee-0748-4f84-a02e-9e291519c974",
+            "member": "328984108271140864",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655577542
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "d4acebf0-0c40-4760-880b-00c65bf8f6a5",
+            "member": "328984108271140864",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655577648
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "54c17421-ee29-4705-89ac-35dfba13d8ab",
+            "member": "429088876275957761",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655577652
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "429088876275957761:2ec41daf-e228-4f8d-9c8e-347c0722e840",
+            "member": "429088876275957761",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655577652,
+            "length": 20
+        },
+        {
+            "type": "MUTE_DELETE",
+            "id": "429088876275957761:814fdaba-fd77-4126-a8b8-3ed8b2502505",
+            "member": "429088876275957761",
+            "moderator": "957409730958086254",
+            "reason": "The mute has expired.",
+            "timestamp": 1655577717
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "52045582-04f5-439d-8eb0-b76e23185121",
+            "member": "328984108271140864",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655577739
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "2d6bf309-0062-4199-b8d1-a9f2b9654480",
+            "member": "328984108271140864",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655580368
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "29311f3a-25f9-4798-8476-a40469139525",
+            "member": "328984108271140864",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Spam",
+            "timestamp": 1655580368
         }
     ]
 }

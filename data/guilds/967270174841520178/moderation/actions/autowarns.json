@@ -48,6 +48,168 @@
             "start": 1655516768,
             "expired": false,
             "matrix": "automod"
+        },
+        {
+            "id": "953085444378218537:7621544c-7767-48c6-aec4-a17812727f84",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655576191,
+            "expired": false,
+            "matrix": "automod"
+        },
+        {
+            "id": "953085444378218537:e97aeb02-7d6f-4553-996c-a2c808e27d5e",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655576663,
+            "expired": false,
+            "matrix": "automod"
+        }
+    ],
+    "328984108271140864": [
+        {
+            "id": "328984108271140864:c2cf23d7-1561-440e-ba9f-c900620bc751",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655576026,
+            "expired": false,
+            "matrix": "automod"
+        },
+        {
+            "id": "328984108271140864:a60bc0ad-5689-47c4-bd28-89543070cbba",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655576291,
+            "expired": false,
+            "matrix": "automod"
+        },
+        {
+            "id": "328984108271140864:7ec32477-4efa-4d96-9f17-1dd2e620b671",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655576293,
+            "expired": false,
+            "matrix": "automod"
+        },
+        {
+            "id": "328984108271140864:d59f5121-4151-4a07-878a-4ab5e4e113bd",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655576293,
+            "expired": false,
+            "matrix": "automod"
+        },
+        {
+            "id": "328984108271140864:4d723c25-1e75-4b50-a286-6fed38bc7000",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655576774,
+            "expired": false,
+            "matrix": "automod"
+        },
+        {
+            "id": "328984108271140864:257df2ec-6ddd-46fe-bc0d-c1fcea03c962",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655577097,
+            "expired": false,
+            "matrix": "automod"
+        },
+        {
+            "id": "328984108271140864:4feb022e-2efb-4ea0-9c8b-32425a7e16f6",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655577284,
+            "expired": false,
+            "matrix": "automod"
+        },
+        {
+            "id": "328984108271140864:b3a8f895-9e8b-445b-887f-b8940a384413",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655577542,
+            "expired": false,
+            "matrix": "automod"
+        },
+        {
+            "id": "328984108271140864:c5b4fdba-2ed6-4baf-a04c-f072a48920c8",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655577648,
+            "expired": false,
+            "matrix": "automod"
+        },
+        {
+            "id": "328984108271140864:47c4151b-8264-4ee4-81f1-4c1e70fd24af",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655577739,
+            "expired": false,
+            "matrix": "automod"
+        },
+        {
+            "id": "328984108271140864:6e9545c4-da1e-4013-9566-23ec1d901e0e",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655580368,
+            "expired": false,
+            "matrix": "automod"
+        },
+        {
+            "id": "328984108271140864:4c45b257-81e3-4e03-b1bd-180f0c7249c3",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655580368,
+            "expired": false,
+            "matrix": "automod"
+        }
+    ],
+    "731776103336771617": [
+        {
+            "id": "731776103336771617:ef3d25a7-f877-49df-be99-ba837395b8b7",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655576298,
+            "expired": false,
+            "matrix": "automod"
+        }
+    ],
+    "841108116049625119": [
+        {
+            "id": "841108116049625119:b1c15a85-b16e-41c7-b894-9c90ffdff03f",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655576909,
+            "expired": false,
+            "matrix": "automod"
+        },
+        {
+            "id": "841108116049625119:ac65ca04-ae34-4627-9bd7-349bfe1a0ea5",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655576918,
+            "expired": false,
+            "matrix": "automod"
+        },
+        {
+            "id": "841108116049625119:d0acc9f1-aab1-4c51-8481-c2ff38eb3667",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655576934,
+            "expired": false,
+            "matrix": "automod"
+        }
+    ],
+    "429088876275957761": [
+        {
+            "id": "429088876275957761:ae411288-3efe-4b71-9b54-dfff87bdc8c3",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655577056,
+            "expired": false,
+            "matrix": "automod"
+        },
+        {
+            "id": "429088876275957761:376c7ca2-0112-4e7a-96f9-c6de02050296",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655577059,
+            "expired": false,
+            "matrix": "automod"
+        },
+        {
+            "id": "429088876275957761:0654f9be-63b6-47ad-b31f-ef8b5b13a325",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655577095,
+            "expired": false,
+            "matrix": "automod"
+        },
+        {
+            "id": "429088876275957761:a8eeaa6e-62a2-44f1-904c-b6c9c23074ea",
+            "reason": "Automod - Violated rule: Spam",
+            "start": 1655577652,
+            "expired": false,
+            "matrix": "automod"
         }
     ]
 }

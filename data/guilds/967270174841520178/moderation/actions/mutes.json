@@ -175,6 +175,66 @@
             "end": 1655516798,
             "expired": true,
             "matrix": "automod"
+        },
+        {
+            "id": "953085444378218537:7e12d2e7-c5a0-45bc-89c2-76b277cb01de",
+            "reason": "Punishment threshold reached",
+            "start": 1655576191,
+            "end": 1655576221,
+            "expired": true,
+            "matrix": "automod"
+        },
+        {
+            "id": "953085444378218537:86497ae1-407a-4ba3-b611-b171cac3cd74",
+            "reason": "Punishment threshold reached",
+            "start": 1655576663,
+            "end": 1655576693,
+            "expired": true,
+            "matrix": "automod"
+        }
+    ],
+    "841108116049625119": [
+        {
+            "id": "841108116049625119:3da7205c-10ca-4155-9af4-1750421393ca",
+            "reason": "Punishment threshold reached",
+            "start": 1655576918,
+            "end": 1655576928,
+            "expired": true,
+            "matrix": "automod"
+        },
+        {
+            "id": "841108116049625119:ef8f38d9-0f15-4901-9261-d8e78dc0bff5",
+            "reason": "Punishment threshold reached",
+            "start": 1655576934,
+            "end": 1655576949,
+            "expired": true,
+            "matrix": "automod"
+        }
+    ],
+    "429088876275957761": [
+        {
+            "id": "429088876275957761:dfff7e10-c99d-4066-841e-441ed9ad180d",
+            "reason": "Punishment threshold reached",
+            "start": 1655577059,
+            "end": 1655577069,
+            "expired": true,
+            "matrix": "automod"
+        },
+        {
+            "id": "429088876275957761:540b8f55-d26f-42b8-bf1c-bcfa279c9eb7",
+            "reason": "Punishment threshold reached",
+            "start": 1655577095,
+            "end": 1655577110,
+            "expired": true,
+            "matrix": "automod"
+        },
+        {
+            "id": "429088876275957761:814fdaba-fd77-4126-a8b8-3ed8b2502505",
+            "reason": "Punishment threshold reached",
+            "start": 1655577652,
+            "end": 1655577672,
+            "expired": true,
+            "matrix": "automod"
         }
     ]
 }

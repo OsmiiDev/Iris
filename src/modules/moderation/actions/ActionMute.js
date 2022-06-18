@@ -97,6 +97,7 @@ class ActionMute extends IrisModule {
 
         const member = await guild.members.fetch(userId).catch(() => {});
 
+        console.log(ActionMute.hasActiveMute(member));
         if (member instanceof GuildMember && member.manageable && member.moderatable && !ActionMute.hasActiveMute(member)) {
             member.roles.remove(DataUtils.getConfig(guild).modules.moderation.actions.mute.role);
             member.timeout(0);

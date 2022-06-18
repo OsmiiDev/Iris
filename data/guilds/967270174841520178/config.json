@@ -279,7 +279,7 @@
                         }
                     },
                     {
-                        "name": "Spam",
+                        "name": "Fast Message Spam",
                         "enabled": true,
                         "rule": {
                             "type": "rate-limit",
@@ -333,9 +333,9 @@
                         "enabled": true,
                         "rule": {
                             "type": "spam",
-                            "filter": "{emojis > 5}"
+                            "filter": "{{emojis > 5} | {mentions > 5} | {repeated 3 10} | {cooldown emojis 20 10}}"
                         },
-                        "action": "delete; log;",
+                        "action": "log;",
                         "matrix": "automod",
                         "exempt": {
                             "users": [],
@@ -343,7 +343,6 @@
                             "channels": []
                         }
                     }
-
                 ]
             },
             "modmail": {
