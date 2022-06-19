@@ -1,4 +1,5 @@
 const fs = require("fs");
+const DataUtils = require("./DataUtils");
 const modules = {
     "core.IrisModule": "../modules/IrisModule"
 };
@@ -45,7 +46,7 @@ class ModuleUtils {
                 modules[moduleClass._name] = `${require("path").relative(__dirname, path).replace(/\\/g, "/")}/${fileName}`;
                 // get relative path from absolute path
 
-                console.log(`[Shard-${process.shard} REGISTER] Registered module ${moduleClass._name}`);
+                console.log(`[REGISTER] Registered module ${moduleClass._name}`);
             } else {
                 this.registerModules(`${path}/${fileName}`);
             }
@@ -59,6 +60,8 @@ class ModuleUtils {
     static async registerCommands(path = "./commands") {
         const commands = [];
 
+        ModuleUtils.registerTextCommands(`${path}/text`);
+
         commands.push(...ModuleUtils.registerSlashCommands(`${path}/slash`));
         commands.push(...ModuleUtils.registerMessageCommands(`${path}/message`));
         commands.push(...ModuleUtils.registerUserCommands(`${path}/user`));
@@ -69,7 +72,58 @@ class ModuleUtils {
             await guild.commands.set(commands);
         }
 
-        console.log(`[Shard-${process.shard} REGISTER] Registered all client commands`);
+        console.log("[REGISTER] Registered all client commands");
+    }
+
+    /**
+     * @description Registers all text message commands
+     * @param {String} path The directory
+    */
+    static registerTextCommands(path = "./commands/text") {
+        const commands = [];
+
+        const textCommands = fs.readdirSync(path);
+        for (const textCommand of textCommands) {
+            const CommandFile = require(`${path}/${textCommand}`);
+            const commandClass = new CommandFile();
+
+            console.log(`[REGISTER] Registered text command ${commandClass.getName()}`);
+
+            commands.push({
+                name: commandClass.getName(),
+                aliases: commandClass.getAliases(),
+                executor: commandClass.executor
+            });
+        }
+
+        process.client.on("messageCreate", (message) => {
+            if (!message.inGuild() || !message.channel || message.author.bot || message.author.system) return;
+
+            const prefix = DataUtils.getConfig(message.guild).prefix;
+
+            for (const command of commands) {
+                const commandData = DataUtils.getConfig(message.guild).commands.text[command.name.toLowerCase()];
+                if (!commandData || !commandData.enabled) continue;
+                if (!(commandData.channels.includes(message.channel.id) ^ commandData["channel-blacklist"])) continue;
+
+                let hasPermission = false;
+
+                if (message.member.roles.cache.hasAny(commandData.roles)) hasPermission = true;
+                if (commandData.users.includes(message.author.id)) hasPermission = true;
+                if (commandData.default) hasPermission = !hasPermission;
+                if (!hasPermission) continue;
+
+                // eslint-disable-next-line max-len
+                if (message.content.toLowerCase().startsWith(`${prefix}${command.name.toLowerCase()}`) || command.aliases.some((alias) => message.content.toLowerCase().startsWith(`${prefix}${alias.toLowerCase()}`))) {
+                    const args = message.content.split(" ").slice(1);
+                    command.executor(message, args);
+                }
+                if (message.content.startsWith("<@957409730958086254>")) {
+                    const args = message.content.split(" ").slice(1);
+                    command.executor(message, args);
+                }
+            }
+        });
     }
 
     /**
@@ -84,7 +138,7 @@ class ModuleUtils {
         for (const messageCommand of messageCommands) {
             const commandFile = require(`${path}/${messageCommand}`);
 
-            console.log(`[Shard-${process.shard} REGISTER] Registered slash command ${commandFile.getName()}`);
+            console.log(`[REGISTER] Registered slash command ${commandFile.getName()}`);
 
             commands.push(commandFile.getBuilder().toJSON());
 
@@ -112,7 +166,7 @@ class ModuleUtils {
         for (const messageCommand of messageCommands) {
             const commandFile = require(`${path}/${messageCommand}`);
 
-            console.log(`[Shard-${process.shard} REGISTER] Registered message command ${commandFile.getName()}`);
+            console.log(`[REGISTER] Registered message command ${commandFile.getName()}`);
 
             commands.push(commandFile.getBuilder());
 
@@ -140,7 +194,7 @@ class ModuleUtils {
         for (const userCommand of userCommands) {
             const commandFile = require(`${path}/${userCommand}`);
 
-            console.log(`[Shard-${process.shard} REGISTER] Registered user command ${commandFile.getName()}`);
+            console.log(`[REGISTER] Registered user command ${commandFile.getName()}`);
 
             commands.push(commandFile.getBuilder());
 

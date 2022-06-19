@@ -2,11 +2,31 @@
     "prefix": ">",
     "delete": true,
     "commands": {
+        "message": {},
         "slash": {
             "music": {
                 "enabled": true
             }
-        }
+        },
+        "text": {
+            "webhook": {
+                "enabled": true,
+                "roles": [],
+                "users": [],
+                "default": true,
+                "channels": [],
+                "channel-blacklist": true
+            },
+            "purge": {
+                "enabled": true,
+                "roles": [],
+                "users": [],
+                "default": true,
+                "channels": [],
+                "channel-blacklist": true
+            }
+        },
+        "user": {}
     },
     "modules": {
         "entertainment": {
@@ -261,6 +281,21 @@
                         }
                     },
                     {
+                        "name": "Invite Links",
+                        "enabled": true,
+                        "rule": {
+                            "type": "banned-links",
+                            "file": "public:filters/invites"
+                        },
+                        "action": "delete; warn <@{User}> Don't send invite links.;log;",
+                        "matrix": "automod",
+                        "exempt": {
+                            "users": [],
+                            "roles": [],
+                            "channels": []
+                        }
+                    },
+                    {
                         "name": "Slurs",
                         "enabled": true,
                         "rule": {
@@ -297,21 +332,6 @@
                         }
                     },
                     {
-                        "name": "Invite Links",
-                        "enabled": true,
-                        "rule": {
-                            "type": "banned-links",
-                            "file": "public:filters/invites"
-                        },
-                        "action": "delete; warn <@{User}> Don't send invite links.;log;",
-                        "matrix": "automod",
-                        "exempt": {
-                            "users": [],
-                            "roles": [],
-                            "channels": []
-                        }
-                    },
-                    {
                         "name": "Zalgo",
                         "enabled": true,
                         "rule": {
@@ -342,6 +362,26 @@
                             "roles": [],
                             "channels": []
                         }
+                    },
+                    {
+                        "name": "Sexually Explicit",
+                        "enabled": true,
+                        "rule": {
+                            "type": "banned-words",
+                            "file": "public:words/sexually-explicit",
+                            "match": "strict"
+                        },
+                        "action": "delete; warn <@{User}> Watch your language.;log;",
+                        "matrix": "automod",
+                        "exempt": {
+                            "users": [],
+                            "roles": [
+                                "970906262567022632"
+                            ],
+                            "channels": []
+                        }
+                        
+
                     }
                 ]
             },

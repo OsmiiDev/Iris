@@ -1,46 +1,53 @@
-const {GuildMember, WebhookClient} = require("discord.js");
+const {WebhookClient, MessageEmbed} = require("discord.js");
 const DataUtils = require("../../utility/DataUtils");
 const MessageUtils = require("../../utility/MessageUtils");
 const PermissionUtils = require("../../utility/PermissionUtils");
+const TextCommand = require("../TextCommand");
 
-const IrisModule = require("../IrisModule");
+const helpEmbed = MessageUtils.generateEmbed("{prefix}webhook",
+    `**Description**: Utility commands for interacting with webhooks.
+    **Cooldown**: 3 seconds (guild-wide)
+
+    **Subcommands**
+    **{prefix}webhook send <webhook|id> [avatar] [username]** • Reply to a message with this command to send it to a webhook, with a optional custom avatar or username
+    **{prefix}webhook list** • List the webhooks for the current server, with their IDs and URLs
+
+    **Examples**
+    {prefix}webhook send announcements https://cdn.discordapp.com/avatars/957409730958086254/6fb00391550490ea71d608c310593292.png?size=4096 Iris
+    {prefix}webhook send https://discord.com/api/webhooks/123456789123456789/token`, "#44DD66").toJSON();
 
 /**
  * @description Handles commands for interactions with webhooks
 */
-class WebhookCommands extends IrisModule {
-    LISTENERS = [
-        {event: "messageCreate", function: this.messageCreate}
-    ];
-
+class Webhook extends TextCommand {
     /**
      * @description Constructor
     */
     constructor() {
-        super("utility.WebhookCommands");
-
-        // this.registerEvents();
+        super("webhook", ["wh"], Webhook.run);
     }
 
     /**
      * @description Handles messages
      * @param {Message} message The message to handle
+     * @param {Array<String>} args The arguments for the command
     */
-    async messageCreate(message) {
-        if (!message.inGuild() || !(message.member instanceof GuildMember) || !message.channel) return;
-        if (message.author.bot || message.author.system) return;
+    static async run(message, args) {
+        if (args.length === 0) {
+            return message.reply({embeds: [
+                new MessageEmbed(JSON.parse(JSON.stringify(helpEmbed).replace(/{prefix}/g, DataUtils.getConfig(message.guild).prefix)))
+                    .setAuthor({name: `${message.author.username}`, icon_url: message.author.displayAvatarURL()}).setTimestamp()
+            ]});
+        }
 
-        if (!MessageUtils.isCommand(message, "webhook")) return;
-
-        const split = message.content.split(" ");
-        const command = split[1];
+        const command = args[0];
 
         message.suppressEmbeds();
         if (command === "send") {
-            WebhookCommands.send(message);
+            Webhook.send(message);
         }
         if (command === "list") {
-            WebhookCommands.list(message);
+            Webhook.list(message);
         }
     }
 
@@ -146,4 +153,4 @@ class WebhookCommands extends IrisModule {
     }
 }
 
-module.exports = WebhookCommands;
+module.exports = Webhook;
