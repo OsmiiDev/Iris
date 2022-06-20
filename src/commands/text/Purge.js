@@ -13,7 +13,7 @@ const helpEmbed = MessageUtils.generateEmbed("{prefix}purge",
     **Examples**
     {prefix}purge 10
     {prefix}purge 5 @Osmii
-    {prefix}purge 1w @Osmii`, "#44DD66").toJSON();
+    {prefix}purge 1w @Osmii`, "#4466DD").toJSON();
 
 /**
  * @description Handles purging messages
@@ -41,8 +41,6 @@ class Purge extends TextCommand {
 
         const number = args[0];
         if (isNaN(number * 1)) {
-            console.log("NAN");
-            // split time into numbers and letters
             const time = args[0].split("");
             const splitTime = [];
             let current = "";
@@ -68,7 +66,7 @@ class Purge extends TextCommand {
                 }
             });
 
-            const target = args[1] && /<@[0-9]{16,20}>/g.test(args[1]) ? message.mentions.members.first() : null;
+            const target = args[1] && /<@[0-9]{16,20}>/g.test(args[1]) ? message.mentions.members.first().id : args[1] && /[0-9]{16,20}/g.test(args[1]) ? args[1] : null;
 
             let firstMessage = message.channel.lastMessage;
             let count = 0;
@@ -80,15 +78,13 @@ class Purge extends TextCommand {
                 messages.forEach((message) => {
                     if (count >= number || message.createdAt.getTime() < Date.now() - total * 1000) return;
                     if (!message.deletable) return undeleteable += 1;
-                    if (target && message.author.id !== target.id) return;
+                    if (target && message.author.id !== target) return;
                     message.delete().catch(() => {
                         error = true;
                     });
                     count += 1;
                 });
             }
-
-            console.log("done purging");
 
             if (target && error) {
                 message.channel.send({embeds: [MessageUtils.generateErrorEmbed("Could not purge messages for member.")]}).catch(() => {});
@@ -106,12 +102,8 @@ class Purge extends TextCommand {
                     , "#44DD66")]}).catch(() => {});
             }
         } else {
-            console.log(args);
-            if (args[1] && /<@[0-9]{16,20}>/g.test(args[1])) {
-                const member = message.mentions.members.first();
-                if (!member) {
-                    return message.reply({embeds: [MessageUtils.generateErrorEmbed("Could not find member to purge messages for.")]});
-                }
+            if (args[1] && (/<@[0-9]{16,20}>/g.test(args[1]) || /[0-9]{16,20}/g.test(args[1]))) {
+                const target = args[1] && /<@[0-9]{16,20}>/g.test(args[1]) ? message.mentions.members.first().id : args[1] && /[0-9]{16,20}/g.test(args[1]) ? args[1] : null;
 
                 let error = false;
                 let lastMessage = message.channel.lastMessageId;
@@ -125,7 +117,7 @@ class Purge extends TextCommand {
                     messages.forEach((message) => {
                         if (count >= number) return;
                         if (!message.deletable) return undeleteable += 1;
-                        if (message.author.id === member.id) {
+                        if (message.author.id === target) {
                             message.delete().catch(() => {
                                 error = true;
                             });
@@ -138,7 +130,7 @@ class Purge extends TextCommand {
                     message.channel.send({embeds: [MessageUtils.generateErrorEmbed("Could not purge messages for member.")]}).catch(() => {});
                 } else {
                     message.channel.send({embeds: [MessageUtils.generateEmbed("",
-                        `<:Iris_TickYes:977399754969448520> Purged **${count}** messages by <@${member.id}>.${undeleteable === 0 ? "" : ` Failed to delete **${undeleteable}** messages.`}`
+                        `<:Iris_TickYes:977399754969448520> Purged **${count}** messages by <@${target}>.${undeleteable === 0 ? "" : ` Failed to delete **${undeleteable}** messages.`}`
                         , "#44DD66")]}).catch(() => {});
                 }
             } else {

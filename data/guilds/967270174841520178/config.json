@@ -11,19 +11,27 @@
         "text": {
             "webhook": {
                 "enabled": true,
-                "roles": [],
-                "users": [],
-                "default": true,
-                "channels": [],
-                "channel-blacklist": true
+                "permissions": {
+                    "default": "administrator",
+                    "channels": {
+                    }
+                }
             },
             "purge": {
                 "enabled": true,
-                "roles": [],
-                "users": [],
-                "default": true,
-                "channels": [],
-                "channel-blacklist": true
+                "permissions": {
+                    "default": "administrator",
+                    "channels": {
+                        "967544859579793438": {
+                            "default": [false, 2],
+                            "roles": {
+                                "969065579858243675": [true, 3],
+                                "968700535848984668": [true, 3],
+                                "968697071169310782": [true, 3]
+                            }
+                        }
+                    }
+                }
             }
         },
         "user": {}
@@ -91,6 +99,10 @@
                                 {
                                     "on": "mute >= 10 in 7776000",
                                     "run": "kick automod"
+                                },
+                                {
+                                    "on": "mute >= 25 in 7776000",
+                                    "run": "ban automod"
                                 }
                             ],
                             "times": {
@@ -99,7 +111,12 @@
                                     15,
                                     20,
                                     25,
-                                    30
+                                    30,
+                                    60,
+                                    300,
+                                    900,
+                                    3600,
+                                    86400
                                 ],
                                 "ban": [
                                     0
@@ -353,7 +370,7 @@
                         "enabled": true,
                         "rule": {
                             "type": "spam",
-                            "filter": "{{emojis > 5} | {mentions > 5} | {repeated 3 10} | {cooldown emojis 20 10}}"
+                            "filter": "{{emojis > 5} | {mentions > 5} | {repeated 3 10} | {newlines > 10} | {cooldown emojis 20 10}}"
                         },
                         "action": "log;",
                         "matrix": "automod",
@@ -368,20 +385,16 @@
                         "enabled": true,
                         "rule": {
                             "type": "banned-words",
-                            "file": "public:words/sexually-explicit",
+                            "file": "public:filters/words/sexually-explicit",
                             "match": "strict"
                         },
-                        "action": "delete; warn <@{User}> Watch your language.;log;",
+                        "action": "delete; warn <@{User}> Watch your language.; mute automod; log;",
                         "matrix": "automod",
                         "exempt": {
                             "users": [],
-                            "roles": [
-                                "970906262567022632"
-                            ],
+                            "roles": [],
                             "channels": []
                         }
-                        
-
                     }
                 ]
             },
@@ -394,10 +407,15 @@
             "verification": {
                 "enabled": true,
                 "channel": "971227460265996320",
-                "roles": ["969093070404591648", "967545821648273498"],
+                "roles": [
+                    "969093070404591648",
+                    "967545821648273498"
+                ],
                 "adult-role": "973462181104472084",
+                "welcome-dm": "It looks like you've been accepted into {GuildName}! Welcome!",
                 "welcome-message": "Welcome <@{User}>!",
                 "welcome-channel": "967270174841520181",
+                "rejection-reason": true,
                 "anti-alt": false,
                 "questions": [
                     {
@@ -434,13 +452,6 @@
                 "response": {
                     "title": "All done!",
                     "description": "Your responses were sent to staff for review. If your DMs are open, you will be automatically notified once your account is verified. If you don't receive a message within half an hour, feel free to open a modmail ticket."
-                },
-                "filters": {
-                    "reject": {
-                        "0": {
-                            "answer": "{Password} != beans"
-                        }
-                    }
                 }
             }
         }

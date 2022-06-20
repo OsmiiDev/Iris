@@ -1,3 +1,4 @@
+const {Message} = require("discord.js");
 const fs = require("fs");
 const DataUtils = require("./DataUtils");
 const modules = {
@@ -97,29 +98,66 @@ class ModuleUtils {
         }
 
         process.client.on("messageCreate", (message) => {
+            if (!(message instanceof Message)) return;
             if (!message.inGuild() || !message.channel || message.author.bot || message.author.system) return;
 
             const prefix = DataUtils.getConfig(message.guild).prefix;
 
             for (const command of commands) {
+                if (!(message.content.toLowerCase().startsWith(`${prefix}${command.name.toLowerCase()}`) ||
+                    command.aliases.some((alias) => message.content.toLowerCase().startsWith(`${prefix}${alias.toLowerCase()}`))) &&
+                    !(message.content.startsWith(`<@957409730958086254> ${command.name.toLowerCase()}`))) continue;
+
                 const commandData = DataUtils.getConfig(message.guild).commands.text[command.name.toLowerCase()];
                 if (!commandData || !commandData.enabled) continue;
-                if (!(commandData.channels.includes(message.channel.id) ^ commandData["channel-blacklist"])) continue;
 
-                let hasPermission = false;
+                let hasPermission = [false, -1];
+                if (commandData.permissions.default === "administrator") hasPermission = [message.member.permissions.has("ADMINISTRATOR"), 0];
+                if (commandData.permissions.default === true) hasPermission = [true, 0];
 
-                if (message.member.roles.cache.hasAny(commandData.roles)) hasPermission = true;
-                if (commandData.users.includes(message.author.id)) hasPermission = true;
-                if (commandData.default) hasPermission = !hasPermission;
-                if (!hasPermission) continue;
+                const channelPermissions = commandData.permissions.channels[message.channel.isThread() ? message.channel.parentId : message.channelId] || {};
+                const categoryPermissions = commandData.permissions.channels[message.channel.isThread() ? message.channel.parent.parentId : message.channel.parentId] || {};
+
+                console.log(channelPermissions);
+                console.log(categoryPermissions);
+
+                if (categoryPermissions.default && categoryPermissions.default[1] > hasPermission[1]) hasPermission = categoryPermissions.default;
+                if (channelPermissions.default && channelPermissions.default[1] > hasPermission[1]) hasPermission = channelPermissions.default;
+
+                if (channelPermissions.roles) {
+                    Object.entries(channelPermissions.roles).forEach(([role, [has, priority]]) => {
+                        if (message.member.roles.cache.has(role)) {
+                            if (priority > hasPermission[1]) {
+                                hasPermission = [has, priority];
+                            }
+                        }
+                    });
+                }
+                if (categoryPermissions.roles) {
+                    Object.entries(categoryPermissions.roles).forEach(([role, [has, priority]]) => {
+                        if (message.member.roles.cache.has(role)) {
+                            if (priority > hasPermission[1]) {
+                                hasPermission = [has, priority];
+                            }
+                        }
+                    });
+                }
+
+                if (channelPermissions && channelPermissions.members && channelPermissions.members[message.author.id]) {
+                    if (channelPermissions.members[message.author.id][1] > hasPermission[1]) {
+                        hasPermission = channelPermissions.members[message.author.id];
+                    }
+                }
+
+                if (!hasPermission[0]) continue;
 
                 // eslint-disable-next-line max-len
                 if (message.content.toLowerCase().startsWith(`${prefix}${command.name.toLowerCase()}`) || command.aliases.some((alias) => message.content.toLowerCase().startsWith(`${prefix}${alias.toLowerCase()}`))) {
                     const args = message.content.split(" ").slice(1);
                     command.executor(message, args);
                 }
-                if (message.content.startsWith("<@957409730958086254>")) {
-                    const args = message.content.split(" ").slice(1);
+                if (message.content.startsWith(`<@957409730958086254> ${command.name.toLowerCase()}`)) {
+                    const args = message.content.split(" ").slice(2);
                     command.executor(message, args);
                 }
             }

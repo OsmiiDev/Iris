@@ -3,6 +3,7 @@ const crypto = require("crypto");
 const DataUtils = require("../../../utility/DataUtils");
 const MessageUtils = require("../../../utility/MessageUtils");
 const IrisModule = require("../../IrisModule");
+const VerificationButtons = require("./VerificationButtons");
 
 const openApplications = {};
 const tokens = {};
@@ -57,7 +58,9 @@ class VerificationModals extends IrisModule {
     */
     async beginVerification(interaction) {
         if (!interaction.isButton() || !interaction.inGuild() || !interaction.channel || interaction.customId !== "a9897609d4ad") return;
-        console.log("beginning verification");
+        if (VerificationButtons.getPending(interaction.guild.id).includes(interaction.member.id)) {
+            return interaction.reply({embeds: [MessageUtils.generateErrorEmbed("You already have a pending verification application.")], ephemeral: true});
+        }
 
         let questions = DataUtils.getConfig(interaction.guild).modules.security.verification.questions;
         let components = [];
@@ -146,6 +149,10 @@ class VerificationModals extends IrisModule {
         if (!interaction.isModalSubmit() || !interaction.inGuild() || !interaction.channel || !interaction.customId.startsWith("97f97e1e2ff0")) return;
         if (!openApplications[interaction.guild.id] || !openApplications[interaction.guild.id][interaction.member.id]) return;
 
+        if (VerificationButtons.getPending(interaction.guild.id).includes(interaction.member.id)) {
+            return interaction.reply({embeds: [MessageUtils.generateErrorEmbed("You already have a pending verification application.")], ephemeral: true});
+        }
+
         const page = interaction.customId.split("-")[1] * 1;
         const questions = DataUtils.getConfig(interaction.guild).modules.security.verification.questions;
 
@@ -157,7 +164,6 @@ class VerificationModals extends IrisModule {
 
         openApplications[interaction.guild.id][interaction.member.id].push(responses);
 
-        console.log(openApplications[interaction.guild.id][interaction.member.id].flat().length);
         if (openApplications[interaction.guild.id][interaction.member.id].flat().length === questions.length) {
             if (DataUtils.getConfig(interaction.guild).modules.security.verification["anti-alt"]) {
                 interaction.reply({
@@ -179,12 +185,12 @@ class VerificationModals extends IrisModule {
                     ]
                 });
 
-                console.log(openApplications[interaction.guild.id][interaction.member.id].flat());
                 const application = openApplications[interaction.guild.id][interaction.member.id].flat();
                 const embed = MessageUtils.generateEmbed(`${interaction.member.user.tag}'s Verification Application`,
                     "", "#4466DD", interaction.user)
                     .addField("Account Created", `<t:${Math.floor(interaction.member.joinedAt.getTime()/1000)}:f>`, true)
                     .addField("Joined At", `<t:${Math.floor(interaction.user.createdAt.getTime()/1000)}:f>`, true)
+                    .addField(`ID: ${interaction.user.id}`, `<@${interaction.user.id}>`, false)
                     .addField("\u200b", "\u200b", false)
                     .setThumbnail(interaction.user.avatarURL())
                     .setFooter({text: "Iris Verification"}).setTimestamp();
@@ -223,6 +229,8 @@ class VerificationModals extends IrisModule {
                     channel.send({embeds: [embed], components: [buttons]});
                 }
                 openApplications[interaction.guild.id][interaction.member.id] = undefined;
+
+                VerificationButtons.addPending(interaction.guild.id, interaction.member.id);
                 return;
             }
         } else {

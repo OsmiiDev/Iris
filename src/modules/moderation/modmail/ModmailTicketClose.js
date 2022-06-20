@@ -99,6 +99,9 @@ class ModmailTicketClose extends IrisModule {
         });
         await thread.setName(`[Closed] ${thread.name}`);
         await thread.setArchived(true, reason);
+
+        await interaction.deferReply();
+        interaction.deleteReply();
     }
 
     /**

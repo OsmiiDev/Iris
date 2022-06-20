@@ -866,6 +866,40 @@
             "moderator": "957409730958086254",
             "reason": "Automod - Violated rule: Spam",
             "timestamp": 1655580368
+        },
+        {
+            "type": "WARN_CREATE",
+            "id": "899015638893342720:e24d63eb-539a-4fca-98a1-f966a367e514",
+            "member": "899015638893342720",
+            "moderator": "328984108271140864",
+            "reason": "oh hey i can do this",
+            "timestamp": 1655693864
+        },
+        {
+            "type": "AUTOWARN_CREATE",
+            "id": "249b94a6-abb9-4b3d-af2b-65773c9cc03d",
+            "member": "328984108271140864",
+            "moderator": "957409730958086254",
+            "reason": "Automod - Violated rule: Sexually Explicit",
+            "timestamp": 1655693936
+        },
+        {
+            "type": "MUTE_CREATE",
+            "id": "429088876275957761:c4a2afb2-8ba9-480c-bb19-31cf3923860c",
+            "member": "429088876275957761",
+            "moderator": "328984108271140864",
+            "reason": "like this!",
+            "timestamp": 1655695347,
+            "length": 3
+        },
+        {
+            "type": "BAN_CREATE",
+            "id": "953085444378218537:45b9567d-790d-4a19-b07b-e3de283770d9",
+            "member": "953085444378218537",
+            "moderator": "957409730958086254",
+            "reason": "Punishment threshold reached",
+            "timestamp": 1655695384,
+            "length": 0
         }
     ]
 }

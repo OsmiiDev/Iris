@@ -32,7 +32,7 @@ class ModmailTicketManager extends IrisModule {
                 name: threadOptions.name || `${user.username}'s ticket`,
                 reason: threadOptions.reason || "Creating new ticket",
                 autoArchiveDuration: 1440, type: "GUILD_PUBLIC_THREAD",
-                startMessage: threadOptions.startMessage || undefined
+                startMessage: threadOptions.message || undefined
             });
 
             const data = {

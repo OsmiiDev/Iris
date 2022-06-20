@@ -148,6 +148,13 @@
             "start": 1655580368,
             "expired": false,
             "matrix": "automod"
+        },
+        {
+            "id": "328984108271140864:5a300033-9eda-4d48-826f-99b3b046244d",
+            "reason": "Automod - Violated rule: Sexually Explicit",
+            "start": 1655693936,
+            "expired": false,
+            "matrix": "automod"
         }
     ],
     "731776103336771617": [

@@ -14,7 +14,7 @@ const helpEmbed = MessageUtils.generateEmbed("{prefix}webhook",
 
     **Examples**
     {prefix}webhook send announcements https://cdn.discordapp.com/avatars/957409730958086254/6fb00391550490ea71d608c310593292.png?size=4096 Iris
-    {prefix}webhook send https://discord.com/api/webhooks/123456789123456789/token`, "#44DD66").toJSON();
+    {prefix}webhook send https://discord.com/api/webhooks/123456789123456789/token`, "#4466DD").toJSON();
 
 /**
  * @description Handles commands for interactions with webhooks

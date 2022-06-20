@@ -99,6 +99,7 @@ class ActionMute extends IrisModule {
 
         console.log(ActionMute.hasActiveMute(member));
         if (member instanceof GuildMember && member.manageable && member.moderatable && !ActionMute.hasActiveMute(member)) {
+            console.log("Removing mute role");
             member.roles.remove(DataUtils.getConfig(guild).modules.moderation.actions.mute.role);
             member.timeout(0);
         }
@@ -110,6 +111,9 @@ class ActionMute extends IrisModule {
      * @return {Boolean} Whether the user has an active mute or not
     */
     static hasActiveMute(member) {
+        if (!member) {
+            return;
+        }
         const mutes = DataUtils.read(member.guild, "moderation/actions/mutes")[member.id];
         if (!mutes) {
             return false;

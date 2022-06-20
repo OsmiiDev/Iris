@@ -6,6 +6,13 @@
             "start": 1655493528,
             "end": "permanent",
             "expired": false
+        },
+        {
+            "id": "953085444378218537:2e21ca00-0e03-437f-a3fb-66b56b5fa5a4",
+            "reason": "Punishment threshold reached",
+            "start": 1655695384,
+            "end": "permanent",
+            "expired": false
         }
     ]
 }

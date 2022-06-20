@@ -69,6 +69,7 @@ class AutomodSpam extends IrisModule {
                 if (key === "attachments") count += message.attachments.size;
                 if (key === "embeds") count += message.embeds.size;
                 if (key === "stickers") count += message.stickers.size;
+                if (key === "newlines") count += message.content.match(/\n/g) ? message.content.match(/\n/g).length : 0;
 
                 if (key === "cooldown") {
                     const [, keyItem, number, window] = match.split(" ");
@@ -99,7 +100,7 @@ class AutomodSpam extends IrisModule {
                 return matches;
             });
 
-            console.log(filter);
+            // console.log(filter);
 
             while (/{[^{}]*}/g.test(filter)) {
                 filter = filter.replace(/{[^{}]*}/g, (match) => {
